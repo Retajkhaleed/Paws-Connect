@@ -15,16 +15,29 @@
             </div>
 
             <!-- Main navigation bar linking to all website pages -->
-            <nav class="main-nav">
-                <a href="home.html">Home</a>
-                <a href="adoptable-cats.html">Adoptable Cats</a>
-                <a href="lost-cats.html">Lost Cats</a>
-                <a href="sick-cats.html" class="active">Sick Cats</a> <!-- Current active page -->
-                <a href="account.html">Account</a>
-                <a href="login.html">Login</a>
-            </nav>
-        </div>
-    </header>
+            <nav>
+    <ul class="nav menu">
+      <li><a href="Home.html" class="active">Home</a></li>
+      <li><a href="adoptable-cats.html">Adopt Cats</a></li>
+      <li><a href="lost-cats.html">Lost Cats</a></li>
+      <li><a href="sick.html">Sick Cats</a></li>
+
+
+      <li class="dropdown">
+        <button class="dropbtn">
+          Account <span class="arrow">▼</span>
+        </button>
+        <ul class="dropdown-content">
+          <li><a href="account.html">Profile</a></li>
+          <li><a href="my-announcements.html">My Announcements</a></li>
+          <li><a href="saved-announcements.html">Saved Announcements</a></li>
+        </ul>
+      </li>
+
+      <li><a href="add.html" class="btn">Add Announcement</a></li>
+    </ul>
+  </nav>
+</header>
 
     <!-- Hero section: main title + subtitle -->
     <section class="hero">
@@ -102,3 +115,4 @@
 </body>
 
 </html>
+
