@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Paws Connect | Announcement Details</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paws Connect - Sick Cats</title>
 </head>
-
 <body>
-  <header>
+    <!--the Header containing logo and navigation menu -->
+    <header>
     <div class="logo">
       <img src="logo.png" alt="Paws Connect Logo" class="logo-image">
       <span class="logo-text">Paws Connect</span>
     </div>
 
-<nav>
+
+            <!-- Main navigation bar linking to all website pages -->
+            <nav>
     <ul class="nav menu">
       <li><a href="Home.html" class="active">Home</a></li>
       <li><a href="adoptable-cats.html">Adopt Cats</a></li>
@@ -38,42 +39,70 @@
   </nav>
 </header>
 
-  <main class="container announcement-container">
-    <div class="announcement-card">
-      <img src="sample-cat.jpg" alt="Cat Image" class="announcement-image" id="annImage">
-
-      <div class="announcement-details">
-        <h2 id="annTitle">[Cat in Need of a Home]</h2>
-        <p id="annDescription">This is where the full description of the cat will appear.</p>
-
-        <p><strong>Region:</strong> <span id="annRegion">Riyadh</span></p>
-        <p><strong>Status:</strong> <span id="annStatus" class="status-tag">Available</span></p>
-        <p><strong>Posted By:</strong> <span id="annUser">User Name</span></p>
-        <p><strong>Phone:</strong> <a href="#" id="annContact">+966500000000</a></p>
-
-        <div class="announcement-actions">
-          <a class="btn contact-btn" id="contactBtn">Contact</a>
-          <a class="btn mark-btn" id="markStatusBtn">Update Status</a>
+    <!-- Hero section: main title + subtitle -->
+    <section class="hero">
+        <div class="container">
+            <h1>Sick Cats Needing Care</h1> <!-- Page title -->
+            <p>Give a Sick Cat Hope and a chance to heal</p> <!-- Subtitle -->
         </div>
-      </div>
-    </div>
-
-    <section class="comments-section">
-      <h3>Comments</h3>
-
-      <div id="commentsList">
-        <p>No comments yet. Be the first to comment!</p>
-      </div>
-
-      <form class="comment-form">
-        <textarea id="newComment" placeholder="Write a comment..." required></textarea>
-        <button type="submit" class="btn">Post Comment</button>
-      </form>
     </section>
-  </main>
 
-  <!-- footer after removing the social icons -->
-   <footer>
+    <!-- Main content container -->
+    <main class="container">
+
+        <!-- Search and filter section -->
+        <section class="search-section">
+            <div class="search-bar">
+                <!-- Search input for users to filter results -->
+                <input type="text" class="search-input" placeholder="Search by condition, location..."> <!--here-->
+                <button class="search-btn">Search</button>
+            </div>
+
+            <div class="filters">
+                <!-- Region dropdown filter -->
+                <div class="filter-options">
+                    <select class="region-filter">
+                        <option value="">All Regions</option>
+                        <option value="riyadh">Riyadh Region</option>
+                        <option value="makkah">Makkah Region</option>
+                        <option value="madinah">Madinah Region</option>
+                        <option value="eastern">Eastern Province</option>
+                        <option value="qassim">Qassim Region</option>
+                        <option value="hail">Hail Region</option>
+                        <option value="tabuk">Tabuk Region</option>
+                        <option value="northern">Northern Borders Region</option>
+                        <option value="jazan">Jazan Region</option>
+                        <option value="najran">Najran Region</option>
+                        <option value="bahah">Al Bahah Region</option>
+                        <option value="jawf">Al Jawf Region</option>
+                        <option value="asir">Asir Region</option>
+                    </select>
+                </div>
+
+                <!-- Button for posting a new sick cat announcement -->
+                <button class="post-btn" onclick="location.href='post-sick.html'">Report Sick Cat</button>
+            </div>
+        </section>
+
+        <!-- Empty state section that appears when no announcements exist -->
+        <section class="empty-state">
+            <div class="empty-content">
+                <div class="empty-icon">😿</div> <!-- Sad icon -->
+                <h2>No Sick Cats Reported</h2> <!-- Message when no data -->
+                <p>If you know a sick cat that needs help, please share an announcement.</p>
+                <button class="cta-button" onclick="location.href='post-sick.html'">Report a Sick Cat</button>
+            </div>
+        </section>
+
+        <!-- Section that will contain sick cat cards once data is available -->
+        <!-- Hidden by default until populated via database -->
+        <section class="cats-grid" id="sickCatsGrid" style="display: none;">
+            <!-- Sick cat cards will appear here after posting announcements -->
+        </section>
+
+    </main>
+<!-- Footer section -->
+    <footer>
                 <div class="copyright">
                     &copy; 2025 CatConnect. All rights reserved.
                 </div>
