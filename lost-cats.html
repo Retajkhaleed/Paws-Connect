@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PawsConnect - Lost Cats</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">🐱</span>
+                Paws<span>Connect</span>
+            </div>
+            <nav class="main-nav">
+                <a href="home.html">Home</a>
+                <a href="lost-cats.html" class="active">Lost Cats</a>
+                <a href="adoptable-cats.html">Adoptable Cats</a>
+                <a href="sick-cats.html">Sick Cats</a>
+                <a href="profile.html">My Profile</a>
+                <a href="login.html">Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Lost Cats</h1>
+            <p>Help reunite lost cats with their families</p>
+        </div>
+    </section>
+
+    <main class="container">
+        <section class="search-section">
+            <div class="search-bar">
+                <input type="text" class="search-input" placeholder="Search by breed, color, location...">
+                <button class="search-btn">Search</button>
+            </div>
+            <div class="filters">
+                <div class="filter-options">
+                    <select class="region-filter">
+                        <option value="">All Regions</option>
+                        <option value="riyadh">Riyadh Region</option>
+                        <option value="makkah">Makkah Region</option>
+                        <option value="madinah">Madinah Region</option>
+                        <option value="eastern">Eastern Province</option>
+                        <option value="qassim">Qassim Region</option>
+                        <option value="hail">Hail Region</option>
+                        <option value="tabuk">Tabuk Region</option>
+                        <option value="northern">Northern Borders Region</option>
+                        <option value="jazan">Jazan Region</option>
+                        <option value="najran">Najran Region</option>
+                        <option value="bahah">Al Bahah Region</option>
+                        <option value="jawf">Al Jawf Region</option>
+                        <option value="asir">Asir Region</option>
+                    </select>
+                </div>
+                <button class="post-btn" onclick="location.href='post-lost.html'">Report Lost Cat</button>
+            </div>
+        </section>
+
+        <!-- Empty State -->
+        <section class="empty-state">
+            <div class="empty-content">
+                <div class="empty-icon">😿</div>
+                <h2>No Lost Cats Reported</h2>
+                <p>There are currently no lost cats reported in your area. If you've lost your cat, be the first to report it!</p>
+                <button class="cta-button" onclick="location.href='post-lost.html'">Report a Lost Cat</button>
+            </div>
+        </section>
+
+        <!-- Lost Cats  Section -->
+        <section class="cats-grid" id="lostCatsGrid" style="display: none;">
+            <!-- Lost cat cards will appear here when users post announcements -->
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="copyright">
+                &copy; 2025 PawsConnect. All rights reserved.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

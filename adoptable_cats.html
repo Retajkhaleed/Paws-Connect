@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PawsConnect - Adoptable Cats Near You</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">🐱</span>
+                Paws<span>Connect</span>
+            </div>
+           <!-- website structre (all the pages in the website) -->
+            <nav class="main-nav">
+                <a href="home.html">Home</a>
+                <a href="lost-cats.html">Lost Cats</a>
+                <a href="adoptable-cats.html" class="active">Adoptable Cats</a>
+                <a href="sick-cats.html">Sick Cats</a>
+                <a href="profile.html">My Profile</a>
+                <a href="login.html">Login</a>
+            </nav>
+        </div>
+    </header>
+    <!--the biggest section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Adoptable Cats Near You</h1>
+            <p>Find your forever friend today</p>
+        </div>
+    </section>
+    <!--the regions drop list section -->
+    <main class="container">
+        <section class="search-section">
+            <div class="search-bar">
+                <input type="text" class="search-input" placeholder="Search by breed, location...">
+                <button class="search-btn">Search</button>
+            </div>
+            <div class="filters">
+                <div class="filter-options">
+                    <select class="region-filter">
+                        <option value="">All Regions</option>
+                        <option value="riyadh">Riyadh Region</option>
+                        <option value="makkah">Makkah Region</option>
+                        <option value="madinah">Madinah Region</option>
+                        <option value="eastern">Eastern Province</option>
+                        <option value="qassim">Qassim Region</option>
+                        <option value="hail">Hail Region</option>
+                        <option value="tabuk">Tabuk Region</option>
+                        <option value="northern">Northern Borders Region</option>
+                        <option value="jazan">Jazan Region</option>
+                        <option value="najran">Najran Region</option>
+                        <option value="bahah">Al Bahah Region</option>
+                        <option value="jawf">Al Jawf Region</option>
+                        <option value="asir">Asir Region</option>
+                    </select>
+                </div>
+                <button class="post-btn" onclick="location.href='post-adoption.html'">Post for Adoption</button>
+            </div>
+        </section>
+
+        <!-- Empty State -->
+        <section class="empty-state">
+            <div class="empty-content">
+                <div class="empty-icon">😿</div>
+                <h2>No Cats Available for Adoption</h2>
+                <p>There are currently no cats available for adoption in your area. Be the first to post an adoption announcement!</p>
+                <button class="cta-button" onclick="location.href='post-adoption.html'">Post an Adoption Announcement</button>
+            </div>
+        </section>
+
+        <!-- Cats  Section (empty until user post an anouncment ) -->
+        <section class="cats-grid" id="catsGrid" style="display: none;">
+            <!-- Cat  will appear here when users post announcements -->
+        </section>
+    </main>
+
+    <footer>
+                <div class="copyright">
+                    &copy; 2025 PawsConnect. All rights reserved.
+                </div>
+    </footer>
+</body>
+</html>
