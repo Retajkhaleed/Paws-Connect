@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Paws Connect – Home</title>
+</head>
+
+<body>
+ <header>
+    <div class="logo">
+      <img src="PawLogo.png" alt="Paws Connect Logo" class="logo-image">
+      <span class="logo-text">Paws Connect</span>
+    </div>
+
+    <nav>
+      <ul class="nav">
+        <li><a href="Home.html" class="active">Home</a></li>
+        <li><a href="adopt.html">Adopt Cats</a></li>
+        <li><a href="lost.html">Lost Cats</a></li>
+        <li><a href="sick.html">Sick Cats</a></li>
+        <li><a href="account.html">Account</a></li>
+        <li><a href="add.html" class="btn">Add Announcement</a></li>
+      </ul>
+    </nav>
+  </header>
+
+ 
+  <section class="About">
+    <div class="About-content">
+      <h1>Find Your Furever Friend!</h1>
+      <p>
+        A gentle space built on compassion and care.<br>
+        Where every lost or waiting cat finds a story worth telling.<br>
+        Together, we bring hope, comfort, and new beginnings.
+      </p>
+      <div class="Home-buttuns">
+        <a href="add.html" class="Add-button">Add Announcement</a>
+        <a href="adopt.html" class="Browse-button">Browse Adoption</a>
+      </div>
+    </div>
+  </section>
+
+ 
+  <main>
+    <section class="home-cards">
+      <a href="adopt.html" class="card">
+        <img src="AdoptedCat.jpg" alt="Adopt cats" class="card-img">
+        <h3>Adopt Cats</h3>
+        <p>Browse Adoptables</p>
+      </a>
+
+      <a href="lost.html" class="card">
+        <img src="LostCat.jpg" alt="Lost cats" class="card-img">
+        <h3>Lost Cats</h3>
+        <p>Search Lost Cats</p>
+      </a>
+
+      <a href="sick.html" class="card">
+        <img src="SickCat.jpg" alt="Sick cats" class="card-img">
+        <h3>Sick Cats</h3>
+        <p>Support & Report</p>
+      </a>
+    </section>
+  </main>
+
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-left">
+        <span>Paws Connect 2025 ©</span>
+      </div>
+
+      <div class="footer-right">
+        <span>Connect With Us</span>
+        <div class="social">
+          <img src="instaLogo.png" alt="Instagram">
+          <img src="XLogo.png" alt="X App">
+          <img src="FacebookLogo.png" alt="Facebook">
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
