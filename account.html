@@ -1,48 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cat Connection | Account</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paws Connect | Account</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>Cat Connection</h1>
-    </header>
 
-    <main>
-        <section class="profile-container">
-            <h2>My Account</h2>
+  <header>
+    <div class="logo">
+      <img src="PawLogo.png" alt="Paws Connect Logo" class="logo-image">
+      <span class="logo-text">Paws Connect</span>
+    </div>
 
-            <div class="profile-pic-area">
-                <img src="path/to/profile-image.jpg" alt="User Profile Picture" class="profile-pic">
-            </div>
-            <form class="profile-form">
-                <label for="username">Username</label>
-                <input type="text" id="username" value="JanaCatLover" required>
+    <nav>
+      <ul class="nav-menu">
+        <li><a href="Home.html" class="active">Home</a></li>
+        <li><a href="adoptable-cats.html">Adopt Cats</a></li>
+        <li><a href="lost-cats.html">Lost Cats</a></li>
+        <li><a href="sick.html">Sick Cats</a></li>
 
-                <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" value="+966500000000" required>
+        <li class="dropdown">
+          <button class="dropbtn">
+            Account <span class="arrow">▼</span>
+          </button>
+          <ul class="dropdown-content">
+            <li><a href="account.html">Profile</a></li>
+            <li><a href="my-announcements.html">My Announcements</a></li>
+            <li><a href="saved-announcements.html">Saved Announcements</a></li>
+          </ul>
+        </li>
 
-                <label for="password">Password</label>
-                <input type="password" id="password" placeholder="••••••••" required>
+        <li><a href="add.html" class="btn">Add Announcement</a></li>
+      </ul>
+    </nav>
+  </header>
 
-                <button type="submit">Update Profile</button>
-            </form>
+  <main>
+    <section class="profile-container">
+      <h2>My Account</h2>
 
-            <div class="profile-links">
-                <a href="my-announcements.html">My Announcements</a>
-                <a href="saved-announcements.html">Saved Announcements</a>
-                <a href="add-announcement.html">Add New Announcement</a>
-            </div>
+      <div class="profile-pic-area">
+        <img src="path/to/profile-image.jpg" alt="User Profile Picture" class="profile-pic">
+      </div>
 
-            <a href="logout.html" class="logout-link">Log out</a>
-            </section>
-    </main>
+      <form class="profile-form">
+        <label for="username">Username</label>
+        <input type="text" id="username" value="JanaCatLover" required>
 
-    <footer>
-        <p>&copy; 2025 Cat Connection. All rights reserved.</p>
-    </footer>
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" value="+966500000000" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="••••••••" required>
+
+        <button type="submit">Update Profile</button>
+      </form>
+
+      <div class="profile-links">
+        <a href="my-announcements.html">My Announcements</a>
+        <a href="saved-announcements.html">Saved Announcements</a>
+        <a href="add.html">Add New Announcement</a>
+      </div>
+
+      <a href="logout.html" class="logout-link">Log out</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Paws Connect. All rights reserved.</p>
+  </footer>
+
 </body>
 </html>
