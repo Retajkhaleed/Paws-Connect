@@ -4,26 +4,39 @@
 <head>
   <meta charset="UTF-8" />
   <title>Paws Connect – Home</title>
+ <link rel="stylesheet" href="StyleCSS.css">
 </head>
 
 <body>
  <header>
-    <div class="logo">
-      <img src="PawLogo.png" alt="Paws Connect Logo" class="logo-image">
-      <span class="logo-text">Paws Connect</span>
-    </div>
+  <div class="logo">
+    <img src="PawLogo.png" alt="Paws Connect Logo" class="logo-image">
+    <span class="logo-text">Paws Connect</span>
+  </div>
 
-    <nav>
-      <ul class="nav">
-        <li><a href="Home.html" class="active">Home</a></li>
-        <li><a href="adopt.html">Adopt Cats</a></li>
-        <li><a href="lost.html">Lost Cats</a></li>
-        <li><a href="sick.html">Sick Cats</a></li>
-        <li><a href="account.html">Account</a></li>
-        <li><a href="add.html" class="btn">Add Announcement</a></li>
-      </ul>
-    </nav>
-  </header>
+  <nav>
+    <ul class="nav menu">
+      <li><a href="Home.html" class="active">Home</a></li>
+      <li><a href="adoptable-cats.html">Adopt Cats</a></li>
+      <li><a href="lost-cats.html">Lost Cats</a></li>
+      <li><a href="sick.html">Sick Cats</a></li>
+
+
+      <li class="dropdown">
+        <button class="dropbtn">
+          Account <span class="arrow">▼</span>
+        </button>
+        <ul class="dropdown-content">
+          <li><a href="account.html">Profile</a></li>
+          <li><a href="my-announcements.html">My Announcements</a></li>
+          <li><a href="saved-announcements.html">Saved Announcements</a></li>
+        </ul>
+      </li>
+
+      <li><a href="add.html" class="btn">Add Announcement</a></li>
+    </ul>
+  </nav>
+</header>
 
  
   <section class="About">
@@ -36,7 +49,7 @@
       </p>
       <div class="Home-buttuns">
         <a href="add.html" class="Add-button">Add Announcement</a>
-        <a href="adopt.html" class="Browse-button">Browse Adoption</a>
+        <a href="adoptable-cats.html" class="Browse-button">Browse Adoption</a>
       </div>
     </div>
   </section>
@@ -44,13 +57,13 @@
  
   <main>
     <section class="home-cards">
-      <a href="adopt.html" class="card">
+      <a href="adoptable-cats.html" class="card">
         <img src="AdoptedCat.jpg" alt="Adopt cats" class="card-img">
         <h3>Adopt Cats</h3>
         <p>Browse Adoptables</p>
       </a>
 
-      <a href="lost.html" class="card">
+      <a href="lost-cats.html" class="card">
         <img src="LostCat.jpg" alt="Lost cats" class="card-img">
         <h3>Lost Cats</h3>
         <p>Search Lost Cats</p>
