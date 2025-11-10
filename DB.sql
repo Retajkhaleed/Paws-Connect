@@ -1,1 +1,43 @@
+CREATE SCHEMA IF NOT EXISTS PawsConnect;
+use PawsConnect;
 
+CREATE TABLE IF NOT EXISTS User (
+
+);
+
+CREATE TABLE IF NOT EXISTS Profile (
+
+);
+
+CREATE TABLE IF NOT EXISTS Announcement (
+
+);
+
+CREATE TABLE IF NOT EXISTS SavedAnnouncement (
+
+);
+
+CREATE TABLE IF NOT EXISTS LostCat (
+
+);
+
+CREATE TABLE IF NOT EXISTS CatAdoption (
+
+);
+
+CREATE TABLE IF NOT EXISTS SickCat (
+SickCatID INT AUTO_INCREMENT PRIMARY KEY, 
+AnnouncementID INT NOT NULL UNIQUE, 
+ConditionDescription TEXT NOT NULL, 
+TreatmentAmount DECIMAL(10, 2), 
+Location VARCHAR(300), 
+PhotoURL VARCHAR(300), 
+Status ENUM('Active', 'Recovered') DEFAULT 'Active', 
+FOREIGN KEY (AnnouncementID) REFERENCES Announcement(AnnouncementID)
+ON DELETE CASCADE 
+ON UPDATE CASCADE 
+);
+
+CREATE TABLE IF NOT EXISTS Comment (
+
+);
