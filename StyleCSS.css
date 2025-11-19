@@ -1,0 +1,223 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background: #fdf8e2;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgb(255, 255, 255);
+  border-bottom: 3px solid #a3b565;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 30px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-image {
+  width: 50px;
+  height: 50px;
+}
+
+.logo-text {
+  color: #504e76;
+  font-weight: 900;
+  font-size: 20px;
+}
+
+.nav {
+  list-style: none;
+  display: flex;
+  gap: 12px;
+}
+
+.nav a,
+.btn {
+  color: #504e76;
+  padding: 8px 12px;
+  display: flex;
+  text-decoration: none;
+  font-weight: 600;
+  line-height: 1;
+  font-size: 17px;
+  border-radius: 8px;
+}
+
+.nav .home-btn,
+.btn {
+  background: #f1642e;
+  color: #fff !important;
+}
+
+.nav a:hover {
+  background: #a3b565;
+  color: #fff;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.arrow {
+  margin-left: 6px;
+  font-size: 16px;
+  transition: transform 0.2s;
+}
+
+.dropdown-content {
+  list-style: none;
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  width: 190px;
+  box-shadow: 0 8px 20px #9aa58d;
+  border-radius: 10px;
+  padding: 0 0;
+}
+
+.dropdown-content a {
+  color: #504e76;
+  font-weight: 600;
+}
+
+.dropdown-content a:hover {
+  background-color: #a3b565;
+  color: #fff;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .arrow {
+  transform: rotate(180deg);
+}
+
+/* =============== Hero (About) =============== */
+.About {
+  margin-top: 85px;
+  height: 512px;
+  color: #fff;
+  display: flex;
+  background-image: url("Catimage.jpg");
+  background-size: cover;
+  background-position: center;  
+  background-color: rgba(123, 134, 115, 0.85);
+  background-blend-mode: multiply;
+  border-bottom: 3px solid #a3b565;
+}
+
+.About-content {
+  padding-left: 70px;
+  padding-top: 100px;
+}
+
+.About-content h1 {
+  font-family: "Playfair Display", serif;
+  font-size: 51px;
+  font-weight: 800;
+}
+
+.About-content p {
+  font-size: 19px;
+  margin-top: -30px;
+}
+
+
+/* =============== Cards =============== */
+.home-cards {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  padding: 22px 0 34px;
+}
+
+.card {
+  background: #fff;
+  width: 320px;
+  border: 1px solid #a3b565;
+  border-radius: 12px;
+  box-shadow: 0 6px 14px rgba(189, 103, 17, 0.34);
+  padding: 14px;
+  text-align: center;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  text-decoration: none;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(194, 80, 9, 0.486);
+}
+
+.card-img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 4px solid #a3b565;
+  box-sizing: border-box;
+}
+
+.card h3 {
+  margin: 10px 0 6px;
+  color: #504e76;
+}
+
+.card p {
+  margin: 0;
+  color: #384135;
+}
+
+/* =============== Footer =============== */
+footer {
+  background: linear-gradient(135deg, #7b8673, #9aa58d);
+  color: #fff;
+  padding: 20px 40px;
+  border-top: 3px solid #a3b565;
+  border-radius: 18px 18px 0 0;
+  border-bottom: 3px solid #a3b565;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-left {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.footer-right {
+  display: flex;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.social {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.social img {
+  width: 22px;
+  height: 22px;
+}
+
+.social img:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
