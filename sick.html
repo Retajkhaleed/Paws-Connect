@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paws Connect - Sick Cats</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <!--the Header containing logo and navigation menu -->
+<body class="sick">
     <header>
     <div class="logo">
-      <img src="logo.png" alt="Paws Connect Logo" class="logo-image">
+      <img src="img/logo.png" alt="Paws Connect Logo" class="logo-image">
       <span class="logo-text">Paws Connect</span>
     </div>
 
 
-            <!-- Main navigation bar linking to all website pages -->
             <nav>
     <ul class="nav menu">
       <li><a href="Home.html">Home</a></li>
@@ -39,27 +39,20 @@
   </nav>
 </header>
 
-    <!-- Hero section: main title + subtitle -->
-    <section class="hero">
-        <div class="container">
-            <h1>Sick Cats Needing Care</h1> <!-- Page title -->
-            <p>Give a Sick Cat Hope and a chance to heal</p> <!-- Subtitle -->
-        </div>
+    <section class="SickHero">
+        <div class="SickHero-content">
+            <h1>Sick Cats Needing Care</h1> <p>Give a Sick Cat Hope and a chance to heal</p> </div>
     </section>
 
-    <!-- Main content container -->
     <main class="container">
 
-        <!-- Search and filter section -->
         <section class="search-section">
             <div class="search-bar">
-                <!-- Search input for users to filter results -->
-                <input type="text" class="search-input" placeholder="Search by condition, location..."> <!--here-->
+                <input type="text" class="search-input" placeholder="Search by condition, location...">
                 <button class="search-btn">Search</button>
             </div>
 
             <div class="filters">
-                <!-- Region dropdown filter -->
                 <div class="filter-options">
                     <select class="region-filter">
                         <option value="">All Regions</option>
@@ -79,35 +72,37 @@
                     </select>
                 </div>
 
-                <!-- Button for posting a new sick cat announcement -->
                 <button class="post-btn" onclick="location.href='post-sick.html'">Report Sick Cat</button>
             </div>
         </section>
 
-        <!-- Empty state section that appears when no announcements exist -->
         <section class="empty-state">
             <div class="empty-content">
-                <div class="empty-icon">😿</div> <!-- Sad icon -->
-                <h2>No Sick Cats Reported</h2> <!-- Message when no data -->
-                <p>If you know a sick cat that needs help, please share an announcement.</p>
+                <div class="empty-icon">😿</div> <h2>No Sick Cats Reported</h2> <p>If you know a sick cat that needs help, please share an announcement.</p>
                 <button class="cta-button" onclick="location.href='post-sick.html'">Report a Sick Cat</button>
             </div>
         </section>
 
-        <!-- Section that will contain sick cat cards once data is available -->
-        <!-- Hidden by default until populated via database -->
         <section class="cats-grid" id="sickCatsGrid" style="display: none;">
-            <!-- Sick cat cards will appear here after posting announcements -->
-        </section>
+            </section>
 
     </main>
-<!-- Footer section -->
-    <footer>
-                <div class="copyright">
-                    &copy; 2025 Paws Connect. All rights reserved.
-                </div>
-    </footer>
+
+<footer>
+    <div class="footer-content">
+      <div class="footer-left">
+        <span>Paws Connect 2025 ©</span>
+      </div>
+
+      <div class="footer-right">
+        <span>Connect With Us</span>
+        <div class="social">
+          <img src="img/instaLogo.png" alt="Instagram">
+          <img src="img/XLogo.png" alt="X App">
+          <img src="img/FacebookLogo.png" alt="Facebook">
+        </div>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
-
-
