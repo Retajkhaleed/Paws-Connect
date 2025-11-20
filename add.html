@@ -5,10 +5,11 @@
   <title>Paws Connect – Create Announcement</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" href="StyleCSS.css">
-  <link rel="stylesheet" href="add.css">
 </head>
-<body>
 
+<body class="add-page-active">
+
+  <!-- HEADER -->
   <header>
     <div class="logo">
       <img src="PawLogo.png" alt="Paws Connect Logo" class="logo-image">
@@ -16,16 +17,14 @@
     </div>
 
     <nav>
-      <ul class="nav menu">
-        <li><a href="Home.html" class="active">Home</a></li>
+      <ul class="nav">
+        <li><a href="Home.html" class="home-btn">Home</a></li>
         <li><a href="adoptable-cats.html">Adopt Cats</a></li>
         <li><a href="lost-cats.html">Lost Cats</a></li>
         <li><a href="sick.html">Sick Cats</a></li>
 
         <li class="dropdown">
-          <button class="dropbtn">
-            Account <span class="arrow">▼</span>
-          </button>
+          <a href="#">Account <span class="arrow">▲</span></a>
           <ul class="dropdown-content">
             <li><a href="account.html">Profile</a></li>
             <li><a href="my-announcements.html">My Announcements</a></li>
@@ -33,11 +32,12 @@
           </ul>
         </li>
 
-        <li><a href="add.html" class="btn">Add Announcement</a></li>
+        <li><a href="add.html" class="btn">Add</a></li>
       </ul>
     </nav>
   </header>
 
+  <!-- TITLE -->
   <section class="add">
     <div class="add-content">
       <h1>Create New Announcement</h1>
@@ -45,56 +45,61 @@
     </div>
   </section>
 
+  <!-- MAIN CONTENT -->
   <main class="add-page">
 
+    <!-- TYPE SELECT -->
     <section class="type-select">
-      <input type="radio" name="ann_type" id="type-adopt" />
-      <label class="type-card" for="type-adopt">
-        <img src="AdoptedCat.jpg" alt="Adoptable Cat">
+
+      <label class="type-card" id="card-adopt" onclick="showForm('adopt')">
+        <img src="adoptable-cat.png" alt="Adoptable Cat">
         <span>Adoptable Cat</span>
       </label>
 
-      <input type="radio" name="ann_type" id="type-lost" />
-      <label class="type-card" for="type-lost">
+      <label class="type-card" id="card-lost" onclick="showForm('lost')">
         <img src="LostCat.jpg" alt="Lost Cat">
         <span>Lost Cat</span>
       </label>
 
-      <input type="radio" name="ann_type" id="type-sick" />
-      <label class="type-card" for="type-sick">
+      <label class="type-card" id="card-sick" onclick="showForm('sick')">
         <img src="SickCat.jpg" alt="Sick Cat">
         <span>Sick Cat</span>
       </label>
+
     </section>
 
-    <form class="ann-form form-adopt" action="#" method="post" enctype="multipart/form-data" novalidate>
+    <!-- ADOPT FORM -->
+    <form class="ann-form" id="form-adopt" enctype="multipart/form-data" novalidate>
+
       <fieldset>
         <legend>Announcement</legend>
         <div class="grid">
+
           <label class="field">
             <span>Title *</span>
-            <input type="text" name="title" placeholder="e.g., Sweet calm kitty for adoption" required>
+            <input type="text" required placeholder="e.g., Sweet calm kitty for adoption">
           </label>
 
           <label class="field">
             <span>Location *</span>
-            <input type="text" name="location" placeholder="City / Area" required>
+            <input type="text" required placeholder="City / Area">
           </label>
 
           <label class="field">
             <span>Contact (Email) *</span>
-            <input type="email" name="email" placeholder="name@example.com" required>
+            <input type="email" required placeholder="name@example.com">
           </label>
 
           <label class="field">
-            <span>Contact (Phone Number)*</span>
-            <input type="tel" name="phone" pattern="^05\d{8}$" placeholder="05XXXXXXXX">
+            <span>Contact (Phone) *</span>
+            <input type="tel" pattern="^05\d{8}$" placeholder="05XXXXXXXX">
           </label>
 
-          <label class="field">
+          <label class="field" style="grid-column: 1 / span 2;">
             <span>Description *</span>
-            <textarea name="desc" rows="4" maxlength="600" placeholder="Personality, behavior, story..." required></textarea>
+            <textarea rows="4" maxlength="600" required placeholder="Personality, behavior, story..."></textarea>
           </label>
+
         </div>
       </fieldset>
 
@@ -103,12 +108,12 @@
         <div class="grid">
           <label class="field">
             <span>Age</span>
-            <input type="text" name="age" placeholder="e.g., 1 year / 8 months">
+            <input type="text" placeholder="1 year / 8 months">
           </label>
 
           <label class="field">
             <span>Gender</span>
-            <select name="gender">
+            <select>
               <option value="">Select…</option>
               <option>Male</option>
               <option>Female</option>
@@ -117,7 +122,7 @@
 
           <label class="field">
             <span>Vaccinated?</span>
-            <select name="vaccinated">
+            <select>
               <option value="">Select…</option>
               <option>Yes</option>
               <option>No</option>
@@ -126,16 +131,16 @@
 
           <label class="field">
             <span>Neutered/Spayed?</span>
-            <select name="neutered">
+            <select>
               <option value="">Select…</option>
               <option>Yes</option>
               <option>No</option>
             </select>
           </label>
 
-          <label class="field">
+          <label class="field" style="grid-column: 1 / span 2;">
             <span>Adoption Requirements</span>
-            <input type="text" name="requirements" placeholder="Indoor only, calm home, etc.">
+            <input type="text" placeholder="Indoor only, calm home, etc.">
           </label>
         </div>
       </fieldset>
@@ -143,7 +148,7 @@
       <fieldset>
         <legend>Photos</legend>
         <div class="upload-image">
-          <input type="file" name="photos" accept="image/*" multiple>
+          <input type="file" accept="image/*" multiple>
         </div>
       </fieldset>
 
@@ -152,33 +157,35 @@
       </div>
     </form>
 
-    <form class="ann-form form-lost" action="#" method="post" enctype="multipart/form-data" novalidate>
+    <!-- LOST FORM -->
+    <form class="ann-form" id="form-lost" enctype="multipart/form-data">
+
       <fieldset>
         <legend>Announcement</legend>
         <div class="grid">
           <label class="field">
             <span>Title *</span>
-            <input type="text" name="title" placeholder="e.g., Lost Black cat near the house door" required>
+            <input type="text" required placeholder="Lost black cat…">
           </label>
 
           <label class="field">
             <span>Location *</span>
-            <input type="text" name="location" placeholder="City / Area" required>
+            <input type="text" required placeholder="City / Area">
           </label>
 
           <label class="field">
-            <span>Contact (Email) *</span>
-            <input type="email" name="email" placeholder="name@example.com" required>
+            <span>Contact Email *</span>
+            <input type="email" required placeholder="name@example.com">
           </label>
 
           <label class="field">
-            <span>Contact (Phone Number) *</span>
-            <input type="tel" name="phone" pattern="^05\d{8}$" placeholder="05XXXXXXXX">
+            <span>Contact Phone *</span>
+            <input type="tel" pattern="^05\d{8}$" placeholder="05XXXXXXXX">
           </label>
 
-          <label class="field">
+          <label class="field" style="grid-column: 1 / span 2;">
             <span>Description *</span>
-            <textarea name="desc" rows="4" maxlength="600" placeholder="Distinct features, collar, behavior…" required></textarea>
+            <textarea rows="4" required placeholder="Distinct features…"></textarea>
           </label>
         </div>
       </fieldset>
@@ -186,41 +193,43 @@
       <fieldset>
         <legend>Lost Cat Details</legend>
         <div class="grid">
+
           <label class="field">
             <span>Cat's Name</span>
-            <input type="text" name="cat_name" placeholder="If known">
+            <input type="text">
           </label>
 
           <label class="field">
             <span>Date Lost *</span>
-            <input type="date" name="date_lost" required>
+            <input type="date" required>
           </label>
 
           <label class="field">
             <span>Last Seen Location *</span>
-            <input type="text" name="last_seen" placeholder="Building, landmark, street…" required>
+            <input type="text" required placeholder="Landmark, street…">
           </label>
 
           <label class="field">
-            <span>Reward Offered?</span>
-            <select name="reward">
+            <span>Reward?</span>
+            <select>
               <option value="">Select…</option>
               <option>Yes</option>
               <option>No</option>
             </select>
           </label>
 
-          <label class="field">
+          <label class="field" style="grid-column: 1 / span 2;">
             <span>Distinct Features</span>
-            <input type="text" name="features" placeholder="Blue collar, one green eye, small scar…">
+            <input type="text" placeholder="Blue collar, one green eye…">
           </label>
+
         </div>
       </fieldset>
 
       <fieldset>
         <legend>Photos</legend>
         <div class="upload-image">
-          <input type="file" name="photos" accept="image/*" multiple>
+          <input type="file" accept="image/*" multiple>
         </div>
       </fieldset>
 
@@ -229,48 +238,53 @@
       </div>
     </form>
 
-    <form class="ann-form form-sick" action="#" method="post" enctype="multipart/form-data" novalidate>
+    <!-- SICK FORM -->
+    <form class="ann-form" id="form-sick" enctype="multipart/form-data">
+
       <fieldset>
         <legend>Announcement</legend>
         <div class="grid">
+
           <label class="field">
             <span>Title *</span>
-            <input type="text" name="title" placeholder="e.g., Injured cat needs vet help" required>
+            <input type="text" required>
           </label>
 
           <label class="field">
             <span>Location *</span>
-            <input type="text" name="location" placeholder="City / Area" required>
+            <input type="text" required>
           </label>
 
           <label class="field">
-            <span>Contact (Email) *</span>
-            <input type="email" name="email" placeholder="name@example.com" required>
+            <span>Contact Email *</span>
+            <input type="email" required>
           </label>
 
           <label class="field">
-            <span>Contact (Phone Number) *</span>
-            <input type="tel" name="phone" pattern="^05\d{8}$" placeholder="05XXXXXXXX">
+            <span>Contact Phone *</span>
+            <input type="tel" pattern="^05\d{8}$" placeholder="05XXXXXXXX">
           </label>
 
-          <label class="field">
+          <label class="field" style="grid-column: 1 / span 2;">
             <span>Description *</span>
-            <textarea name="desc" rows="4" maxlength="600" placeholder="What happened? How does the cat look/act?" required></textarea>
+            <textarea rows="4" required></textarea>
           </label>
+
         </div>
       </fieldset>
 
       <fieldset>
         <legend>Health Details</legend>
         <div class="grid">
+
           <label class="field">
             <span>Symptoms *</span>
-            <input type="text" name="symptoms" placeholder="e.g., limping, eye infection, heavy breathing" required>
+            <input type="text" required>
           </label>
 
           <label class="field">
             <span>Urgency *</span>
-            <select name="urgency" required>
+            <select required>
               <option value="">Select…</option>
               <option>Low</option>
               <option>Moderate</option>
@@ -280,25 +294,26 @@
 
           <label class="field">
             <span>Date Noticed *</span>
-            <input type="date" name="date_found" required>
+            <input type="date" required>
           </label>
 
           <label class="field">
             <span>Found Location *</span>
-            <input type="text" name="found_at" placeholder="Building, landmark, street…" required>
+            <input type="text" required>
           </label>
 
-          <label class="field">
-            <span>Needs Vet / Medication?</span>
-            <input type="text" name="needs" placeholder="e.g., needs antibiotic eye drops / immediate vet">
+          <label class="field" style="grid-column: 1 / span 2;">
+            <span>Needs Vet?</span>
+            <input type="text" placeholder="Needs medication / immediate vet…">
           </label>
+
         </div>
       </fieldset>
 
       <fieldset>
         <legend>Photos</legend>
         <div class="upload-image">
-          <input type="file" name="photos" accept="image/*" multiple>
+          <input type="file" accept="image/*" multiple>
         </div>
       </fieldset>
 
@@ -309,6 +324,7 @@
 
   </main>
 
+  <!-- FOOTER -->
   <footer>
     <div class="footer-content">
       <div class="footer-left">
@@ -325,5 +341,6 @@
     </div>
   </footer>
 
+  <script src="add.js"></script>
 </body>
 </html>
