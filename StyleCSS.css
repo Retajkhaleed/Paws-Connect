@@ -808,6 +808,57 @@ footer {
     text-decoration: none;
 }
 
+/*-------------------------- My Announcements & Saved Announcements -------------------------- */
 
+.page-title {
+  margin-top: 120px;
+  text-align: center;
+  font-family: "Playfair Display", serif;
+  font-size: 42px;
+  color: #504e76;
+  font-weight: 800;
+}
 
+.simple-page-container {
+  width: 80%;
+  margin: 20px auto 70px;
+  background: #fff;
+  padding: 35px 40px;
+  border-radius: 16px;
+  border: 1px solid #a3b565;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
 
+.simple-page-container p {
+  font-size: 18px;
+  color: #384135;
+  margin-bottom: 12px;
+}
+
+.simple-page-container a {
+  color: #f1642e;
+  font-weight: 700;
+}
+
+.simple-page-container a:hover {
+  color: #a3b565;
+}
+
+.saved-list {
+  margin-top: 20px;
+  padding-left: 15px;
+}
+
+.saved-list li {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.saved-list li a {
+  color: #f1642e;
+  font-weight: 700;
+}
+
+.saved-list li a:hover {
+  color: #a3b565;
+}
