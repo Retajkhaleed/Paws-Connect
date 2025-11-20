@@ -4,29 +4,83 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cat Connection | Login</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="StyleCSS.css">
 </head>
 <body>
-  <main class="page-background">
+  
+  <header>
+    <div class="logo">
+      <img src="img/logo.png" alt="Paws Connect Logo" class="logo-image">
+      <span class="logo-text">Paws Connect</span>
+    </div>
+
+    <nav>
+      <ul class="nav menu">
+        <li><a href="Home.html">Home</a></li>
+        <li><a href="adoptable-cats.html">Adopt Cats</a></li>
+        <li><a href="lost-cats.html">Lost Cats</a></li>
+        <li><a href="sick.html">Sick Cats</a></li>
+
+        <li class="dropdown">
+          <button class="dropbtn">
+            Account <span class="arrow">▼</span>
+          </button>
+          <ul class="dropdown-content">
+            <li><a href="account.html">Profile</a></li>
+            <li><a href="my-announcements.html">My Announcements</a></li>
+            <li><a href="saved-announcements.html">Saved Announcements</a></li>
+          </ul>
+        </li>
+
+        <li><a href="add.html" class="btn">Add Announcement</a></li>
+      </ul>
+    </nav>
+  </header> 
+  
+  <main class="page-background"> 
     <section class="form-card">
       <form class="login-form">
         <fieldset>
-          <legend>Welcome Back!</legend>
+          <legend class="visually-hidden">Welcome Back!</legend>
+          <h2>Welcome Back!</h2> 
+          
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" placeholder="Enter your username" required>
+          </div>
 
-          <label for="username">Username</label>
-          <input type="text" id="username" placeholder="Enter your username" required>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter your password" required>
+          </div>
+          
+          <button type="submit" class="auth-submit-btn">Login</button>
 
-          <label for="password">Password</label>
-          <input type="password" id="password" placeholder="Enter your password" required>
-
-          <button type="submit">Login</button>
         </fieldset>
 
-        <p class="switch-text">
+        <p class="auth-footer">
           Don’t have an account? <a href="signup.html">Create one</a>
         </p>
       </form>
     </section>
   </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-left">
+        <span>Paws Connect 2025 ©</span>
+      </div>
+
+      <div class="footer-right">
+        <span>Connect With Us</span>
+        <div class="social">
+           <img src="img/instaLogo.png" alt="Instagram">
+           <img src="img/XLogo.png" alt="X App">
+           <img src="img/FacebookLogo.png" alt="Facebook">
+        </div>
+      </div>
+    </div>
+  </footer>
+
 </body>
 </html>
