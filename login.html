@@ -10,7 +10,7 @@
   
   <header>
     <div class="logo">
-      <img src="img/logo.png" alt="Paws Connect Logo" class="logo-image">
+      <img src="logo.png" alt="Paws Connect Logo" class="logo-image">
       <span class="logo-text">Paws Connect</span>
     </div>
 
@@ -21,18 +21,6 @@
         <li><a href="lost-cats.html">Lost Cats</a></li>
         <li><a href="sick.html">Sick Cats</a></li>
 
-        <li class="dropdown">
-          <button class="dropbtn">
-            Account <span class="arrow">▼</span>
-          </button>
-          <ul class="dropdown-content">
-            <li><a href="account.html">Profile</a></li>
-            <li><a href="my-announcements.html">My Announcements</a></li>
-            <li><a href="saved-announcements.html">Saved Announcements</a></li>
-          </ul>
-        </li>
-
-        <li><a href="add.html" class="btn">Add Announcement</a></li>
       </ul>
     </nav>
   </header> 
@@ -43,18 +31,15 @@
         <fieldset>
           <legend class="visually-hidden">Welcome Back!</legend>
           <h2>Welcome Back!</h2> 
+          
           <div class="cat">
-  <img id="cat-img" src="img/open-eyes.jpg" alt="Cat">
-</div>      
+            <img id="cat-img" src="open-eyes.jpg" alt="Cat">
+          </div>
+
           <div class="form-group">
             <label for="username">Username</label>
             <input type="text" id="username" placeholder="Enter your username" required>
           </div>
-
-<div class="form-group">
-  <label for="password">Password</label>
-  <input type="password" id="password" placeholder="Enter your password" required>
-</div>
 
           <div class="form-group">
             <label for="password">Password</label>
@@ -81,9 +66,9 @@
       <div class="footer-right">
         <span>Connect With Us</span>
         <div class="social">
-           <img src="img/instaLogo.png" alt="Instagram">
-           <img src="img/XLogo.png" alt="X App">
-           <img src="img/FacebookLogo.png" alt="Facebook">
+           <img src="instaLogo.png" alt="Instagram">
+           <img src="XLogo.png" alt="X App">
+           <img src="FacebookLogo.png" alt="Facebook">
         </div>
       </div>
     </div>
@@ -93,12 +78,13 @@
   const catImg = document.getElementById("cat-img");
 
   passwordField.addEventListener("focus", () => {
-    catImg.src = "img/closed-eyes.jpg"; 
+    catImg.src = "closed-eyes.jpg"; 
   });
 
   passwordField.addEventListener("blur", () => {
-    catImg.src = "img/open-eyes.jpg"; 
+    catImg.src = "open-eyes.jpg"; 
   });
 </script>
 </body>
 </html>
+
