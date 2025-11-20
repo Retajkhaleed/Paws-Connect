@@ -1,48 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Announcements</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Announcements</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="StyleCSS.css" />
+  </head>
+  <body>
     <header>
-        <div class="logo">
-            <img src="PawLogo.png" alt="Paws Connect Logo" class="logo-image">
-            <span class="logo-text">Paws Connect</span>
-        </div>
+      <div class="logo">
+        <img src="img/PawLogo.png" alt="Paws Connect Logo" class="logo-image" />
+        <span class="logo-text">Paws Connect</span>
+      </div>
 
-        <nav>
-            <ul class="nav menu">
-                <li><a href="Home.html">Home</a></li>
-                <li><a href="adoptable-cats.html">Adopt Cats</a></li>
-                <li><a href="lost-cats.html">Lost Cats</a></li>
-                <li><a href="sick.html">Sick Cats</a></li>
+      <nav>
+        <ul class="nav">
+          <li><a href="Home.html" class="home-btn">Home</a></li>
+          <li><a href="adoptable-cats.html">Adopt Cats</a></li>
+          <li><a href="lost-cats.html">Lost Cats</a></li>
+          <li><a href="sick.html">Sick Cats</a></li>
 
-                <li class="dropdown">
-                <button class="dropbtn">
-                    Account <span class="arrow">▼</span>
-                </button>
-                    <ul class="dropdown-content">
-                    <li><a href="account.html">Profile</a></li>
-                    <li><a href="my-announcements.html" class="active">My Announcements</a></li>
-                    <li><a href="saved-announcements.html">Saved Announcements</a></li>
-                    </ul>
-                </li>
-
-                <li><a href="add.html" class="btn">Add Announcement</a></li>
+          <li class="dropdown">
+            <a href="#"> Account <span class="arrow">▲</span> </a>
+            <ul class="dropdown-content">
+              <li><a href="account.html">Profile</a></li>
+              <li><a href="my-announcements.html">My Announcements</a></li>
+              <li>
+                <a href="saved-announcements.html">Saved Announcements</a>
+              </li>
             </ul>
-        </nav>
+          </li>
+
+          <li><a href="add.html" class="btn">Add Announcement</a></li>
+        </ul>
+      </nav>
     </header>
 
-  <h1>My Announcements</h1>
+    <h1 class="page-title">My Announcements</h1>
+    <main>
+      <section class="simple-page-container">
+        <p>You haven't added any announcements yet.</p>
+        <p><a href="add.html">Click here to add your first announcement</a></p>
+      </section>
+    </main>
 
-  <section id="my-announcements">
-    <p>You haven't added any announcements yet.</p>
-    <p><a href="#">Click here to add your first announcement</a></p>
-  </section>
-</body>
+    <footer>
+      <div class="footer-content">
+        <div class="footer-left">
+          <span>Paws Connect 2025 ©</span>
+        </div>
 
+        <div class="footer-right">
+          <span>Connect With Us</span>
+          <div class="social">
+            <img src="img/instaLogo.png" alt="Instagram" />
+            <img src="img/XLogo.png" alt="X App" />
+            <img src="img/FacebookLogo.png" alt="Facebook" />
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>
-
-
