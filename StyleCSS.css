@@ -629,6 +629,33 @@ footer {
     padding: 10px 20px;
     font-size: 16px;
 }
+
+.dropdown > a {
+    
+    background: none !important; 
+    border: none !important;     
+    box-shadow: none !important; 
+    
+    color: #504e76 !important;
+    padding: 8px 12px; 
+    border-radius: 0; 
+}
+
+.dropdown > a:hover {
+    background: #a3b565 !important;
+    color: #fff !important;
+    border-radius: 8px !important; 
+}
+
+.dropdown button {
+    background: none !important;
+    border: none !important;
+    color: inherit;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+}
+
 /* ================= SIGN-UP / LOG-IN SPECIFIC STYLES ================= */
 
 /* Utility class for screen readers */
@@ -862,3 +889,4 @@ footer {
 .saved-list li a:hover {
   color: #a3b565;
 }
+
