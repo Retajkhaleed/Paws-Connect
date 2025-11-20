@@ -658,7 +658,6 @@ footer {
 
 /* ================= SIGN-UP / LOG-IN SPECIFIC STYLES ================= */
 
-/* Utility class for screen readers */
 .visually-hidden {
     position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
     overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;
@@ -667,9 +666,8 @@ footer {
 /* 1. Page Background & Centering */
 .page-background {
     display: flex; flex-direction: column; align-items: center; justify-content: flex-start; 
-    /* Ensures footer is not pushed off screen by the tall main section */
     min-height: calc(100vh - 100px); 
-    padding-top: 150px; /* Pushes content below the fixed header */
+    padding-top: 150px; 
     padding-bottom: 50px;
 }
 
@@ -680,7 +678,6 @@ footer {
     width: 100%; max-width: 450px; border: 2px solid #a3b565;
 }
 
-/* Style for the heading (h2) */
 .form-card h2 {
     color: #504e76; font-size: 28px; text-align: center; margin-bottom: 30px;
     margin-top: 0; font-family: "Playfair Display", serif;
@@ -695,7 +692,6 @@ footer {
     color: #504e76; font-weight: 600; margin-bottom: 8px; font-size: 16px;
 }
 
-/* Input fields */
 .form-card input[type="text"],
 .form-card input[type="password"],
 .form-card input[type="tel"] {
@@ -732,7 +728,7 @@ footer {
     text-decoration: underline;
 }
 
-/* ================= ACCOUNT PAGE - BARE MINIMUM STYLES (Focus on Layout) ================= */
+/* ================= ACCOUNT PAGE =================== */
 
 /* 1. Page Container Layout */
 .account-page {
@@ -1078,6 +1074,7 @@ textarea {
   opacity: .88;
   transform: translateY(-2px);
 }
+
 
 
 
