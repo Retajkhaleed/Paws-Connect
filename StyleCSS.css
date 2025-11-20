@@ -479,7 +479,7 @@ footer {
   color: #fff;
   display: flex;
   /* Placeholder image URL (user can replace this) */
-  background-image: url("sick cat.jpg"); 
+  background-image: url("img/sick cat.jpg"); 
   background-size: cover;
   background-position: center;  
   background-color: rgba(123, 134, 115, 0.85); /* Common dark overlay color */
@@ -622,3 +622,4 @@ footer {
     padding: 10px 20px;
     font-size: 16px;
 }
+
