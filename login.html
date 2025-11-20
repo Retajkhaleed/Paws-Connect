@@ -43,11 +43,18 @@
         <fieldset>
           <legend class="visually-hidden">Welcome Back!</legend>
           <h2>Welcome Back!</h2> 
-          
+          <div class="cat">
+  <img id="cat-img" src="img/open-eyes.jpg" alt="Cat">
+</div>      
           <div class="form-group">
             <label for="username">Username</label>
             <input type="text" id="username" placeholder="Enter your username" required>
           </div>
+
+<div class="form-group">
+  <label for="password">Password</label>
+  <input type="password" id="password" placeholder="Enter your password" required>
+</div>
 
           <div class="form-group">
             <label for="password">Password</label>
@@ -81,6 +88,17 @@
       </div>
     </div>
   </footer>
+<script>
+  const passwordField = document.getElementById("password");
+  const catImg = document.getElementById("cat-img");
 
+  passwordField.addEventListener("focus", () => {
+    catImg.src = "img/closed-eyes.jpg"; 
+  });
+
+  passwordField.addEventListener("blur", () => {
+    catImg.src = "img/open-eyes.jpg"; 
+  });
+</script>
 </body>
 </html>
