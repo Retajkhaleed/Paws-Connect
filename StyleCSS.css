@@ -622,4 +622,182 @@ footer {
     padding: 10px 20px;
     font-size: 16px;
 }
+/* ================= SIGN-UP / LOG-IN SPECIFIC STYLES ================= */
+
+/* Utility class for screen readers */
+.visually-hidden {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;
+}
+
+/* 1. Page Background & Centering */
+.page-background {
+    display: flex; flex-direction: column; align-items: center; justify-content: flex-start; 
+    /* Ensures footer is not pushed off screen by the tall main section */
+    min-height: calc(100vh - 100px); 
+    padding-top: 150px; /* Pushes content below the fixed header */
+    padding-bottom: 50px;
+}
+
+/* 2. Form Card Styling (The white box) */
+.form-card {
+    background: #fff; padding: 40px 50px; border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(80, 78, 118, 0.1); 
+    width: 100%; max-width: 450px; border: 2px solid #a3b565;
+}
+
+/* Style for the heading (h2) */
+.form-card h2 {
+    color: #504e76; font-size: 28px; text-align: center; margin-bottom: 30px;
+    margin-top: 0; font-family: "Playfair Display", serif;
+}
+
+/* 3. Input Group Styling */
+.form-group {
+    margin-bottom: 20px; display: flex; flex-direction: column;
+}
+
+.form-group label {
+    color: #504e76; font-weight: 600; margin-bottom: 8px; font-size: 16px;
+}
+
+/* Input fields */
+.form-card input[type="text"],
+.form-card input[type="password"],
+.form-card input[type="tel"] {
+    width: 100%; padding: 12px 15px; border: 2px solid #9aa58d;
+    border-radius: 8px; font-size: 16px; outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s; box-sizing: border-box; 
+}
+
+.form-card input:focus {
+    border-color: #f1642e; box-shadow: 0 0 5px rgba(241, 100, 46, 0.5);
+}
+
+/* 4. Submit Button Styling */
+.auth-submit-btn {
+    width: 100%; padding: 14px; margin-top: 15px; background: #f1642e;
+    color: #fff; border: none; border-radius: 8px; font-weight: 700;
+    font-size: 18px; cursor: pointer; transition: background 0.3s, transform 0.2s;
+}
+
+.auth-submit-btn:hover {
+    background: #a3b565; transform: scale(1.01);
+}
+
+/* 5. Link/Footer Styling */
+.auth-footer {
+    text-align: center; margin-top: 25px; font-size: 16px; color: #504e76;
+}
+
+.auth-footer a {
+    color: #f1642e; text-decoration: none; font-weight: 600;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+
+/* ================= ACCOUNT PAGE - BARE MINIMUM STYLES (Focus on Layout) ================= */
+
+/* 1. Page Container Layout */
+.account-page {
+    padding-top: 100px;
+    padding-bottom: 50px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* 2. Profile Header Layout & Styling */
+.profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    background: #fff;
+    border: 2px solid #a3b565; 
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.profile-pic-large {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #f1642e; 
+    margin-bottom: 15px;
+}
+
+.edit-btn {
+    background-color: #a3b565;
+    color: #fff;
+    border: none; 
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.edit-btn:hover {
+    background-color: #7b8673;
+}
+/* 3. Profile Details Layout */
+.profile-details {
+    padding: 0 30px;
+}
+
+.edit-form {
+    display: none; 
+    padding: 30px;
+    background: #fef9f0; 
+    border: 1px solid #a3b565;
+    border-radius: 12px;
+    margin-top: 25px;
+}
+
+.profile-links {
+    margin-top: 40px;
+    padding: 0 30px;
+}
+
+.profile-links h3 {
+    border-bottom: 2px solid #a3b565; 
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+.profile-link {
+    display: block; 
+    text-decoration: none;
+    background: #fff;
+    border: 1px solid #a3b565;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.profile-link:hover {
+    background: #f1642e;
+    color: #fff; 
+}
+
+.profile-link.add {
+    background: #f1642e;
+    color: #fff;
+    border-color: #f1642e;
+}
+
+.logout-link {
+    display: block;
+    color: #f1642e;
+    text-align: right;
+    margin-top: 30px;
+    font-weight: 600;
+    text-decoration: none;
+}
 
