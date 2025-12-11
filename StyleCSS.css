@@ -656,85 +656,146 @@ footer {
     cursor: pointer;
 }
 
-/* ================= SIGN-UP / LOG-IN SPECIFIC STYLES ================= */
-
-.visually-hidden {
-    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
-    overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;
+/* ================= AUTH PAGES ================= */
+/* 1. Reset fieldset borders */
+.form-card fieldset {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    min-width: 0;
 }
 
-/* 1. Page Background & Centering */
+/* 2. Page layout - Reduced padding to pull form up */
 .page-background {
-    display: flex; flex-direction: column; align-items: center; justify-content: flex-start; 
-    min-height: calc(100vh - 100px); 
-    padding-top: 150px; 
-    padding-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    padding-top: 110px; /* Reduced from 150px to fit better */
+    padding-bottom: 80px; /* Space for the fixed footer */
+    background-color: #fdf8e2;
 }
 
-/* 2. Form Card Styling (The white box) */
+/* 3. Form Card - More compact */
 .form-card {
-    background: #fff; padding: 40px 50px; border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(80, 78, 118, 0.1); 
-    width: 100%; max-width: 450px; border: 2px solid #a3b565;
+    background: #ffffff;
+    width: 90%;
+    max-width: 420px; /* Slightly narrower */
+    padding: 30px 30px; /* Reduced padding (was 45px) */
+    border-radius: 16px;
+    border: 2px solid #a3b565;
+    box-shadow: 0 8px 20px rgba(80, 78, 118, 0.1);
+    text-align: center;
+    box-sizing: border-box;
 }
 
+/* 4. Fluid Image - Smaller */
+.cat-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px; /* Reduced margin */
+}
+
+.auth-cat-img {
+    width: 25%;
+    min-width: 100px;
+    max-width: 120px; /* Smaller max size */
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+/* 5. Typography - More compact */
 .form-card h2 {
-    color: #504e76; font-size: 28px; text-align: center; margin-bottom: 30px;
-    margin-top: 0; font-family: "Playfair Display", serif;
+    font-family: "Playfair Display", serif;
+    color: #504e76;
+    font-size: 28px; /* Slightly smaller font */
+    margin-top: 0;
+    margin-bottom: 20px; /* Reduced margin */
 }
 
-/* 3. Input Group Styling */
+/* 6. Inputs - Slimmer */
 .form-group {
-    margin-bottom: 20px; display: flex; flex-direction: column;
+    margin-bottom: 12px; /* Less space between inputs */
+    text-align: left;
 }
 
 .form-group label {
-    color: #504e76; font-weight: 600; margin-bottom: 8px; font-size: 16px;
+    display: block;
+    color: #504e76;
+    font-weight: 700;
+    margin-bottom: 6px;
+    font-size: 14px; /* Smaller label text */
 }
 
-.form-card input[type="text"],
-.form-card input[type="password"],
-.form-card input[type="tel"] {
-    width: 100%; padding: 12px 15px; border: 2px solid #9aa58d;
-    border-radius: 8px; font-size: 16px; outline: none;
-    transition: border-color 0.3s, box-shadow 0.3s; box-sizing: border-box; 
+.form-card input {
+    width: 100%;
+    padding: 10px; /* Slimmer inputs (was 14px) */
+    border: 2px solid #9aa58d;
+    border-radius: 8px;
+    font-size: 15px;
+    box-sizing: border-box;
+    outline: none;
+    transition: 0.3s;
 }
 
 .form-card input:focus {
-    border-color: #f1642e; box-shadow: 0 0 5px rgba(241, 100, 46, 0.5);
+    border-color: #f1642e;
+    box-shadow: 0 0 0 3px rgba(241, 100, 46, 0.2);
 }
 
-/* 4. Submit Button Styling */
+/* 7. Buttons - Compact */
 .auth-submit-btn {
-    width: 100%; padding: 14px; margin-top: 15px; background: #f1642e;
-    color: #fff; border: none; border-radius: 8px; font-weight: 700;
-    font-size: 18px; cursor: pointer; transition: background 0.3s, transform 0.2s;
+    width: 100%;
+    background-color: #f1642e;
+    color: white;
+    font-weight: 800;
+    font-size: 17px;
+    padding: 12px; /* Slimmer button */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
 }
 
 .auth-submit-btn:hover {
-    background: #a3b565; transform: scale(1.01);
+    background-color: #a3b565;
+    transform: translateY(-2px);
 }
 
-/* 5. Link/Footer Styling */
+/* 8. Links */
 .auth-footer {
-    text-align: center; margin-top: 25px; font-size: 16px; color: #504e76;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #504e76;
 }
 
 .auth-footer a {
-    color: #f1642e; text-decoration: none; font-weight: 600;
+    color: #f1642e;
+    font-weight: 700;
+    text-decoration: none;
 }
 
-.auth-footer a:hover {
-    text-decoration: underline;
+/* 9. FIXED FOOTER RULE */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    box-sizing: border-box; 
 }
 
 /* ================= ACCOUNT PAGE =================== */
 
 /* 1. Page Container Layout */
 .account-page {
-    padding-top: 100px;
-    padding-bottom: 50px;
-    max-width: 800px;
+    padding-top: 80px;
+    padding-bottom: 35px;
+    max-width: 700px;
     margin: 0 auto;
 }
 
@@ -1074,6 +1135,44 @@ textarea {
   opacity: .88;
   transform: translateY(-2px);
 }
+.hero-buttons {
+    margin-top: 25px;
+    display: flex;
+    gap: 15px;
+}
+
+.btn-hero {
+    text-decoration: none;
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 10px;
+    transition: 0.3s;
+    border: 2px solid #E85D22;
+}
+
+.login {
+    background-color: transparent;
+    color: #E85D22;
+}
+
+.login:hover {
+    background-color: #E85D22;
+    color: white;
+}
+
+.signup {
+    background-color: #E85D22;
+    color: white;
+}
+
+.signup:hover {
+    background-color: #c04510;
+    border-color: #c04510;
+}
+
+
+
 
 
 
