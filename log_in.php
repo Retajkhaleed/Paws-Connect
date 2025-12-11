@@ -22,7 +22,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         
         if ($user['password'] === $password) {
-            // إنشاء الجلسة للمستخدم
             $_SESSION['username'] = $username;
             $_SESSION['user_id'] = $user['id'];
 
@@ -46,4 +45,5 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     echo "<h2>This page expects form data.</h2>";
     echo "<p><a href='login.html'>Go to Login Page</a></p>";
 }
+
 ?>
