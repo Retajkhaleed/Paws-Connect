@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS Profile (
     UserID INT NOT NULL UNIQUE,
     UserName VARCHAR(100),
     ProfilePhotoURL VARCHAR(255),
-    FOREIGN KEY (UserID) REFERENCES User(UserID)
+    FOREIGN KEY (UserID) REFERENCES Users(UserID)
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS Announcement (
     Type ENUM('LostCat', 'CatAdoption', 'SickCat') NOT NULL,
     Status ENUM('Active', 'Found', 'Adopted', 'Recovered') DEFAULT 'Active',
     DateCreated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (UserID) REFERENCES User(UserID)
+    FOREIGN KEY (UserID) REFERENCES Users(UserID)
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
