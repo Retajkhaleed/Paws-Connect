@@ -1,76 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PawsConnect - Adoptable Cats Near You</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <title>Paws Connect – Adopt cats</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="StyleCSS.css">
 </head>
-<body class="adoptable">
-<header>
-  <div class="logo">
-    <img src="img/PawLogo.png" alt="Paws Connect Logo" class="logo-image">
-    <span class="logo-text">Paws Connect</span>
-  </div>
 
-  <nav>
-    <ul class="nav menu">
-      <li><a href="Home.html">Home</a></li>
-      <li><a href="adoptable-cats.html"class="active">Adopt Cats</a></li>
-      <li><a href="lost-cats.html">Lost Cats</a></li>
-      <li><a href="sick.html">Sick Cats</a></li>
-      <li><a href="login.html">Log In</a></li>
+<body>
+  <header>
+    <div class="logo">
+      <img src="img\PawLogo.png" alt="Paws Connect Logo" class="logo-image">
+      <span class="logo-text">Paws Connect</span>
+    </div>
+
+    <nav>
+      <ul class="nav">
+        <li><a href="Home.html">Home</a></li>
+        <li><a href="adoptable-cats.html"class="home-btn">Adopt Cats</a></li>
+        <li><a href="lost-cats.html">Lost Cats</a></li>
+        <li><a href="sick.html">Sick Cats</a></li>
 
 
-      <li class="dropdown">
-        <button class="dropbtn">
-          Account <span class="arrow">▼</span>
-        </button>
-        <ul class="dropdown-content">
-          <li><a href="account.html">Profile</a></li>
-          <li><a href="my-announcements.html">My Announcements</a></li>
-          <li><a href="saved-announcements.html">Saved Announcements</a></li>
-        </ul>
-      </li>
+        <li class="dropdown">
+          <a href="#"> Account <span class="arrow">▲</span> </a>
+          <ul class="dropdown-content">
+            <li><a href="account.html">Profile</a></li>
+            <li><a href="my-announcements.html">My Announcements</a></li>
+            <li><a href="saved-announcements.html">Saved Announcements</a></li>
+          </ul>
+        </li>
 
-      <li><a href="add.html" class="btn">Add Announcement</a></li>
-    </ul>
-  </nav>
-</header>
-    <!--the biggest section -->
+        <li><a href="add.html" class="btn">Add Announcement</a></li>
+      </ul>
+    </nav>
+  </header>
     <section class="AdoptableHero">
   <div class="AdoptableHero-content">
     <h1>Adoptable Cats Near You</h1>
     <p>Find your furever friend today!</p>
   </div>
 </section>
-    <!--the regions drop list section -->
+    <!--the cites drop list section -->
     <main class="container">
         <section class="search-section">
             <div class="search-bar">
                 <input type="text" class="search-input" placeholder="Search by breed, location...">
                 <button class="search-btn">Search</button>
             </div>
-            <div class="filters">
-                <div class="filter-options">
-                    <select class="region-filter">
-                        <option value="">All Regions</option>
-                        <option value="riyadh">Riyadh Region</option>
-                        <option value="makkah">Makkah Region</option>
-                        <option value="madinah">Madinah Region</option>
-                        <option value="eastern">Eastern Province</option>
-                        <option value="qassim">Qassim Region</option>
-                        <option value="hail">Hail Region</option>
-                        <option value="tabuk">Tabuk Region</option>
-                        <option value="northern">Northern Borders Region</option>
-                        <option value="jazan">Jazan Region</option>
-                        <option value="najran">Najran Region</option>
-                        <option value="bahah">Al Bahah Region</option>
-                        <option value="jawf">Al Jawf Region</option>
-                        <option value="asir">Asir Region</option>
-                    </select>
-                </div>
+            <select class="city-filter">
+    <option value="">All Cities</option>
+
+    <option value="riyadh">Riyadh</option>
+    <option value="al-kharj">Al Kharj</option>
+    <option value="al-muzahimiyah">Al Muzahimiyah</option>
+    <option value="dawadmi">Dawadmi</option>
+    <option value="majmaah">Al Majma'ah</option>
+    <option value="jeddah">Jeddah</option>
+    <option value="mecca">Mecca</option>
+    <option value="taif">Taif</option>
+    <option value="rabigh">Rabigh</option>
+    <option value="khulais">Khulais</option>
+    <option value="medina">Medina</option>
+    <option value="badr">Badr</option>
+    <option value="ulyanah">Ulyanah</option>
+    <option value="khaybar">Khaybar</option>
+    <option value="dammam">Dammam</option>
+    <option value="al-khobar">Al Khobar</option>
+    <option value="dhahran">Dhahran</option>
+    <option value="jubail">Jubail</option>
+    <option value="hafr-al-batin">Hafr Al Batin</option>
+    <option value="qatif">Qatif</option>
+    <option value="khafji">Khafji</option>
+    <option value="buraydah">Buraydah</option>
+    <option value="unaizah">Unaizah</option>
+    <option value="al-rass">Al Rass</option>
+    <option value="hail">Hail</option>
+    <option value="baqaa">Baqaa</option>
+    <option value="sulayyil">Sulayyil</option>
+    <option value="tabuk">Tabuk</option>
+    <option value="tayma">Tayma</option>
+    <option value="al-wajh">Al Wajh</option>
+    <option value="ar-ar">Arar</option>
+    <option value="rafha">Rafha</option>
+    <option value="turaif">Turaif</option>
+    <option value="jazan">Jazan</option>
+    <option value="sabya">Sabya</option>
+    <option value="abu-aris">Abu Arish</option>
+    <option value="najran">Najran</option>
+    <option value="shuqra">Shuqra</option>
+    <option value="yadamah">Yadamah</option>
+    <option value="al-baha">Al Baha</option>
+    <option value="baljurashi">Baljurashi</option>
+    <option value="ghararah">Ghararah</option>
+    <option value="sakurah">Sakakah</option>
+    <option value="dumat-al-jandal">Dumat Al Jandal</option>
+    <option value="abha">Abha</option>
+    <option value="khamis-mushayt">Khamis Mushayt</option>
+    <option value="sarat-abidah">Sarat Abidah</option>
+</select>
                 <button class="post-btn" onclick="location.href='post-adoption.html'">Post for Adoption</button>
             </div>
         </section>
@@ -81,7 +110,7 @@
                 <div class="empty-icon">😿</div>
                 <h2>No Cats Available for Adoption</h2>
                 <p>There are currently no cats available for adoption in your area. Be the first to post an adoption announcement!</p>
-                <button class="cta-button" onclick="location.href='post-adoption.html'">Post an Adoption Announcement</button>
+                <button class="cta-button" onclick="location.href='add.html'">Post an Adoption Announcement</button>
             </div>
         </section>
 
@@ -126,5 +155,4 @@
 
 </body>
 </html>
-
 
