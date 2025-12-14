@@ -70,9 +70,9 @@
     </section>
 
     <!-- ADOPT FORM -->
-    <form class="ann-form" id="form-adopt" enctype="multipart/form-data" novalidate>
-
-      <fieldset>
+<form class="ann-form" id="form-adopt" enctype="multipart/form-data" method="POST" action="add.php">
+    <input type="hidden" name="type" value="adopt">
+  <fieldset>
         <legend>Announcement</legend>
         <div class="grid">
 
@@ -208,8 +208,8 @@
     </form>
 
     <!-- LOST FORM -->
-    <form class="ann-form" id="form-lost" enctype="multipart/form-data">
-
+<form class="ann-form" id="form-lost" enctype="multipart/form-data" method="POST" action="add.php">
+    <input type="hidden" name="type" value="lost">
       <fieldset>
         <legend>Announcement</legend>
         <div class="grid">
@@ -339,8 +339,7 @@
     </form>
 
     <!-- SICK FORM -->
-    <form class="ann-form" id="form-sick" enctype="multipart/form-data">
-
+<form class="ann-form" id="form-sick" enctype="multipart/form-data" method="POST" action="add.php">
       <fieldset>
         <legend>Announcement</legend>
         <div class="grid">
