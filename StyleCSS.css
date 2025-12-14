@@ -117,7 +117,7 @@ header {
   height: 512px;
   color: #fff;
   display: flex;
-  background-image: url("Catimage.jpg");
+  background-image: url("img/Catimage.jpg");
   background-size: cover;
   background-position: center;  
   background-color: rgba(123, 134, 115, 0.85);
@@ -230,12 +230,12 @@ footer {
 }
 /*adoptable and lost cats */
 /* ================= Hero (Adoptable Cats) ================= */
-.AdoptableHero {
+/* ================= Hero Sections ================= */
+.AdoptableHero, .LostHero {
   margin-top: 85px;
   height: 250px;
   color: #fff;
   display: flex;
-  background-image: url("img/adoptable-cat.png");
   background-size: cover;
   background-position: center;  
   background-color: rgba(123, 134, 115, 0.85);
@@ -243,52 +243,30 @@ footer {
   border-bottom: 3px solid #a3b565;
 }
 
-.AdoptableHero-content{
+.AdoptableHero {
+  background-image: url("img/adoptable-cat.png");
+}
+
+.LostHero {
+  background-image: url("img/Lostcat.jpg");
+}
+
+.AdoptableHero-content, .LostHero-content {
   padding-left: 70px;
   padding-top: 100px;
 }
 
-.AdoptableHero-content h1 {
+.AdoptableHero-content h1, .LostHero-content h1 {
   font-family: "Playfair Display", serif;
   font-size: 51px;
   font-weight: 800;
-
 }
 
-.AdoptableHero-content p {
+.AdoptableHero-content p, .LostHero-content p {
   font-size: 19px;
   margin-top: -30px;
 }
 
-/* ================= Hero (Lost Cats) ================= */
-.LostHero {
-  margin-top: 85px;
-  height: 250px;
-  color: #fff;
-  display: flex;
-  background-image: url("img/Lostcat.jpg");
-  background-size: cover;
-  background-position: center;  
-  background-color: rgba(123, 134, 115, 0.85);
-  background-blend-mode: multiply;
-  border-bottom: 3px solid #a3b565;
-}
-
-.LostHero-content{
-  padding-left: 70px;
-  padding-top: 100px;
-}
-
-.LostHero-content h1 {
-  font-family: "Playfair Display", serif;
-  font-size: 51px;
-  font-weight: 800;
-}
-
-.LostHero-content p {
-  ont-size: 19px;
-  margin-top: -30px;
-}
 /* ================= Search Section ================= */
 .search-section {
   display: flex;
@@ -320,32 +298,23 @@ footer {
   box-shadow: 0 0 8px rgba(241,100,46,0.3);
 }
 
-.search-btn {
+.search-btn, .post-btn, .cta-button {
   background-color: #f1642e;
   color: #fff;
   border: none;
-  border-radius: 0 10px 10px 0;
+  border-radius: 10px;
   padding: 12px 20px;
   font-weight: 600;
   cursor: pointer;
   transition: background 0.3s, transform 0.2s;
 }
 
-.search-btn:hover {
+.search-btn:hover, .post-btn:hover, .cta-button:hover {
   background-color: #a3b565;
   transform: scale(1.05);
 }
 
-/* ================= Filters Section ================= */
-.filters {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-}
-
-.region-filter {
+.city-filter {
   padding: 12px 16px;
   border-radius: 10px;
   border: 2px solid #a3b565;
@@ -354,25 +323,9 @@ footer {
   transition: border 0.3s, box-shadow 0.3s;
 }
 
-.region-filter:focus {
+.city-filter:focus {
   border-color: #f1642e;
   box-shadow: 0 0 8px rgba(241,100,46,0.3);
-}
-
-.post-btn {
-  background-color: #f1642e;
-  color: #fff;
-  border: none;
-  border-radius: 10px;
-  padding: 12px 20px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
-}
-
-.post-btn:hover {
-  background-color: #a3b565;
-  transform: scale(1.05);
 }
 
 /* ================= Empty State ================= */
@@ -413,70 +366,93 @@ footer {
   max-width: 400px;
 }
 
-.cta-button {
-  background-color: #f1642e;
-  color: #fff;
-  border: none;
-  border-radius: 10px;
-  padding: 12px 20px;
-  font-weight: 700;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
+/* ================= Cat Posts ================= */
+
+.posts-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
+  margin-top: 35px;
 }
 
-.cta-button:hover {
-  background-color: #a3b565;
-  transform: scale(1.05);
+.cat-post,
+.cat-post:hover,
+.cat-post:visited,
+.cat-post:active {
+  text-decoration: none !important;
+  color: inherit;
 }
 
-/* ================= Cats Table  ================= */
-.cats-table-section {
-  margin-top: 50px;
-  overflow-x: auto;
-}
-
-.cats-table-section table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  font-size: 16px;
-  background-color: #fff;
+.cat-card {
+  background: #fff;
+  border: 2px solid #a3b565;                 
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  box-shadow: 0 6px 14px rgba(189,103,17,0.28); 
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.cats-table-section th,
-.cats-table-section td {
-  padding: 14px 12px;
-  text-align: center;
-  color: #504e76;
+.cat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(194,80,9,0.45);
 }
 
-.cats-table-section th {
-  background-color: #f1642e;
-  color: #fff;
-  font-weight: 700;
-  font-size: 16px;
-}
-
-.cats-table-section tbody tr {
-  transition: background 0.3s, transform 0.2s;
-}
-
-.cats-table-section tbody tr:hover {
-  background-color: #fff3e0;
-  transform: scale(1.01);
-}
-
-.cats-table-section img {
-  width: 90px;
-  height: 90px;
+.cat-image img {
+  width: 100%;
+  height: 190px;
   object-fit: cover;
-  border-radius: 12px;
-  border: 2px solid #a3b565;
+  border-bottom: 4px solid #a3b565;
 }
+
+.cat-title {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 900;
+  padding: 12px 10px 6px;
+  color: #504e76; 
+  font-family: "Playfair Display", serif;
+}
+
+.cat-details {
+  padding: 10px 16px 16px;
+  font-size: 14.5px;
+}
+
+.cat-details p {
+  margin: 6px 0;
+  color: #384135; 
+}
+
+.cat-details strong {
+  color: #f1642e; 
+}
+
+
+/* ================= Responsive ================= */
+@media (max-width: 768px) {
+  .search-section {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .cat-card img {
+    height: 180px;
+  }
+
+  .AdoptableHero-content, .LostHero-content {
+    padding-left: 20px;
+    padding-top: 60px;
+  }
+
+  .AdoptableHero-content h1, .LostHero-content h1 {
+    font-size: 36px;
+  }
+
+  .AdoptableHero-content p, .LostHero-content p {
+    font-size: 16px;
+  }
+}
+
 
 
 /* ================= Hero (Sick Cats) Styles ================= */
@@ -486,7 +462,7 @@ footer {
   color: #fff;
   display: flex;
   /* Placeholder image URL (user can replace this) */
-  background-image: url("img/sick cat.jpg"); 
+  background-image: url("img/Sickcat.jpg"); 
   background-size: cover;
   background-position: center;  
   background-color: rgba(123, 134, 115, 0.85); /* Common dark overlay color */
@@ -1170,6 +1146,16 @@ textarea {
     background-color: #c04510;
     border-color: #c04510;
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
