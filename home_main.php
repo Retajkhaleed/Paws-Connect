@@ -24,7 +24,6 @@ session_start();
         <li><a href="adoptable-cats.html">Adopt Cats</a></li>
         <li><a href="lost-cats.html">Lost Cats</a></li>
         <li><a href="sick.html">Sick Cats</a></li>
-        <li><a href="login.html">Log In</a></li> 
 
 
         <li class="dropdown">
