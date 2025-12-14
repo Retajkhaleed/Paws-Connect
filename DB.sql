@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS SavedAnnouncement (
     AnnouncementID INT NOT NULL,
     DateSaved TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     UNIQUE (UserID, AnnouncementID),
-    FOREIGN KEY (UserID) REFERENCES User(UserID)
+    FOREIGN KEY (UserID) REFERENCES Users(UserID)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
     FOREIGN KEY (AnnouncementID) REFERENCES Announcement(AnnouncementID)
