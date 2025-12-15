@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     mysqli_stmt_execute($stmt);
     mysqli_stmt_store_result($stmt);
     if (mysqli_stmt_num_rows($stmt) > 0) {
-        header("Location: /my_app/signup.html?error=username");
+        header("Location: signup.html?error=username");
         exit;
     }
 
@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     mysqli_stmt_execute($stmt);
     mysqli_stmt_store_result($stmt);
     if (mysqli_stmt_num_rows($stmt) > 0) {
-        header("Location: /my_app/signup.html?error=phone");
+        header("Location: signup.html?error=phone");
         exit;
     }
 
@@ -35,10 +35,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $_SESSION["Username"] = $username;
         $_SESSION["Phone"] = $phone;
 
-        header("Location: /my_app/");
+        header("Location: home_main.php");
         exit;
     } else {
-        header("Location: /my_app/signup.html?error=general");
+        header("Location: signup.html?error=general");
         exit;
     }
 }
+?>
