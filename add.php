@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $tmpName = $_FILES['photos']['tmp_name'][$key];
             $ext = strtolower(pathinfo($name, PATHINFO_EXTENSION));
             $allowed = ['jpg','jpeg','png','gif'];
-            if (!in_array($ext, $allowed)) continue; // تجاهل الملفات غير المدعومة
+            if (!in_array($ext, $allowed)) continue;
 
             $newName = uniqid('cat_') . ".$ext";
             if (move_uploaded_file($tmpName, $uploadsDir . $newName)) {
@@ -74,12 +74,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             header("Location: adoptable-cats.php");
             exit();
-
+            
         case 'LostCat':
             $catName = $_POST['cat_name'] ?? '';
             $dateLost = $_POST['date_lost'] ?? '';
-            $lastSeen = $_POST['last_seen'] ?? '';
-            $reward = $_POST['reward'] ?? '';
+            $lastSeen = $_POST['last_seen_location'] ?? '';
+            $reward = $_POST['reward_offered'] ?? '';
             $features = $_POST['distinct_features'] ?? '';
 
             $stmt = $conn->prepare("INSERT INTO LostCat (AnnouncementID, CatName, DateLost, LastSeenLocation, RewardOffered, DistinctFeatures) VALUES (?, ?, ?, ?, ?, ?)");
@@ -110,3 +110,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo "No data submitted.";
 }
 ?>
+
