@@ -13,15 +13,15 @@
   <!-- HEADER -->
   <header>
     <div class="logo">
-      <img src="PawLogo.png" alt="Paws Connect Logo" class="logo-image">
+      <img src="img/PawLogo.png" alt="Paws Connect Logo" class="logo-image">
       <span class="logo-text">Paws Connect</span>
     </div>
 
     <nav>
       <ul class="nav">
         <li><a href="Home.html" class="home-btn">Home</a></li>
-        <li><a href="adoptable-cats.html">Adopt Cats</a></li>
-        <li><a href="lost-cats.html">Lost Cats</a></li>
+        <li><a href="adoptable-cats.php">Adopt Cats</a></li>
+        <li><a href="lost-cats.php">Lost Cats</a></li>
         <li><a href="sick.html">Sick Cats</a></li>
 
         <li class="dropdown">
@@ -53,17 +53,17 @@
     <section class="type-select">
 
       <label class="type-card" id="card-adopt" onclick="showForm('adopt')">
-        <img src="adoptable-cat.png" alt="Adoptable Cat">
+        <img src="img/adoptable-cat.png" alt="Adoptable Cat">
         <span>Adoptable Cat</span>
       </label>
 
       <label class="type-card" id="card-lost" onclick="showForm('lost')">
-        <img src="LostCat.jpg" alt="Lost Cat">
+        <img src="img/LostCat.jpg" alt="Lost Cat">
         <span>Lost Cat</span>
       </label>
 
       <label class="type-card" id="card-sick" onclick="showForm('sick')">
-        <img src="SickCat.jpg" alt="Sick Cat">
+        <img src="img/SickCat.jpg" alt="Sick Cat">
         <span>Sick Cat</span>
       </label>
 
@@ -71,272 +71,283 @@
 
     <!-- ADOPT FORM -->
 <form class="ann-form" id="form-adopt" enctype="multipart/form-data" method="POST" action="add.php">
-    <input type="hidden" name="type" value="adopt">
+  <input type="hidden" name="type" value="adopt">
+
+  <!-- Announcement Details -->
   <fieldset>
-        <legend>Announcement</legend>
-        <div class="grid">
+    <legend>Announcement</legend>
+    <div class="grid">
 
-          <label class="field">
-            <span>Title *</span>
-            <input type="text" required placeholder="e.g., Sweet calm kitty for adoption">
-          </label>
+      <label class="field">
+        <span>Title *</span>
+        <input type="text" name="title" required placeholder="e.g., Sweet calm kitty for adoption">
+      </label>
 
-          <label class="field">
-            <span>Location *</span>
-            <select class="city-filter" required>
-              <option value="">All Cities</option>
-              <option value="riyadh">Riyadh</option>
-              <option value="al-kharj">Al Kharj</option>
-              <option value="al-muzahimiyah">Al Muzahimiyah</option>
-              <option value="dawadmi">Dawadmi</option>
-              <option value="majmaah">Al Majma'ah</option>
-              <option value="jeddah">Jeddah</option>
-              <option value="mecca">Mecca</option>
-              <option value="taif">Taif</option>
-              <option value="rabigh">Rabigh</option>
-              <option value="khulais">Khulais</option>
-              <option value="medina">Medina</option>
-              <option value="badr">Badr</option>
-              <option value="ulyanah">Ulyanah</option>
-              <option value="khaybar">Khaybar</option>
-              <option value="dammam">Dammam</option>
-              <option value="al-khobar">Al Khobar</option>
-              <option value="dhahran">Dhahran</option>
-              <option value="jubail">Jubail</option>
-              <option value="hafr-al-batin">Hafr Al Batin</option>
-              <option value="qatif">Qatif</option>
-              <option value="khafji">Khafji</option>
-              <option value="buraydah">Buraydah</option>
-              <option value="unaizah">Unaizah</option>
-              <option value="al-rass">Al Rass</option>
-              <option value="hail">Hail</option>
-              <option value="baqaa">Baqaa</option>
-              <option value="sulayyil">Sulayyil</option>
-              <option value="tabuk">Tabuk</option>
-              <option value="tayma">Tayma</option>
-              <option value="al-wajh">Al Wajh</option>
-              <option value="ar-ar">Arar</option>
-              <option value="rafha">Rafha</option>
-              <option value="turaif">Turaif</option>
-              <option value="jazan">Jazan</option>
-              <option value="sabya">Sabya</option>
-              <option value="abu-aris">Abu Arish</option>
-              <option value="najran">Najran</option>
-              <option value="shuqra">Shuqra</option>
-              <option value="yadamah">Yadamah</option>
-              <option value="al-baha">Al Baha</option>
-              <option value="baljurashi">Baljurashi</option>
-              <option value="ghararah">Ghararah</option>
-              <option value="sakurah">Sakakah</option>
-              <option value="dumat-al-jandal">Dumat Al Jandal</option>
-              <option value="abha">Abha</option>
-              <option value="khamis-mushayt">Khamis Mushayt</option>
-              <option value="sarat-abidah">Sarat Abidah</option>
-            </select>
-          </label>
+      <label class="field">
+        <span>Location *</span>
+        <select name="location" class="city-filter" required>
+          <option value="">All Cities</option>
+          <option value="riyadh">Riyadh</option>
+          <option value="al-kharj">Al Kharj</option>
+          <option value="al-muzahimiyah">Al Muzahimiyah</option>
+          <option value="dawadmi">Dawadmi</option>
+          <option value="majmaah">Al Majma'ah</option>
+          <option value="jeddah">Jeddah</option>
+          <option value="mecca">Mecca</option>
+          <option value="taif">Taif</option>
+          <option value="rabigh">Rabigh</option>
+          <option value="khulais">Khulais</option>
+          <option value="medina">Medina</option>
+          <option value="badr">Badr</option>
+          <option value="ulyanah">Ulyanah</option>
+          <option value="khaybar">Khaybar</option>
+          <option value="dammam">Dammam</option>
+          <option value="al-khobar">Al Khobar</option>
+          <option value="dhahran">Dhahran</option>
+          <option value="jubail">Jubail</option>
+          <option value="hafr-al-batin">Hafr Al Batin</option>
+          <option value="qatif">Qatif</option>
+          <option value="khafji">Khafji</option>
+          <option value="buraydah">Buraydah</option>
+          <option value="unaizah">Unaizah</option>
+          <option value="al-rass">Al Rass</option>
+          <option value="hail">Hail</option>
+          <option value="baqaa">Baqaa</option>
+          <option value="sulayyil">Sulayyil</option>
+          <option value="tabuk">Tabuk</option>
+          <option value="tayma">Tayma</option>
+          <option value="al-wajh">Al Wajh</option>
+          <option value="ar-ar">Arar</option>
+          <option value="rafha">Rafha</option>
+          <option value="turaif">Turaif</option>
+          <option value="jazan">Jazan</option>
+          <option value="sabya">Sabya</option>
+          <option value="abu-aris">Abu Arish</option>
+          <option value="najran">Najran</option>
+          <option value="shuqra">Shuqra</option>
+          <option value="yadamah">Yadamah</option>
+          <option value="al-baha">Al Baha</option>
+          <option value="baljurashi">Baljurashi</option>
+          <option value="ghararah">Ghararah</option>
+          <option value="sakurah">Sakakah</option>
+          <option value="dumat-al-jandal">Dumat Al Jandal</option>
+          <option value="abha">Abha</option>
+          <option value="khamis-mushayt">Khamis Mushayt</option>
+          <option value="sarat-abidah">Sarat Abidah</option>
+        </select>
+      </label>
 
-          <label class="field">
-            <span>Contact (Email) *</span>
-            <input type="email" required placeholder="name@example.com">
-          </label>
 
-          <label class="field">
-            <span>Contact (Phone) *</span>
-            <input type="tel" pattern="^05\d{8}$" placeholder="05XXXXXXXX">
-          </label>
+      <label class="field">
+        <span>Contact Email *</span>
+        <input type="email" name="contact_email" required placeholder="name@example.com">
+      </label>
 
-          <label class="field" style="grid-column: 1 / span 2;">
-            <span>Description *</span>
-            <textarea rows="4" maxlength="600" required placeholder="Personality, behavior, story..."></textarea>
-          </label>
+      <label class="field">
+        <span>Contact Phone *</span>
+        <input type="tel" name="contact_phone" pattern="^05\d{8}$" required placeholder="05XXXXXXXX">
+      </label>
 
-        </div>
-      </fieldset>
+      <label class="field" style="grid-column: 1 / span 2;">
+        <span>Description *</span>
+        <textarea name="description" rows="4" maxlength="600" required placeholder="Personality, behavior, story..."></textarea>
+      </label>
 
-      <fieldset>
-        <legend>Adoption Details</legend>
-        <div class="grid">
-          <label class="field">
-            <span>Age</span>
-            <input type="text" placeholder="1 year / 8 months">
-          </label>
+    </div>
+  </fieldset>
 
-          <label class="field">
-            <span>Gender</span>
-            <select>
-              <option value="">Select…</option>
-              <option>Male</option>
-              <option>Female</option>
-            </select>
-          </label>
+  <!-- Adoption Details -->
+  <fieldset>
+    <legend>Adoption Details</legend>
+    <div class="grid">
 
-          <label class="field">
-            <span>Vaccinated?</span>
-            <select>
-              <option value="">Select…</option>
-              <option>Yes</option>
-              <option>No</option>
-            </select>
-          </label>
+      <label class="field">
+        <span>Age</span>
+        <input type="text" name="age" placeholder="1 year / 8 months">
+      </label>
 
-          <label class="field">
-            <span>Neutered/Spayed?</span>
-            <select>
-              <option value="">Select…</option>
-              <option>Yes</option>
-              <option>No</option>
-            </select>
-          </label>
+      <label class="field">
+        <span>Gender</span>
+        <select name="gender">
+          <option value="">Select…</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+      </label>
 
-          <label class="field" style="grid-column: 1 / span 2;">
-            <span>Adoption Requirements</span>
-            <input type="text" placeholder="Indoor only, calm home, etc.">
-          </label>
-        </div>
-      </fieldset>
+      <label class="field">
+        <span>Vaccinated?</span>
+        <select name="vaccinated">
+          <option value="">Select…</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      </label>
 
-      <fieldset>
-        <legend>Photos</legend>
-        <div class="upload-image">
-          <input type="file" accept="image/*" multiple>
-        </div>
-      </fieldset>
+      <label class="field">
+        <span>Neutered/Spayed?</span>
+        <select name="neutered">
+          <option value="">Select…</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      </label>
 
-      <div class="publish">
-        <button class="publish-btn" type="submit">Publish Adoption</button>
-      </div>
-    </form>
+      <label class="field" style="grid-column: 1 / span 2;">
+        <span>Adoption Requirements</span>
+        <input type="text" name="adoption_requirements" placeholder="Indoor only, calm home, etc.">
+      </label>
+
+    </div>
+  </fieldset>
+
+  <!-- Photos -->
+  <fieldset>
+    <legend>Photos</legend>
+    <div class="upload-image">
+      <input type="file" name="photos[]" accept="image/*" multiple>
+    </div>
+  </fieldset>
+
+  <div class="publish">
+    <button class="publish-btn" type="submit">Publish Adoption</button>
+  </div>
+</form>
 
     <!-- LOST FORM -->
 <form class="ann-form" id="form-lost" enctype="multipart/form-data" method="POST" action="add.php">
-    <input type="hidden" name="type" value="lost">
-      <fieldset>
-        <legend>Announcement</legend>
-        <div class="grid">
-          <label class="field">
-            <span>Title *</span>
-            <input type="text" required placeholder="Lost black cat…">
-          </label>
 
-         
-          <label class="field">
-            <span>Location *</span>
-            <select class="city-filter" required>
-              <option value="">All Cities</option>
-              <option value="riyadh">Riyadh</option>
-              <option value="al-kharj">Al Kharj</option>
-              <option value="al-muzahimiyah">Al Muzahimiyah</option>
-              <option value="dawadmi">Dawadmi</option>
-              <option value="majmaah">Al Majma'ah</option>
-              <option value="jeddah">Jeddah</option>
-              <option value="mecca">Mecca</option>
-              <option value="taif">Taif</option>
-              <option value="rabigh">Rabigh</option>
-              <option value="khulais">Khulais</option>
-              <option value="medina">Medina</option>
-              <option value="badr">Badr</option>
-              <option value="ulyanah">Ulyanah</option>
-              <option value="khaybar">Khaybar</option>
-              <option value="dammam">Dammam</option>
-              <option value="al-khobar">Al Khobar</option>
-              <option value="dhahran">Dhahran</option>
-              <option value="jubail">Jubail</option>
-              <option value="hafr-al-batin">Hafr Al Batin</option>
-              <option value="qatif">Qatif</option>
-              <option value="khafji">Khafji</option>
-              <option value="buraydah">Buraydah</option>
-              <option value="unaizah">Unaizah</option>
-              <option value="al-rass">Al Rass</option>
-              <option value="hail">Hail</option>
-              <option value="baqaa">Baqaa</option>
-              <option value="sulayyil">Sulayyil</option>
-              <option value="tabuk">Tabuk</option>
-              <option value="tayma">Tayma</option>
-              <option value="al-wajh">Al Wajh</option>
-              <option value="ar-ar">Arar</option>
-              <option value="rafha">Rafha</option>
-              <option value="turaif">Turaif</option>
-              <option value="jazan">Jazan</option>
-              <option value="sabya">Sabya</option>
-              <option value="abu-aris">Abu Arish</option>
-              <option value="najran">Najran</option>
-              <option value="shuqra">Shuqra</option>
-              <option value="yadamah">Yadamah</option>
-              <option value="al-baha">Al Baha</option>
-              <option value="baljurashi">Baljurashi</option>
-              <option value="ghararah">Ghararah</option>
-              <option value="sakurah">Sakakah</option>
-              <option value="dumat-al-jandal">Dumat Al Jandal</option>
-              <option value="abha">Abha</option>
-              <option value="khamis-mushayt">Khamis Mushayt</option>
-              <option value="sarat-abidah">Sarat Abidah</option>
-            </select>
-          </label>
+  <input type="hidden" name="type" value="lost">
 
-          <label class="field">
-            <span>Contact Email *</span>
-            <input type="email" required placeholder="name@example.com">
-          </label>
+  <fieldset>
+    <legend>Announcement</legend>
+    <div class="grid">
 
-          <label class="field">
-            <span>Contact Phone *</span>
-            <input type="tel" pattern="^05\d{8}$" placeholder="05XXXXXXXX">
-          </label>
+      <label class="field">
+        <span>Title *</span>
+        <input type="text" name="title" required placeholder="Lost black cat…">
+      </label>
 
-          <label class="field" style="grid-column: 1 / span 2;">
-            <span>Description *</span>
-            <textarea rows="4" required placeholder="Distinct features…"></textarea>
-          </label>
-        </div>
-      </fieldset>
+      <label class="field">
+        <span>Location *</span>
+        <select name="location" class="city-filter" required>
+          <option value="">All Cities</option>
+          <option value="riyadh">Riyadh</option>
+          <option value="al-kharj">Al Kharj</option>
+          <option value="al-muzahimiyah">Al Muzahimiyah</option>
+          <option value="dawadmi">Dawadmi</option>
+          <option value="majmaah">Al Majma'ah</option>
+          <option value="jeddah">Jeddah</option>
+          <option value="mecca">Mecca</option>
+          <option value="taif">Taif</option>
+          <option value="rabigh">Rabigh</option>
+          <option value="khulais">Khulais</option>
+          <option value="medina">Medina</option>
+          <option value="badr">Badr</option>
+          <option value="ulyanah">Ulyanah</option>
+          <option value="khaybar">Khaybar</option>
+          <option value="dammam">Dammam</option>
+          <option value="al-khobar">Al Khobar</option>
+          <option value="dhahran">Dhahran</option>
+          <option value="jubail">Jubail</option>
+          <option value="hafr-al-batin">Hafr Al Batin</option>
+          <option value="qatif">Qatif</option>
+          <option value="khafji">Khafji</option>
+          <option value="buraydah">Buraydah</option>
+          <option value="unaizah">Unaizah</option>
+          <option value="al-rass">Al Rass</option>
+          <option value="hail">Hail</option>
+          <option value="baqaa">Baqaa</option>
+          <option value="sulayyil">Sulayyil</option>
+          <option value="tabuk">Tabuk</option>
+          <option value="tayma">Tayma</option>
+          <option value="al-wajh">Al Wajh</option>
+          <option value="ar-ar">Arar</option>
+          <option value="rafha">Rafha</option>
+          <option value="turaif">Turaif</option>
+          <option value="jazan">Jazan</option>
+          <option value="sabya">Sabya</option>
+          <option value="abu-aris">Abu Arish</option>
+          <option value="najran">Najran</option>
+          <option value="shuqra">Shuqra</option>
+          <option value="yadamah">Yadamah</option>
+          <option value="al-baha">Al Baha</option>
+          <option value="baljurashi">Baljurashi</option>
+          <option value="ghararah">Ghararah</option>
+          <option value="sakurah">Sakakah</option>
+          <option value="dumat-al-jandal">Dumat Al Jandal</option>
+          <option value="abha">Abha</option>
+          <option value="khamis-mushayt">Khamis Mushayt</option>
+          <option value="sarat-abidah">Sarat Abidah</option>
+        </select>
+      </label>
 
-      <fieldset>
-        <legend>Lost Cat Details</legend>
-        <div class="grid">
+      <label class="field">
+        <span>Contact Email *</span>
+        <input type="email" name="contact_email" required placeholder="name@example.com">
+      </label>
 
-          <label class="field">
-            <span>Cat's Name</span>
-            <input type="text">
-          </label>
+      <label class="field">
+        <span>Contact Phone *</span>
+        <input type="tel" name="contact_phone" pattern="^05\d{8}$" required placeholder="05XXXXXXXX">
+      </label>
 
-          <label class="field">
-            <span>Date Lost *</span>
-            <input type="date" required>
-          </label>
+      <label class="field" style="grid-column: 1 / span 2;">
+        <span>Description *</span>
+        <textarea name="description" rows="4" required placeholder="Distinct features…"></textarea>
+      </label>
 
-          <label class="field">
-            <span>Last Seen Location *</span>
-            <input type="text" required placeholder="Landmark, street…">
-          </label>
+    </div>
+  </fieldset>
 
-          <label class="field">
-            <span>Reward?</span>
-            <select>
-              <option value="">Select…</option>
-              <option>Yes</option>
-              <option>No</option>
-            </select>
-          </label>
+  <fieldset>
+    <legend>Lost Cat Details</legend>
+    <div class="grid">
 
-          <label class="field" style="grid-column: 1 / span 2;">
-            <span>Distinct Features</span>
-            <input type="text" placeholder="Blue collar, one green eye…">
-          </label>
+      <label class="field">
+        <span>Cat's Name</span>
+        <input type="text" name="cat_name">
+      </label>
 
-        </div>
-      </fieldset>
+      <label class="field">
+        <span>Date Lost *</span>
+        <input type="date" name="date_lost" required>
+      </label>
 
-      <fieldset>
-        <legend>Photos</legend>
-        <div class="upload-image">
-          <input type="file" accept="image/*" multiple>
-        </div>
-      </fieldset>
+      <label class="field">
+        <span>Last Seen Location *</span>
+        <input type="text" name="last_seen_location" required placeholder="Landmark, street…">
+      </label>
 
-      <div class="publish">
-        <button class="publish-btn" type="submit">Publish Lost Cat</button>
-      </div>
-    </form>
+      <label class="field">
+        <span>Reward?</span>
+        <select name="reward_offered">
+          <option value="No">No</option>
+          <option value="Yes">Yes</option>
+        </select>
+      </label>
+
+      <label class="field" style="grid-column: 1 / span 2;">
+        <span>Distinct Features</span>
+        <input type="text" name="distinct_features" placeholder="Blue collar, one green eye…">
+      </label>
+
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Photos</legend>
+    <div class="upload-image">
+      <input type="file" name="photos[]" accept="image/*" multiple>
+    </div>
+  </fieldset>
+
+  <div class="publish">
+    <button class="publish-btn" type="submit">Publish Lost Cat</button>
+  </div>
+
+</form>
+
 
     <!-- SICK FORM -->
 <form class="ann-form" id="form-sick" enctype="multipart/form-data" method="POST" action="add.php">
@@ -482,9 +493,9 @@
       <div class="footer-right">
         <span>Connect With Us</span>
         <div class="social">
-          <img src="instaLogo.png" alt="Instagram">
-          <img src="XLogo.png" alt="X App">
-          <img src="FacebookLogo.png" alt="Facebook">
+          <img src="img/instaLogo.png" alt="Instagram">
+          <img src="img/XLogo.png" alt="X App">
+          <img src="img/FacebookLogo.png" alt="Facebook">
         </div>
       </div>
     </div>
