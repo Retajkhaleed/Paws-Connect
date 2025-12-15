@@ -350,137 +350,141 @@
 
 
     <!-- SICK FORM -->
+> r:
 <form class="ann-form" id="form-sick" enctype="multipart/form-data" method="POST" action="add.php">
-      <fieldset>
+    <input type="hidden" name="type" value="sick">
+
+    <fieldset>
         <legend>Announcement</legend>
         <div class="grid">
 
-          <label class="field">
-            <span>Title *</span>
-            <input type="text" required placeholder="Sick cat needs help">
-          </label>
+            <label class="field">
+                <span>Title *</span>
+                <input type="text" name="title" required placeholder="Sick cat needs help">
+            </label>
 
-          
-          <label class="field">
-            <span>Location *</span>
-            <select class="city-filter" required>
-              <option value="">All Cities</option>
-              <option value="riyadh">Riyadh</option>
-              <option value="al-kharj">Al Kharj</option>
-              <option value="al-muzahimiyah">Al Muzahimiyah</option>
-              <option value="dawadmi">Dawadmi</option>
-              <option value="majmaah">Al Majma'ah</option>
-              <option value="jeddah">Jeddah</option>
-              <option value="mecca">Mecca</option>
-              <option value="taif">Taif</option>
-              <option value="rabigh">Rabigh</option>
-              <option value="khulais">Khulais</option>
-              <option value="medina">Medina</option>
-              <option value="badr">Badr</option>
-              <option value="ulyanah">Ulyanah</option>
-              <option value="khaybar">Khaybar</option>
-              <option value="dammam">Dammam</option>
-              <option value="al-khobar">Al Khobar</option>
-              <option value="dhahran">Dhahran</option>
-              <option value="jubail">Jubail</option>
-              <option value="hafr-al-batin">Hafr Al Batin</option>
-              <option value="qatif">Qatif</option>
-              <option value="khafji">Khafji</option>
-              <option value="buraydah">Buraydah</option>
-              <option value="unaizah">Unaizah</option>
-              <option value="al-rass">Al Rass</option>
-              <option value="hail">Hail</option>
-              <option value="baqaa">Baqaa</option>
-              <option value="sulayyil">Sulayyil</option>
-              <option value="tabuk">Tabuk</option>
-              <option value="tayma">Tayma</option>
-              <option value="al-wajh">Al Wajh</option>
-              <option value="ar-ar">Arar</option>
-              <option value="rafha">Rafha</option>
-              <option value="turaif">Turaif</option>
-              <option value="jazan">Jazan</option>
-              <option value="sabya">Sabya</option>
-              <option value="abu-aris">Abu Arish</option>
-              <option value="najran">Najran</option>
-              <option value="shuqra">Shuqra</option>
-              <option value="yadamah">Yadamah</option>
-              <option value="al-baha">Al Baha</option>
-              <option value="baljurashi">Baljurashi</option>
-              <option value="ghararah">Ghararah</option>
-              <option value="sakurah">Sakakah</option>
-              <option value="dumat-al-jandal">Dumat Al Jandal</option>
-              <option value="abha">Abha</option>
-              <option value="khamis-mushayt">Khamis Mushayt</option>
-              <option value="sarat-abidah">Sarat Abidah</option>
-            </select>
-          </label>
+            <label class="field">
+                <span>Location *</span>
+                <select name="location" class="city-filter" required> 
+                    <option value="">All Cities</option>
+                    <option value="riyadh">Riyadh</option>
+                    <option value="al-kharj">Al Kharj</option>
+                    <option value="al-muzahimiyah">Al Muzahimiyah</option>
+                    <option value="dawadmi">Dawadmi</option>
+                    <option value="majmaah">Al Majma'ah</option>
+                    <option value="jeddah">Jeddah</option>
+                    <option value="mecca">Mecca</option>
+                    <option value="taif">Taif</option>
+                    <option value="rabigh">Rabigh</option>
+                    <option value="khulais">Khulais</option>
+                    <option value="medina">Medina</option>
+                    <option value="badr">Badr</option>
+                    <option value="ulyanah">Ulyanah</option>
+                    <option value="khaybar">Khaybar</option>
+                    <option value="dammam">Dammam</option>
+                    <option value="al-khobar">Al Khobar</option>
+                    <option value="dhahran">Dhahran</option>
+                    <option value="jubail">Jubail</option>
+                    <option value="hafr-al-batin">Hafr Al Batin</option>
+                    <option value="qatif">Qatif</option>
+                    <option value="khafji">Khafji</option>
+                    <option value="buraydah">Buraydah</option>
+                    <option value="unaizah">Unaizah</option>
+                    <option value="al-rass">Al Rass</option>
+                    <option value="hail">Hail</option>
+                    <option value="baqaa">Baqaa</option>
+                    <option value="sulayyil">Sulayyil</option>
+                    <option value="tabuk">Tabuk</option>
+                    <option value="tayma">Tayma</option>
+                    <option value="al-wajh">Al Wajh</option>
+                    <option value="ar-ar">Arar</option>
+                    <option value="rafha">Rafha</option>
+                    <option value="turaif">Turaif</option>
+                    <option value="jazan">Jazan</option>
+                    <option value="sabya">Sabya</option>
+                    <option value="abu-aris">Abu Arish</option>
+                    <option value="najran">Najran</option>
+                    <option value="shuqra">Shuqra</option>
+                    <option value="yadamah">Yadamah</option>
+                    <option value="al-baha">Al Baha</option>
+                    <option value="baljurashi">Baljurashi</option>
+                    <option value="ghararah">Ghararah</option>
+                    <option value="sakurah">Sakakah</option>
+                    <option value="dumat-al-jandal">Dumat Al Jandal</option>
+                    <option value="abha">Abha</option>
+                    <option value="khamis-mushayt">Khamis Mushayt</option>
+                    <option value="sarat-abidah">Sarat Abidah</option>
+                </select>
+            </label>
 
-          <label class="field">
-            <span>Contact Email *</span>
-            <input type="email" required placeholder="name@example.com">
-          </label>
+            <label class="field">
+                <span>Contact Email *</span>
+                <input type="email" name="contact_email" required placeholder="name@example.com">
+            </label>
 
-          <label class="field">
-            <span>Contact Phone *</span>
-            <input type="tel" pattern="^05\d{8}$" placeholder="05XXXXXXXX">
-          </label>
+            <label class="field">
+                <span>Contact Phone *</span>
+                <input type="tel" name="contact_phone" pattern="^05\d{8}$" placeholder="05XXXXXXXX">
+            </label>
 
-          <label class="field" style="grid-column: 1 / span 2;">
-            <span>Description *</span>
-            <textarea rows="4" required placeholder="Describe the condition and behavior..."></textarea>
-          </label>
+            <label class="field" style="grid-column: 1 / span 2;">
+                <span>Description *</span>
+
+> r:
+<textarea name="description" rows="4" required placeholder="Describe the condition and behavior..."></textarea>
+            </label>
 
         </div>
-      </fieldset>
+    </fieldset>
 
-      <fieldset>
+    <fieldset>
         <legend>Health Details</legend>
         <div class="grid">
 
-          <label class="field">
-            <span>Symptoms *</span>
-            <input type="text" required placeholder="Weakness, injury, not eating...">
-          </label>
+            <label class="field">
+                <span>Symptoms *</span>
+                <input type="text" name="symptoms" required placeholder="Weakness, injury, not eating...">
+            </label>
 
-          <label class="field">
-            <span>Urgency *</span>
-            <select required>
-              <option value="">Select…</option>
-              <option>Low</option>
-              <option>Moderate</option>
-              <option>Critical</option>
-            </select>
-          </label>
+            <label class="field">
+                <span>Urgency *</span>
+                <select name="urgency" required>
+                    <option value="">Select…</option>
+                    <option value="Low">Low</option>
+                    <option value="Moderate">Moderate</option>
+                    <option value="Critical">Critical</option>
+                </select>
+            </label>
 
-          <label class="field">
-            <span>Date Noticed *</span>
-            <input type="date" required>
-          </label>
+            <label class="field">
+                <span>Date Noticed *</span>
+                <input type="date" name="date_noticed" required>
+            </label>
 
-          <label class="field">
-            <span>Found Location *</span>
-            <input type="text" required placeholder="Street or landmark">
-          </label>
+            <label class="field">
+                <span>Found Location *</span>
+                <input type="text" name="found_location" required placeholder="Street or landmark">
+            </label>
 
-          <label class="field" style="grid-column: 1 / span 2;">
-            <span>Needs Vet?</span>
-            <input type="text" placeholder="Needs medication / immediate vet...">
-          </label>
+            <label class="field" style="grid-column: 1 / span 2;">
+                <span>Needs Vet?</span>
+                <input type="text" name="needs" placeholder="Needs medication / immediate vet...">
+            </label>
 
         </div>
-      </fieldset>
+    </fieldset>
 
-      <fieldset>
+    <fieldset>
         <legend>Photos</legend>
         <div class="upload-image">
-          <input type="file" accept="image/*" multiple>
+            <input type="file" name="photos[]" accept="image/*" multiple>
         </div>
-      </fieldset>
+    </fieldset>
 
-      <div class="publish">
+    <div class="publish">
         <button class="publish-btn" type="submit">Publish Sick Case</button>
-      </div>
-    </form>
+    </div>
+</form>
 
   </main>
 
