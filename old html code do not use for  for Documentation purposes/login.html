@@ -1,1 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paws Connect | Login</title>
+  <link href="StyleCSS.css" rel="stylesheet">
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
 
+<header>
+  <div class="logo">
+    <img src="PawLogo.png" alt="Logo" class="logo-image">
+    <span class="logo-text">Paws Connect</span>
+  </div>
+  <nav>
+    <ul class="nav">
+      <li><a href="home_main.php">Home</a></li>
+      <li><a href="adoptable-cats.html">Adopt Cats</a></li>
+      <li><a href="lost-cats.html">Lost Cats</a></li>
+      <li><a href="sick.html">Sick Cats</a></li>
+      <li><a href="login.html" class="home-btn">Log In</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="page-background">
+  <div id="root"></div>
+</main>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-left"><span>Paws Connect 2025 ©</span></div>
+    <div class="footer-right">
+      <span>Connect With Us</span>
+      <div class="social">
+         <img src="instaLogo.png" alt="IG">
+         <img src="XLogo.png" alt="X">
+         <img src="FacebookLogo.png" alt="FB">
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script type="text/babel">
+  function LoginForm() {
+    const [username, setUsername] = React.useState("");
+    const [password, setPassword] = React.useState("");
+    const [showClosedEyes, setShowClosedEyes] = React.useState(false);
+
+    function handleSubmit(e) {
+      e.preventDefault();
+      
+      if (!username || !password) {
+        alert("Please fill in all fields!");
+        return;
+      }
+
+      // Create form data
+      const formData = new FormData();
+      formData.append('username', username);
+      formData.append('password', password);
+
+      // Submit to PHP
+      fetch('login_logic.php', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => {
+        // Check if login was successful
+        if (response.redirected || response.ok) {
+          window.location.href = '/my_app/home_main.php';
+        } else {
+          alert("Invalid username or password!");
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert("An error occurred. Please try again.");
+      });
+    }
+
+    return (
+      <div className="form-card">
+        <form className="login-form" onSubmit={handleSubmit}>
+          <h2>Welcome Back!</h2>
+
+          <div className="cat-container">
+            <img
+              id="cat-img"
+              src={showClosedEyes ? "closed-eyes.jpg" : "open-eyes.jpg"}
+              alt="Cat"
+              className="auth-cat-img"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              placeholder="Enter your username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              onFocus={() => setShowClosedEyes(true)}
+              onBlur={() => setShowClosedEyes(false)}
+            />
+          </div>
+
+          <button type="submit" className="auth-submit-btn">Login</button>
+
+          <p className="auth-footer">
+            Don't have an account? <a href="signup.html">Create one</a>
+          </p>
+        </form>
+      </div>
+    );
+  }
+
+  ReactDOM.render(<LoginForm />, document.getElementById("root"));
+</script>
+
+</body>
+</html>
