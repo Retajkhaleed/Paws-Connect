@@ -7,7 +7,6 @@ if (!isset($_SESSION["UserID"])) {
     exit;
 }
 
-// Fetch current user info
 $userID = $_SESSION["UserID"];
 $stmt = mysqli_prepare($conn, "SELECT Username, PhoneNumber, ProfilePhotoURL FROM Users LEFT JOIN Profile ON Users.UserID = Profile.UserID WHERE Users.UserID=?");
 mysqli_stmt_bind_param($stmt, "i", $userID);
@@ -32,99 +31,7 @@ if (isset($_GET['error']) && $_GET['error'] == 'duplicate') {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Paws Connect | Edit Account</title>
     <link href="StyleCSS.css" rel="stylesheet">
-    <style>
-        .message {
-            padding: 10px;
-            margin: 20px auto;
-            border-radius: 5px;
-            text-align: center;
-            max-width: 500px;
-        }
-        .error {
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-
-        .edit-container {
-            padding-top: 120px; 
-            padding-bottom: 80px;
-            max-width: 700px;
-            margin: 0 auto;
-            background: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            padding: 40px; 
-        }
-
-        .edit-container h1 {
-            font-size: 30px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 20px;
-            margin-bottom: 20px;
-        }
-        
-        .photo-section {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #eee;
-            margin-bottom: 30px;
-        }
-
-        .photo-section img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-        
-        .edit-container .form-group {
-             margin-bottom: 25px;
-        }
-        
-        .edit-container .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-
-        .edit-container .form-group input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 16px;
-        }
-        
-        .edit-actions {
-            display: flex;
-            justify-content: flex-end;
-            gap: 15px;
-            padding-top: 20px;
-        }
-        
-        .cancel-btn {
-            background-color: #e0e0e0 !important;
-            color: #504e76 !important;
-            border: 1px solid #ccc;
-            padding: 12px 24px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .auth-submit-btn {
-            background: #f1642e;
-            color: #fff;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-    </style>
+    
 </head>
 <body>
 
@@ -205,4 +112,5 @@ if (isset($_GET['error']) && $_GET['error'] == 'duplicate') {
 </footer>
 
 </body>
+
 </html>
