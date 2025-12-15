@@ -1,5 +1,5 @@
 CREATE SCHEMA IF NOT EXISTS paws_connect;
-USE PawsConnect;
+USE paws_connect;
 
 CREATE TABLE IF NOT EXISTS Users (
     UserID INT AUTO_INCREMENT PRIMARY KEY,
