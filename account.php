@@ -16,7 +16,7 @@ mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 $user = mysqli_fetch_assoc($result);
 
-$profilePhoto = $user["ProfilePhotoURL"] ?? "images/default-profile.png";
+$profilePhoto = $user["ProfilePhotoURL"] ?? "img/Pawlogo.png";
 if (!empty($user["ProfilePhotoURL"]) && strpos($profilePhoto, 'img/') !== 0) {
     $profilePhoto = $user["ProfilePhotoURL"];
 }
