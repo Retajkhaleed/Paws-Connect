@@ -18,19 +18,21 @@ include 'db_connect.php';
   </div>
   <nav>
     <ul class="nav">
-      <li><a href="Home.html">Home</a></li>
-      <li><a href="adoptable-cats.php">Adopt Cats</a></li>
-      <li><a href="lost-cats.php">Lost Cats</a></li>
-      <li><a href="sick.php" class="home-btn">Sick Cats</a></li>
-      <li class="dropdown">
-        <a href="#"> Account <span class="arrow">▲</span> </a>
-        <ul class="dropdown-content">
-          <li><a href="account.html">Profile</a></li>
-          <li><a href="my-announcements.php">My Announcements</a></li>
-          <li><a href="saved-announcements.php">Saved Announcements</a></li>
-        </ul>
-      </li>
-      <li><a href="add.html" class="btn">Add Announcement</a></li>
+       <li><a href="home_main.php" class="home-btn">Home</a></li> 
+        <li><a href="adoptable-cats.php">Adopt Cats</a></li>
+        <li><a href="lost-cats.php">Lost Cats</a></li>
+        <li><a href="sick.php">Sick Cats</a></li>
+
+        <li class="dropdown">
+          <a href="#"> Account <span class="arrow">▲</span> </a>
+          <ul class="dropdown-content">
+            <li><a href="account.php">Profile</a></li>
+            <li><a href="my-announcements.html">My Announcements</a></li>
+            <li><a href="saved-announcements.html">Saved Announcements</a></li>
+          </ul>
+        </li>
+
+        <li><a href="add.html" class="btn">Add Announcement</a></li>
     </ul>
   </nav>
 </header>
