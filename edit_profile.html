@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile - Paws Connect</title>
+    
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+   
+      
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        🐾 Paws Connect
+    </div>
+    <nav>
+        <a href="account.php" class="nav-link">← Back to Profile</a>
+    </nav>
+</header>
+
+<main>
+    <div id="root"></div>
+</main>
+
+<footer>
+    <p>Paws Connect 2025 © | Built with React.js</p>
+</footer>
+
+<script type="text/babel">
+// ProfileEditor Component
+function ProfileEditor() {
+    // State for form fields
+    const [username, setUsername] = React.useState("JohnDoe123");
+    const [phone, setPhone] = React.useState("0512345678");
+    const [newPassword, setNewPassword] = React.useState("");
+    const [confirmPassword, setConfirmPassword] = React.useState("");
+    const [profilePhoto, setProfilePhoto] = React.useState("https://via.placeholder.com/120");
+    
+    const [errors, setErrors] = React.useState({});
+    const [message, setMessage] = React.useState(null);
+    const [isLoading, setIsLoading] = React.useState(false);
+    const [hasChanges, setHasChanges] = React.useState(false);
+
+    React.useEffect(() => {
+
+        console.log("Profile data loaded");
+    }, []);
+
+    React.useEffect(() => {
+        const changed = newPassword !== "" || confirmPassword !== "";
+        setHasChanges(changed);
+    }, [newPassword, confirmPassword]);
+
+    const validateForm = () => {
+        const newErrors = {};
+
+        if (!username.trim()) {
+            newErrors.username = "Username is required";
+        } else if (username.length < 3) {
+            newErrors.username = "Username must be at least 3 characters";
+        }
+
+        const phoneRegex = /^05\d{8}$/;
+        if (!phone.trim()) {
+            newErrors.phone = "Phone number is required";
+        } else if (!phoneRegex.test(phone)) {
+            newErrors.phone = "Phone must be in format 05XXXXXXXX";
+        }
+
+        if (newPassword) {
+            if (newPassword.length < 8) {
+                newErrors.newPassword = "Password must be at least 8 characters";
+            }
+            if (newPassword !== confirmPassword) {
+                newErrors.confirmPassword = "Passwords do not match";
+            }
+        }
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
+    const handlePhotoChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                setProfilePhoto(event.target.result);
+                setHasChanges(true);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        if (!validateForm()) {
+            setMessage({ type: 'error', text: 'Please fix the errors below' });
+            return;
+        }
+
+        setIsLoading(true);
+        setMessage(null);
+
+        setTimeout(() => {
+            setIsLoading(false);
+            setMessage({ 
+                type: 'success', 
+                text: '✅ Profile updated successfully!' 
+            });
+            
+            setNewPassword("");
+            setConfirmPassword("");
+            setHasChanges(false);
+
+
+        }, 1500);
+    };
+
+    const handleCancel = () => {
+        if (hasChanges) {
+            if (confirm('You have unsaved changes. Are you sure you want to leave?')) {
+                window.location.href = 'account.php';
+            }
+        } else {
+            window.location.href = 'account.php';
+        }
+    };
+
+    return (
+        <div className="profile-container">
+            <h1>✏️ Edit Your Profile</h1>
+
+            {/* Success/Error Messages */}
+            {message && (
+                <div className={`message message-${message.type}`}>
+                    {message.text}
+                </div>
+            )}
+
+            {/* Photo Section */}
+            <div className="photo-section">
+                <img src={profilePhoto} alt="Profile" className="profile-photo" />
+                <div className="photo-info">
+                    <h3>Profile Photo</h3>
+                    <p style={{color: '#666', marginBottom: '10px'}}>
+                        Choose a new photo to update your profile picture
+                    </p>
+                    <input 
+                        type="file" 
+                        accept="image/*" 
+                        onChange={handlePhotoChange}
+                        className="photo-input"
+                    />
+                </div>
+            </div>
+
+            {/* Edit Form */}
+            <form onSubmit={handleSubmit}>
+                
+                {/* Username Field */}
+                <div className="form-group">
+                    <label htmlFor="username">Username *</label>
+                    <input
+                        type="text"
+                        id="username"
+                        value={username}
+                        onChange={(e) => {
+                            setUsername(e.target.value);
+                            setHasChanges(true);
+                        }}
+                        placeholder="Enter your username"
+                    />
+                    {errors.username && (
+                        <div className="validation-error">⚠️ {errors.username}</div>
+                    )}
+                </div>
+
+                {/* Phone Field */}
+                <div className="form-group">
+                    <label htmlFor="phone">Phone Number *</label>
+                    <input
+                        type="tel"
+                        id="phone"
+                        value={phone}
+                        onChange={(e) => {
+                            setPhone(e.target.value);
+                            setHasChanges(true);
+                        }}
+                        placeholder="05XXXXXXXX"
+                    />
+                    {errors.phone && (
+                        <div className="validation-error">⚠️ {errors.phone}</div>
+                    )}
+                    <div className="input-hint">
+                        Saudi phone format: 05XXXXXXXX
+                    </div>
+                </div>
+
+                {/* New Password Field */}
+                <div className="form-group">
+                    <label htmlFor="newPassword">New Password</label>
+                    <input
+                        type="password"
+                        id="newPassword"
+                        value={newPassword}
+                        onChange={(e) => setNewPassword(e.target.value)}
+                        placeholder="Leave blank to keep current password"
+                    />
+                    {errors.newPassword && (
+                        <div className="validation-error">⚠️ {errors.newPassword}</div>
+                    )}
+                    <div className="input-hint">
+                        Leave blank if you don't want to change your password
+                    </div>
+                </div>
+
+                {/* Confirm Password Field */}
+                {newPassword && (
+                    <div className="form-group">
+                        <label htmlFor="confirmPassword">Confirm New Password *</label>
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                            placeholder="Re-enter your new password"
+                        />
+                        {errors.confirmPassword && (
+                            <div className="validation-error">⚠️ {errors.confirmPassword}</div>
+                        )}
+                    </div>
+                )}
+
+                {/* Buttons */}
+                <div className="button-group">
+                    <button 
+                        type="button" 
+                        className="btn btn-secondary"
+                        onClick={handleCancel}
+                        disabled={isLoading}
+                    >
+                        Cancel
+                    </button>
+                    <button 
+                        type="submit" 
+                        className="btn btn-primary"
+                        disabled={isLoading}
+                    >
+                        {isLoading ? '💾 Saving...' : '💾 Save Changes'}
+                    </button>
+                </div>
+            </form>
+        </div>
+    );
+}
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<ProfileEditor />);
+</script>
+
+</body>
+</html>
