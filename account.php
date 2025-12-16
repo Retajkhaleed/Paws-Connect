@@ -1,9 +1,10 @@
 <?php
 session_start();
+
 require "db_connect.php";
 
 if (!isset($_SESSION["UserID"])) {
-    header("Location: ../login.html");
+    header("Location: login.html");
     exit;
 }
 
@@ -53,19 +54,19 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
     </div>
     <nav>
         <ul class="nav menu"> 
-            <li><a href="../home_main.php">Home</a></li>
-            <li><a href="../adoptable-cats.html">Adopt Cats</a></li>
-            <li><a href="../lost-cats.html">Lost Cats</a></li>
-            <li><a href="../sick.html">Sick Cats</a></li>
+            <li><a href="home_main.php">Home</a></li>
+            <li><a href="adoptable-cats.php">Adopt Cats</a></li>
+            <li><a href="lost-cats.php">Lost Cats</a></li>
+            <li><a href="sick.php">Sick Cats</a></li>
             <li class="dropdown">
                 <a href="#"> Account <span class="arrow">▲</span> </a>
                 <ul class="dropdown-content">
                     <li><a href="account.php">Profile</a></li>
-                    <li><a href="../my-announcements.html">My Announcements</a></li>
-                    <li><a href="../saved-announcements.html">Saved Announcements</a></li>
+                    <li><a href="my-announcements.html">My Announcements</a></li>
+                    <li><a href="saved-announcements.html">Saved Announcements</a></li>
                 </ul>
             </li>
-            <li><a href="../add.html" class="btn">Add Announcement</a></li>
+            <li><a href="add.html" class="btn">Add Announcement</a></li>
         </ul>
     </nav>
 </header>
@@ -73,7 +74,7 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
 <main class="account-page">
     <?php echo $message; ?>
     <section class="profile-header">
-        <img src="../<?php echo htmlspecialchars($profilePhoto); ?>" alt="User Profile Picture" class="profile-pic-large">
+        <img src="<?php echo htmlspecialchars($profilePhoto); ?>" alt="User Profile Picture" class="profile-pic-large">
         <h2 class="profile-name"><?php echo htmlspecialchars($user["Username"]); ?></h2>
         <p class="profile-info"><?php echo htmlspecialchars($user["PhoneNumber"]); ?></p>
         <a href="edit_profile.php" class="edit-btn">Edit Profile</a>
@@ -84,11 +85,11 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
 
     <section class="profile-links">
         <h3>My Activity</h3>
-        <a href="../my-announcements.html" class="profile-link">My Announcements</a>
-        <a href="../saved-announcements.html" class="profile-link">Saved Announcements</a>
-        <a href="../add.html" class="profile-link add">+ Add New Announcement</a>
+        <a href="my-announcements.html" class="profile-link">My Announcements</a>
+        <a href="saved-announcements.html" class="profile-link">Saved Announcements</a>
+        <a href="add.html" class="profile-link add">+ Add New Announcement</a>
         <br>
-        <a href="../logout.php" class="logout-link">Log out</a>
+        <a href="logout.php" class="logout-link">Log out</a>
     </section>
 </main>
 
