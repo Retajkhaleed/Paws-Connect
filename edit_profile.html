@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Profile - Paws Connect</title>
-    <link href="StyleCSS.css" rel="stylesheet">
+    <link rel="stylesheet" href="StyleCSS.css"> 
     
-</head>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    </head>
 <body>
 
 <header>
@@ -35,90 +39,8 @@
 
 <main>
     <div class="profile-container">
-        <div id="loadingContainer" class="loading-container">
-            <div class="loading-spinner"></div>
-            <div class="loading-text">Loading your profile...</div>
-        </div>
-
-        <div id="profileContent" style="display: none;">
-            <h1>✏️ Edit Your Profile</h1>
-
-            <div id="messageContainer"></div>
-
-            <form id="editProfileForm" enctype="multipart/form-data">
-            <div class="photo-section">
-                <img id="profilePhotoPreview" src="img/Pawlogo.png" alt="Profile">
-                <div class="photo-info">
-                    <h3>Profile Photo</h3>
-                    <p>Choose a new photo to update your profile picture</p>
-                    <input 
-                        type="file" 
-                        name="profilePhoto"
-                        id="profilePhoto"
-                        accept="image/*" 
-                        class="photo-input"
-                    >
-                </div>
+        <div id="root">
             </div>
-
-            <div class="form-group">
-                <label for="username">Username *</label>
-                <input
-                    type="text"
-                    id="username"
-                    name="username"
-                    placeholder="Enter your username"
-                    required
-                    minlength="3"
-                >
-                <div id="usernameError" class="validation-error"></div>
-            </div>
-
-            <div class="form-group">
-                <label for="phone">Phone Number *</label>
-                <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    placeholder="05XXXXXXXX"
-                    required
-                    pattern="^05\d{8}$"
-                >
-                <div id="phoneError" class="validation-error"></div>
-                <div class="input-hint">Saudi phone format: 05XXXXXXXX</div>
-            </div>
-
-            <div class="form-group">
-                <label for="password">New Password</label>
-                <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    placeholder="Leave blank to keep current password"
-                    minlength="8"
-                >
-                <div id="passwordError" class="validation-error"></div>
-                <div class="input-hint">Leave blank if you don't want to change your password</div>
-            </div>
-
-            <div class="form-group" id="confirmPasswordGroup" style="display: none;">
-                <label for="confirmPassword">Confirm New Password *</label>
-                <input
-                    type="password"
-                    id="confirmPassword"
-                    placeholder="Re-enter your new password"
-                >
-                <div id="confirmPasswordError" class="validation-error"></div>
-            </div>
-
-            <div class="button-group">
-                <a href="account.php" class="btn btn-secondary">Cancel</a>
-                <button type="submit" class="btn btn-primary" id="saveBtn">
-                    💾 Save Changes
-                </button>
-            </div>
-        </form>
-        </div>
     </div>
 </main>
 
@@ -136,149 +58,271 @@
     </div>
 </footer>
 
-<script>
-const form = document.getElementById('editProfileForm');
-const usernameInput = document.getElementById('username');
-const phoneInput = document.getElementById('phone');
-const passwordInput = document.getElementById('password');
-const confirmPasswordInput = document.getElementById('confirmPassword');
-const confirmPasswordGroup = document.getElementById('confirmPasswordGroup');
-const photoInput = document.getElementById('profilePhoto');
-const photoPreview = document.getElementById('profilePhotoPreview');
-const saveBtn = document.getElementById('saveBtn');
-const messageContainer = document.getElementById('messageContainer');
+<script type="text/babel">
+    // Destructure React hooks for clean code
+    const { useState, useEffect } = React;
 
-// Load current user data
-async function loadUserData() {
-    const loadingContainer = document.getElementById('loadingContainer');
-    const profileContent = document.getElementById('profileContent');
-    
-    try {
-        const response = await fetch('edit_profile.php?api=1');
-        const data = await response.json();
-        
-        if (data.success) {
-            usernameInput.value = data.user.username;
-            phoneInput.value = data.user.phone;
-            photoPreview.src = data.user.profilePhoto;
-            
-            // Show content, hide loading
-            loadingContainer.style.display = 'none';
-            profileContent.style.display = 'block';
-        } else {
-            loadingContainer.innerHTML = '<div class="message message-error">Failed to load profile data</div>';
-        }
-    } catch (error) {
-        console.error('Error loading user data:', error);
-        loadingContainer.innerHTML = '<div class="message message-error">Error loading profile. Please refresh the page.</div>';
-    }
-}
-
-passwordInput.addEventListener('input', function() {
-    if (this.value.length > 0) {
-        confirmPasswordGroup.style.display = 'block';
-        confirmPasswordInput.required = true;
-    } else {
-        confirmPasswordGroup.style.display = 'none';
-        confirmPasswordInput.required = false;
-        confirmPasswordInput.value = '';
-    }
-});
-
-photoInput.addEventListener('change', function(e) {
-    const file = e.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(event) {
-            photoPreview.src = event.target.result;
-        };
-        reader.readAsDataURL(file);
-    }
-});
-
-function validateForm() {
-    let isValid = true;
-    
-    document.querySelectorAll('.validation-error').forEach(el => el.textContent = '');
-    
-    if (usernameInput.value.trim().length < 3) {
-        document.getElementById('usernameError').textContent = 'Username must be at least 3 characters';
-        isValid = false;
-    }
-    
-    const phoneRegex = /^05\d{8}$/;
-    if (!phoneRegex.test(phoneInput.value)) {
-        document.getElementById('phoneError').textContent = 'Phone must be in format 05XXXXXXXX';
-        isValid = false;
-    }
-    
-    if (passwordInput.value.length > 0) {
-        if (passwordInput.value.length < 8) {
-            document.getElementById('passwordError').textContent = 'Password must be at least 8 characters';
-            isValid = false;
-        }
-        
-        if (passwordInput.value !== confirmPasswordInput.value) {
-            document.getElementById('confirmPasswordError').textContent = 'Passwords do not match';
-            isValid = false;
-        }
-    }
-    
-    return isValid;
-}
-
-function showMessage(type, text) {
-    messageContainer.innerHTML = `<div class="message message-${type}">${text}</div>`;
-    messageContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-}
-
-form.addEventListener('submit', async function(e) {
-    e.preventDefault();
-    
-    if (!validateForm()) {
-        showMessage('error', '⚠️ Please fix the errors below');
-        return;
-    }
-    
-    saveBtn.disabled = true;
-    saveBtn.textContent = '💾 Saving...';
-    
-    const formData = new FormData(form);
-    
-    try {
-        const response = await fetch('edit_profile.php', {
-            method: 'POST',
-            body: formData
+    // React Component for the Edit Profile page
+    function EditProfile() {
+        const [formData, setFormData] = useState({
+            username: '',
+            phone: '',
+            password: '',
+            confirmPassword: '',
+            newPhotoFile: null
         });
-        
-        const data = await response.json();
-        
-        if (data.success) {
-            showMessage('success', '✅ Profile updated successfully!');
-            passwordInput.value = '';
-            confirmPasswordInput.value = '';
-            confirmPasswordGroup.style.display = 'none';
+        const [initialPhoto, setInitialPhoto] = useState('img/Pawlogo.png');
+        const [photoPreview, setPhotoPreview] = useState('img/Pawlogo.png');
+        const [loading, setLoading] = useState(true);
+        const [isSaving, setIsSaving] = useState(false);
+        const [message, setMessage] = useState(null);
+        const [errors, setErrors] = useState({});
+
+        // --- 1. Data Loading (useEffect) - Mirrors loadUserData() ---
+        useEffect(() => {
+            const loadData = async () => {
+                try {
+                    const response = await fetch('edit_profile.php?api=1');
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        setFormData(prev => ({
+                            ...prev,
+                            username: data.user.username,
+                            phone: data.user.phone
+                        }));
+                        setInitialPhoto(data.user.profilePhoto);
+                        setPhotoPreview(data.user.profilePhoto);
+                    } else {
+                        setMessage({ type: 'error', text: data.message || 'Failed to load profile data' });
+                    }
+                } catch (error) {
+                    setMessage({ type: 'error', text: 'Error loading profile. Please refresh.' });
+                } finally {
+                    setLoading(false);
+                }
+            };
+            loadData();
+        }, []); // Run only once on component mount
+
+        // --- 2. Change Handlers ---
+        const handleInputChange = (e) => {
+            const { name, value } = e.target;
+            setFormData(prev => ({ ...prev, [name]: value }));
+            setErrors(prev => ({ ...prev, [name]: '' }));
+        };
+
+        const handlePhotoChange = (e) => {
+            const file = e.target.files[0];
+            setFormData(prev => ({ ...prev, newPhotoFile: file }));
             
-            await loadUserData();
+            if (file) {
+                // Create a local preview URL
+                setPhotoPreview(URL.createObjectURL(file));
+            } else {
+                // Reset preview if file selection is canceled
+                setPhotoPreview(initialPhoto); 
+            }
+        };
+
+        // --- 3. Validation Logic - Mirrors validateForm() ---
+        const validateForm = () => {
+            const newErrors = {};
+            let isValid = true;
             
-            setTimeout(() => {
-                window.location.href = 'account.php';
-            }, 2000);
-        } else {
-            showMessage('error', '❌ ' + data.message);
-            saveBtn.disabled = false;
-            saveBtn.textContent = '💾 Save Changes';
+            if (formData.username.trim().length < 3) {
+                newErrors.username = 'Username must be at least 3 characters';
+                isValid = false;
+            }
+            
+            const phoneRegex = /^05\d{8}$/;
+            if (!phoneRegex.test(formData.phone)) {
+                newErrors.phone = 'Phone must be in Saudi format: 05XXXXXXXX';
+                isValid = false;
+            }
+            
+            if (formData.password.length > 0) {
+                if (formData.password.length < 8) {
+                    newErrors.password = 'Password must be at least 8 characters';
+                    isValid = false;
+                }
+                if (formData.password !== formData.confirmPassword) {
+                    newErrors.confirmPassword = 'Passwords do not match';
+                    isValid = false;
+                }
+            }
+            
+            setErrors(newErrors);
+            return isValid;
+        };
+
+        // --- 4. Form Submission - Mirrors original submit listener ---
+        const handleSubmit = async (e) => {
+            e.preventDefault();
+            setMessage(null);
+            
+            if (!validateForm()) {
+                setMessage({ type: 'error', text: '⚠️ Please fix the errors below' });
+                return;
+            }
+            
+            setIsSaving(true);
+
+            const formPayload = new FormData();
+            formPayload.append('username', formData.username);
+            formPayload.append('phone', formData.phone);
+            
+            if (formData.password) {
+                formPayload.append('password', formData.password);
+            }
+            if (formData.newPhotoFile) {
+                formPayload.append('profilePhoto', formData.newPhotoFile);
+            }
+            
+            try {
+                const response = await fetch('edit_profile.php', {
+                    method: 'POST',
+                    body: formPayload
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    setMessage({ type: 'success', text: '✅ Profile updated successfully!' });
+                    
+                    // Reset sensitive fields and re-load data
+                    setFormData(prev => ({ ...prev, password: '', confirmPassword: '', newPhotoFile: null }));
+                    
+                    setTimeout(() => {
+                        window.location.href = 'account.php';
+                    }, 2000);
+                } else {
+                    setMessage({ type: 'error', text: '❌ ' + data.message });
+                }
+            } catch (error) {
+                setMessage({ type: 'error', text: '❌ An unexpected error occurred.' });
+            } finally {
+                setIsSaving(false);
+            }
+        };
+
+        // --- Conditional Rendering ---
+        if (loading) {
+            return (
+                <div id="loadingContainer" className="loading-container">
+                    <div className="loading-spinner"></div>
+                    <div className="loading-text">Loading your profile...</div>
+                </div>
+            );
         }
-    } catch (error) {
-        console.error('Error:', error);
-        showMessage('error', '❌ An error occurred. Please try again.');
-        saveBtn.disabled = false;
-        saveBtn.textContent = '💾 Save Changes';
+
+        // Main Component Render (JSX)
+        return (
+            <div>
+                <h1>✏️ Edit Your Profile</h1>
+
+                {/* Message Container */}
+                {message && (
+                    <div id="messageContainer">
+                        <div className={`message message-${message.type}`}>{message.text}</div>
+                    </div>
+                )}
+
+                <form id="editProfileForm" onSubmit={handleSubmit} encType="multipart/form-data">
+                    <div className="photo-section">
+                        <img id="profilePhotoPreview" src={photoPreview} alt="Profile" />
+                        <div className="photo-info">
+                            <h3>Profile Photo</h3>
+                            <p>Choose a new photo to update your profile picture</p>
+                            <input 
+                                type="file" 
+                                name="profilePhoto"
+                                id="profilePhoto"
+                                accept="image/*" 
+                                className="photo-input"
+                                onChange={handlePhotoChange}
+                            />
+                        </div>
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="username">Username *</label>
+                        <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            placeholder="Enter your username"
+                            required
+                            minLength="3"
+                            value={formData.username}
+                            onChange={handleInputChange}
+                        />
+                        {errors.username && <div id="usernameError" className="validation-error">{errors.username}</div>}
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="phone">Phone Number *</label>
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="05XXXXXXXX"
+                            required
+                            pattern="^05\d{8}$"
+                            value={formData.phone}
+                            onChange={handleInputChange}
+                        />
+                        {errors.phone && <div id="phoneError" className="validation-error">{errors.phone}</div>}
+                        <div className="input-hint">Saudi phone format: 05XXXXXXXX</div>
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="password">New Password</label>
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Leave blank to keep current password"
+                            minLength="8"
+                            value={formData.password}
+                            onChange={handleInputChange}
+                        />
+                        {errors.password && <div id="passwordError" className="validation-error">{errors.password}</div>}
+                        <div className="input-hint">Leave blank if you don't want to change your password</div>
+                    </div>
+
+                    {/* Conditional display logic based on state */}
+                    {formData.password.length > 0 && (
+                        <div className="form-group" id="confirmPasswordGroup">
+                            <label htmlFor="confirmPassword">Confirm New Password *</label>
+                            <input
+                                type="password"
+                                id="confirmPassword"
+                                name="confirmPassword"
+                                placeholder="Re-enter your new password"
+                                required
+                                value={formData.confirmPassword}
+                                onChange={handleInputChange}
+                            />
+                            {errors.confirmPassword && <div id="confirmPasswordError" className="validation-error">{errors.confirmPassword}</div>}
+                        </div>
+                    )}
+
+                    <div className="button-group">
+                        <a href="account.php" className="btn btn-secondary">Cancel</a>
+                        <button type="submit" className="btn btn-primary" id="saveBtn" disabled={isSaving}>
+                            {isSaving ? '💾 Saving...' : '💾 Save Changes'}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        );
     }
-});
 
-loadUserData();
+    // Initialize React on the root element
+    const rootElement = document.getElementById("root");
+    const root = ReactDOM.createRoot(rootElement);
+    root.render(<EditProfile />);
 </script>
-
 </body>
 </html>
