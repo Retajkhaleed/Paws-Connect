@@ -30,7 +30,7 @@ $announcement = $result->fetch_assoc();
 $announcement_type = $announcement['Type'];
 $announcement_user_id = $announcement['UserID'];
 
-if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == $announcement_user_id) {
+if ($is_logged_in && $_SESSION['UserID'] == $announcement_user_id) {
     $is_owner = true;
 }
 
@@ -52,7 +52,7 @@ if ($announcement_type == 'LostCat') {
     $specific_fields = "DateLost, LastSeenLocation, RewardOffered, DistinctFeatures";
     $specific_table = "LostCat";
 } elseif ($announcement_type == 'CatAdoption') {
-    $specific_fields = "Age, Gender, Vaccinated, Neutered, AdoptionRequirements, AdoptionStatus";
+    $specific_fields = "Age, Gender, Vaccinated, Neutered, AdoptionRequirements";
     $specific_table = "CatAdoption";
 } elseif ($announcement_type == 'SickCat') {
     $specific_fields = "Symptoms, Urgency, DateNoticed, FoundLocation, Needs";
@@ -68,23 +68,52 @@ if ($specific_table) {
     $specific_data = $result_specific->fetch_assoc();
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comment_text'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && (isset($_POST['comment_text']) || isset($_POST['reply_text']))) {
     if (!isset($_SESSION['UserID'])) {
         echo json_encode(['success' => false, 'message' => 'You must be logged in']);
         exit();
     }
 
-    $comment_text = trim($_POST['comment_text']);
+    $parent_id = $_POST['parent_id'] ?? NULL;
     $user_id = $_SESSION['UserID'];
 
-    $stmt_insert = $conn->prepare("INSERT INTO Comment (AnnouncementID, UserID, CommentText, DateCommented) VALUES (?, ?, ?, NOW())");
-    $stmt_insert->bind_param("iis", $announcement_id, $user_id, $comment_text);
+    if (isset($_POST['comment_text'])) {
+        $comment_text = trim($_POST['comment_text']);
+    } elseif (isset($_POST['reply_text'])) {
+        $comment_text = trim($_POST['reply_text']);
+    } else {
+        $comment_text = ''; 
+    }
+
+    if (empty($comment_text)) {
+        echo json_encode(['success' => false, 'message' => 'Comment text cannot be empty']);
+        exit();
+    }
+
+    if ($parent_id) {
+        $stmt_insert = $conn->prepare("INSERT INTO Comment (AnnouncementID, UserID, CommentText, DateCommented, ParentCommentID) VALUES (?, ?, ?, NOW(), ?)");
+        $stmt_insert->bind_param("iisi", $announcement_id, $user_id, $comment_text, $parent_id);
+    } else {
+        $stmt_insert = $conn->prepare("INSERT INTO Comment (AnnouncementID, UserID, CommentText, DateCommented) VALUES (?, ?, ?, NOW())");
+        $stmt_insert->bind_param("iis", $announcement_id, $user_id, $comment_text);
+    }
+    
     if ($stmt_insert->execute()) {
         $stmt_user = $conn->prepare("SELECT Username FROM Users WHERE UserID=?");
         $stmt_user->bind_param("i", $user_id);
         $stmt_user->execute();
         $res_user = $stmt_user->get_result()->fetch_assoc();
-        echo json_encode(['success' => true, 'username' => $res_user['Username'], 'comment' => htmlspecialchars($comment_text), 'date' => date("Y-m-d H:i")]);
+        
+        $new_comment_id = $conn->insert_id;
+        
+        echo json_encode([
+            'success' => true, 
+            'username' => $res_user['Username'], 
+            'comment' => htmlspecialchars($comment_text), 
+            'date' => date("Y-m-d H:i"),
+            'parent_id' => $parent_id,
+            'new_id' => $new_comment_id
+        ]);
     } else {
         echo json_encode(['success' => false, 'message' => 'Failed to post comment']);
     }
@@ -105,23 +134,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comment_text'])) {
 
 <header>
   <div class="logo"><img src="img/logo.png" class="logo-image"><span class="logo-text">Paws Connect</span></div>
-  <nav>
-    <ul class="nav menu">
-      <li><a href="home_main.php">Home</a></li>
-      <li><a href="adoptable-cats.php">Adopt Cats</a></li>
-      <li><a href="lost-cats.php">Lost Cats</a></li>
-      <li><a href="sick.php">Sick Cats</a></li>
-      <li><a href="login.html">Log In</a></li>
-      <li class="dropdown"><a href="#">Account <span class="arrow">▼</span></a>
-        <ul class="dropdown-content">
-          <li><a href="account.html">Profile</a></li>
-          <li><a href="my-announcements.html">My Announcements</a></li>
-          <li><a href="saved-announcements.html">Saved Announcements</a></li>
-        </ul>
-      </li>
-      <li><a href="add.html" class="btn">Add Announcement</a></li>
-    </ul>
-  </nav>
+    <nav>
+      <ul class="nav">
+        <li><a href="home_main.php" class="home-btn">Home</a></li> 
+        <li><a href="adoptable-cats.php">Adopt Cats</a></li>
+        <li><a href="lost-cats.php">Lost Cats</a></li>
+        <li><a href="sick.php">Sick Cats</a></li>
+
+        <li class="dropdown">
+          <a href="#"> Account <span class="arrow">▲</span> </a>
+          <ul class="dropdown-content">
+            <li><a href="account.php">Profile</a></li>
+            <li><a href="my-announcements.php">My Announcements</a></li>
+            <li><a href="saved-announcements.php">Saved Announcements</a></li>
+          </ul>
+        </li>
+        <li><a href="add.html" class="btn">Add Announcement</a></li>
+      </ul>
+    </nav>
 </header>
 
 <main class="announcement-container">
@@ -130,7 +160,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comment_text'])) {
       $photos = explode(',', $announcement['PhotoURL']);
       $first_photo = trim($photos[0]);
       if (empty($first_photo)) $first_photo = 'img/PawLogo.png';
-      //else $first_photo = '/Paws-Connect/' . $first_photo;
     ?>
     <img src="<?php echo htmlspecialchars($first_photo); ?>" class="announcement-image">
     <div class="announcement-details">
@@ -152,13 +181,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comment_text'])) {
       <div class="announcement-actions">
         <a href="tel:<?php echo htmlspecialchars($announcement['ContactPhone']); ?>" class="btn contact-btn">Contact: <?php echo htmlspecialchars($announcement['ContactPhone']); ?></a>      
         
-        <?php if($is_owner): ?>
+       <?php if($is_owner): ?>
           <?php elseif($is_logged_in): ?>
-            <button id="saveButton" data-announcement-id="<?php echo $announcement_id; ?>" 
-                    class="btn mark-btn <?php echo $is_saved ? 'saved' : 'unsaved'; ?>">
-              <?php echo $is_saved ? 'Unsave Announcement' : 'Save Announcement'; ?>
-            </button>
-          <?php endif; ?>
+          <form method="POST" action="toggle-saved-announcement.php" style="display: inline;">
+              <input type="hidden" name="announcement_id" value="<?php echo $announcement_id; ?>">
+              
+              <?php if ($is_saved): ?>
+                  <input type="hidden" name="action" value="unsave">
+                  <button type="submit" class="btn mark-btn btn-danger-unsave">
+                      Unsave Announcement
+                  </button>
+              <?php else: ?>
+                  <input type="hidden" name="action" value="save">
+                  <button type="submit" class="btn mark-btn unsaved">
+                      Save Announcement
+                  </button>
+              <?php endif; ?>
+          </form>
+        <?php endif; ?>
         </div>
     </div>
   </div>
@@ -167,15 +207,57 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comment_text'])) {
     <h3>Comments</h3>
     <div id="commentsList">
       <?php 
-      $stmt_comments = $conn->prepare("SELECT c.*, u.Username FROM Comment c JOIN Users u ON c.UserID=u.UserID WHERE c.AnnouncementID=? ORDER BY c.DateCommented DESC");
-      $stmt_comments->bind_param("i",$announcement_id);
-      $stmt_comments->execute();
-      $res_comments = $stmt_comments->get_result();
-      if($res_comments->num_rows>0){
-        while($c=$res_comments->fetch_assoc()){
-          echo "<div style='border-bottom:1px dotted #a3b565;padding:10px 0;'><strong>".htmlspecialchars($c['Username']).":</strong> ".htmlspecialchars($c['CommentText'])."<br><small style='color:#9aa58d;'>".date("Y-m-d H:i",strtotime($c['DateCommented']))."</small></div>";
-        }
-      } else { echo "<p>No comments yet.</p>"; }
+      $stmt_all_comments = $conn->prepare("SELECT c.*, u.Username FROM Comment c JOIN Users u ON c.UserID=u.UserID WHERE c.AnnouncementID=? ORDER BY c.DateCommented ASC");
+      $stmt_all_comments->bind_param("i",$announcement_id);
+      $stmt_all_comments->execute();
+      $res_all_comments = $stmt_all_comments->get_result();
+      
+      $comments = []; 
+      $replies = []; 
+      while($c = $res_all_comments->fetch_assoc()) {
+          if ($c['ParentCommentID'] === NULL) {
+              $comments[$c['CommentID']] = $c;
+              $comments[$c['CommentID']]['replies'] = [];
+          } else {
+              $replies[] = $c;
+          }
+      }
+      
+      foreach($replies as $reply) {
+          if (isset($comments[$reply['ParentCommentID']])) {
+              $comments[$reply['ParentCommentID']]['replies'][] = $reply;
+          }
+      }
+
+      if (!empty($comments)) {
+          foreach(array_reverse($comments) as $comment): 
+              echo '<div class="main-comment-thread" data-comment-id="' . $comment['CommentID'] . '" style="border-bottom:1px dotted #a3b565;padding:10px 0;">';
+              echo "<strong>".htmlspecialchars($comment['Username']).":</strong> ".htmlspecialchars($comment['CommentText'])."<br>";
+              echo "<small style='color:#9aa58d;'>".date("Y-m-d H:i",strtotime($comment['DateCommented']))."</small>";
+              
+              if($is_logged_in): 
+                  echo '<button class="reply-btn btn" style="font-size:12px; padding: 4px 8px; margin-left: 10px; background:#a3b565; color: white;">Reply</button>';
+              endif;
+              
+              echo '<div class="replies-container" style="margin-left: 30px; border-left: 3px solid #eee; padding-left: 10px; margin-top: 10px;">';
+              foreach($comment['replies'] as $reply): 
+                  echo "<div style='padding:5px 0;'><strong>".htmlspecialchars($reply['Username']).":</strong> ".htmlspecialchars($reply['CommentText'])."<br><small style='color:#9aa58d;'>".date("Y-m-d H:i",strtotime($reply['DateCommented']))."</small></div>";
+              endforeach;
+              echo '</div>'; 
+
+              if($is_logged_in):
+                  echo '<form class="reply-form" style="display:none; margin-top: 10px;">
+                          <input type="hidden" name="parent_id" value="' . $comment['CommentID'] . '">
+                          <textarea name="reply_text" rows="2" style="width: 100%; padding: 5px; border-radius: 4px; box-sizing: border-box;" placeholder="Write a reply..." required></textarea>
+                          <button type="submit" class="btn" style="float: right; margin-top: 5px; padding: 5px 10px; font-size: 14px;">Post Reply</button>
+                      </form>';
+              endif;
+
+              echo '</div>';
+          endforeach;
+      } else { 
+          echo "<p>No comments yet.</p>"; 
+      }
       ?>
     </div>
 
@@ -207,5 +289,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comment_text'])) {
 
 </body>
 </html>
+
+
 
 
