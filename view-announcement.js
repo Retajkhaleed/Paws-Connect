@@ -74,6 +74,48 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => console.error('Error posting reply:', error));
         }
     });
+        // Select all textarea elements on the page (main comments and replies)
+    document.querySelectorAll('textarea').forEach(textarea => {
+        
+        // Set the maximum allowed characters at the browser level to prevent typing beyond 500
+        textarea.setAttribute('maxlength', '500'); 
 
+        // Create a new div element to act as the visual character counter
+        const counter = document.createElement('div');
+        
+        // Apply inline styling to position the counter and make it look professional
+        counter.style.cssText = 'font-size: 12px; color: #888; text-align: right; margin-top: 5px;';
+        
+        // Set the initial display text for the counter
+        counter.innerHTML = `0 / 500`;
+        
+        // Insert the counter element immediately after the current textarea in the DOM
+        textarea.parentNode.insertBefore(counter, textarea.nextSibling);
+
+        // Add an event listener that triggers every time the user types or pastes text
+        textarea.addEventListener('input', function() {
+            
+            // Get the current number of characters in the textarea
+            const length = this.value.length;
+            
+            // Update the counter text to show the current character count
+            counter.innerHTML = `${length} / 500`;
+            
+            // Logical check: If the limit is reached (500 characters)
+            if (length >= 500) {
+                counter.style.color = '#f1642e'; // Change color to alert orange-red
+                counter.innerHTML = `Limit reached! 500 / 500`;
+            } 
+            // Warning check: If the user is close to the limit (over 450 characters)
+            else if (length > 450) {
+                counter.style.color = '#f1642e'; // Change color to alert orange-red
+            } 
+            // Normal state: If the text is within a safe length
+            else {
+                counter.style.color = '#888'; // Keep the color neutral gray
+            }
+        });
+    });
 
 }); 
+
