@@ -4,11 +4,10 @@ session_start();
 require "db_connect.php";
 
 if (!isset($_SESSION["UserID"])) {
-    header("Location: login.html");
+    header("Location: login.php");
     exit;
 }
 
-// Fetch current user info (Username, PhoneNumber, ProfilePhotoURL)
 $userID = $_SESSION["UserID"];
 $stmt = mysqli_prepare($conn, "SELECT Username, PhoneNumber, ProfilePhotoURL FROM Users LEFT JOIN Profile ON Users.UserID = Profile.UserID WHERE Users.UserID=?");
 mysqli_stmt_bind_param($stmt, "i", $userID);
@@ -16,8 +15,8 @@ mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 $user = mysqli_fetch_assoc($result);
 
-$profilePhoto = $user["ProfilePhotoURL"] ?? "img/Pawlogo.png";
-if (!empty($user["ProfilePhotoURL"]) && strpos($profilePhoto, 'img/') !== 0) {
+$profilePhoto = "img/Pawlogo.png"; 
+if (!empty($user["ProfilePhotoURL"])) {
     $profilePhoto = $user["ProfilePhotoURL"];
 }
 
@@ -43,7 +42,6 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paws Connect | My Account</title>
     <link href="StyleCSS.css" rel="stylesheet">
-
 </head>
 <body>
 
@@ -54,7 +52,7 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
     </div>
     <nav>
         <ul class="nav menu"> 
-        <li><a href="home_main.php" class="home-btn">Home</a></li> 
+            <li><a href="home_main.php">Home</a></li>
             <li><a href="adoptable-cats.php">Adopt Cats</a></li>
             <li><a href="lost-cats.php">Lost Cats</a></li>
             <li><a href="sick.php">Sick Cats</a></li>
@@ -73,7 +71,7 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
 <main class="account-page">
     <?php echo $message; ?>
     <section class="profile-header">
-        <img src="<?php echo htmlspecialchars($profilePhoto); ?>" alt="User Profile Picture" class="profile-pic-large">
+        <img src="<?php echo htmlspecialchars($profilePhoto); ?>" alt="Profile Picture" class="profile-pic-large" onerror="this.src='img/Pawlogo.png'">
         <h2 class="profile-name"><?php echo htmlspecialchars($user["Username"]); ?></h2>
         <p class="profile-info"><?php echo htmlspecialchars($user["PhoneNumber"]); ?></p>
         <a href="edit_profile.php" class="edit-btn">Edit Profile</a>
@@ -98,9 +96,9 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
         <div class="footer-right">
             <span>Connect With Us</span>
             <div class="social">
-                <img src="images/instaLogo.png" alt="Instagram">
-                <img src="images/XLogo.png" alt="X App">
-                <img src="images/FacebookLogo.png" alt="Facebook">
+                <img src="img/instaLogo.png" alt="Instagram">
+                <img src="img/XLogo.png" alt="X App">
+                <img src="img/FacebookLogo.png" alt="Facebook">
             </div>
         </div>
     </div>
