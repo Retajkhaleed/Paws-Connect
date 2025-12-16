@@ -8,7 +8,9 @@ if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
 }
 
 $announcement_id = $_GET['id'];
-$is_owner = false; 
+$is_owner = false;
+$is_logged_in = isset($_SESSION['UserID']);
+$is_saved = false;
 
 $sql = "SELECT a.*, u.Username 
         FROM Announcement a
@@ -30,6 +32,16 @@ $announcement_user_id = $announcement['UserID'];
 
 if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == $announcement_user_id) {
     $is_owner = true;
+}
+
+if ($is_logged_in) {
+    $stmt_saved = $conn->prepare("SELECT SavedID FROM SavedAnnouncement WHERE UserID = ? AND AnnouncementID = ?");
+    $stmt_saved->bind_param("ii", $_SESSION['UserID'], $announcement_id);
+    $stmt_saved->execute();
+    $result_saved = $stmt_saved->get_result();
+    if ($result_saved->num_rows > 0) {
+        $is_saved = true;
+    }
 }
 
 $specific_data = [];
@@ -56,6 +68,28 @@ if ($specific_table) {
     $specific_data = $result_specific->fetch_assoc();
 }
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comment_text'])) {
+    if (!isset($_SESSION['UserID'])) {
+        echo json_encode(['success' => false, 'message' => 'You must be logged in']);
+        exit();
+    }
+
+    $comment_text = trim($_POST['comment_text']);
+    $user_id = $_SESSION['UserID'];
+
+    $stmt_insert = $conn->prepare("INSERT INTO Comment (AnnouncementID, UserID, CommentText, DateCommented) VALUES (?, ?, ?, NOW())");
+    $stmt_insert->bind_param("iis", $announcement_id, $user_id, $comment_text);
+    if ($stmt_insert->execute()) {
+        $stmt_user = $conn->prepare("SELECT Username FROM Users WHERE UserID=?");
+        $stmt_user->bind_param("i", $user_id);
+        $stmt_user->execute();
+        $res_user = $stmt_user->get_result()->fetch_assoc();
+        echo json_encode(['success' => true, 'username' => $res_user['Username'], 'comment' => htmlspecialchars($comment_text), 'date' => date("Y-m-d H:i")]);
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Failed to post comment']);
+    }
+    exit();
+}
 
 ?>
 <!DOCTYPE html>
@@ -73,7 +107,7 @@ if ($specific_table) {
   <div class="logo"><img src="img/logo.png" class="logo-image"><span class="logo-text">Paws Connect</span></div>
   <nav>
     <ul class="nav menu">
-      <li><a href="Home.html">Home</a></li>
+      <li><a href="home_main.php">Home</a></li>
       <li><a href="adoptable-cats.php">Adopt Cats</a></li>
       <li><a href="lost-cats.php">Lost Cats</a></li>
       <li><a href="sick.php">Sick Cats</a></li>
@@ -96,6 +130,7 @@ if ($specific_table) {
       $photos = explode(',', $announcement['PhotoURL']);
       $first_photo = trim($photos[0]);
       if (empty($first_photo)) $first_photo = 'img/PawLogo.png';
+      //else $first_photo = '/Paws-Connect/' . $first_photo;
     ?>
     <img src="<?php echo htmlspecialchars($first_photo); ?>" class="announcement-image">
     <div class="announcement-details">
@@ -113,14 +148,48 @@ if ($specific_table) {
       <p><strong>Status:</strong> <span class="status-tag"><?php echo htmlspecialchars($announcement['Status']); ?></span></p>
       <p><strong>Posted By:</strong> <?php echo htmlspecialchars($announcement['Username']); ?></p>
       <p><strong>Date Posted:</strong> <?php echo date("Y-m-d", strtotime($announcement['DateCreated'])); ?></p>
-      <a href="tel:<?php echo htmlspecialchars($announcement['ContactPhone']); ?>" class="btn contact-btn">Contact: <?php echo htmlspecialchars($announcement['ContactPhone']); ?></a>
-      <?php if($is_owner): ?>
-      <a href="edit-announcement.php?id=<?php echo $announcement_id; ?>" class="btn mark-btn">Update / Edit</a>
-      <?php endif; ?>
+
+      <div class="announcement-actions">
+        <a href="tel:<?php echo htmlspecialchars($announcement['ContactPhone']); ?>" class="btn contact-btn">Contact: <?php echo htmlspecialchars($announcement['ContactPhone']); ?></a>      
+        
+        <?php if($is_owner): ?>
+          <?php elseif($is_logged_in): ?>
+            <button id="saveButton" data-announcement-id="<?php echo $announcement_id; ?>" 
+                    class="btn mark-btn <?php echo $is_saved ? 'saved' : 'unsaved'; ?>">
+              <?php echo $is_saved ? 'Unsave Announcement' : 'Save Announcement'; ?>
+            </button>
+          <?php endif; ?>
+        </div>
     </div>
   </div>
 
- 
+  <section class="comments-section">
+    <h3>Comments</h3>
+    <div id="commentsList">
+      <?php 
+      $stmt_comments = $conn->prepare("SELECT c.*, u.Username FROM Comment c JOIN Users u ON c.UserID=u.UserID WHERE c.AnnouncementID=? ORDER BY c.DateCommented DESC");
+      $stmt_comments->bind_param("i",$announcement_id);
+      $stmt_comments->execute();
+      $res_comments = $stmt_comments->get_result();
+      if($res_comments->num_rows>0){
+        while($c=$res_comments->fetch_assoc()){
+          echo "<div style='border-bottom:1px dotted #a3b565;padding:10px 0;'><strong>".htmlspecialchars($c['Username']).":</strong> ".htmlspecialchars($c['CommentText'])."<br><small style='color:#9aa58d;'>".date("Y-m-d H:i",strtotime($c['DateCommented']))."</small></div>";
+        }
+      } else { echo "<p>No comments yet.</p>"; }
+      ?>
+    </div>
+
+    <?php if($is_logged_in): ?>
+      <form class="comment-form" id="commentForm">
+        <textarea name="comment_text" id="newComment" placeholder="Write a comment..." required></textarea>
+        <button type="submit" class="btn">Post Comment</button>
+      </form>
+      <?php else: ?>
+        <p style="text-align:center;color:#f1642e;font-weight:bold;">
+          Please <a href="/Paws-Connect/login.html" style="color:#f1642e;">log in</a> to post a comment.</p>
+      <?php endif; ?>
+
+  </section>
 </main>
 
 <footer>
@@ -134,5 +203,9 @@ if ($specific_table) {
   </div>
 </footer>
 
+<script src="view-announcement.js"></script>
+
 </body>
 </html>
+
+
