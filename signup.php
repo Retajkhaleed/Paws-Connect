@@ -75,7 +75,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <li><a href="adoptable-cats.php">Adopt Cats</a></li>
             <li><a href="lost-cats.php">Lost Cats</a></li>
             <li><a href="sick.php">Sick Cats</a></li>
-            <li><a href="login.php">Log In</a></li>
         </ul>
     </nav>
 </header>
@@ -198,4 +197,5 @@ passwordField.addEventListener("input", function() {
 
 </body>
 </html>
+
 
