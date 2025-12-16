@@ -12,7 +12,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $password = $_POST["password"];
     $confirm = $_POST["confirm"];
 
-    // Validation
     if (empty($username) || empty($phone) || empty($password) || empty($confirm)) {
         $error_message = "Please fill in all fields!";
     } elseif ($password !== $confirm) {
@@ -199,3 +198,4 @@ passwordField.addEventListener("input", function() {
 
 </body>
 </html>
+
