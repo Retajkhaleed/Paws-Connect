@@ -4,6 +4,7 @@ require "db_connect.php";
 
 if (!isset($_SESSION["UserID"])) {
     if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET['api'])) {
+        header('Content-Type: application/json');
         http_response_code(401);
         echo json_encode(['success' => false, 'message' => 'Not logged in']);
         exit;
@@ -15,6 +16,8 @@ if (!isset($_SESSION["UserID"])) {
 $userID = $_SESSION["UserID"];
 
 if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET['api'])) {
+    header('Content-Type: application/json');
+    
     $stmt = mysqli_prepare($conn, "SELECT Username, PhoneNumber, ProfilePhotoURL FROM Users LEFT JOIN Profile ON Users.UserID = Profile.UserID WHERE Users.UserID=?");
     mysqli_stmt_bind_param($stmt, "i", $userID);
     mysqli_stmt_execute($stmt);
@@ -38,6 +41,8 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET['api'])) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    header('Content-Type: application/json');
+    
     $username = trim($_POST["username"]);
     $phone = trim($_POST["phone"]);
     $newPassword = $_POST["password"] ?? "";
@@ -48,7 +53,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     mysqli_stmt_store_result($stmt);
     
     if (mysqli_stmt_num_rows($stmt) > 0) {
-        http_response_code(400);
         echo json_encode(['success' => false, 'message' => 'Username or phone number already in use']);
         exit;
     }
@@ -69,10 +73,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if (move_uploaded_file($tmpName, $targetPath)) {
             $profilePhotoPath = $newName;
             $updatePhoto = true;
-        } else {
-            http_response_code(500);
-            echo json_encode(['success' => false, 'message' => 'Failed to upload profile photo']);
-            exit;
         }
     }
     
@@ -90,7 +90,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
     
     if (!mysqli_stmt_execute($stmt)) {
-        http_response_code(500);
         echo json_encode(['success' => false, 'message' => 'Failed to update profile']);
         exit;
     }
@@ -108,6 +107,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     exit;
 }
 
-\header("Location: edit_profile.html");
+header("Location: edit_profile.html");
 exit;
 ?>
