@@ -17,7 +17,7 @@ $result = mysqli_stmt_get_result($stmt);
 $user = mysqli_fetch_assoc($result);
 
 $profilePhoto = $user["ProfilePhotoURL"] ?? "images/default-profile.png";
-if (!empty($user["ProfilePhotoURL"]) && strpos($profilePhoto, 'images/') !== 0) {
+if (!empty($user["ProfilePhotoURL"]) && strpos($profilePhoto, 'img/') !== 0) {
     $profilePhoto = $user["ProfilePhotoURL"];
 }
 
@@ -49,7 +49,7 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
 
 <header>
     <div class="logo">
-        <img src="images/PawLogo.png" alt="Paws Connect Logo" class="logo-image"> 
+        <img src="img/PawLogo.png" alt="Paws Connect Logo" class="logo-image"> 
         <span class="logo-text">Paws Connect</span>
     </div>
     <nav>
@@ -61,7 +61,6 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
             <li class="dropdown">
                 <a href="#"> Account <span class="arrow">▲</span> </a>
                 <ul class="dropdown-content">
-                    <li><a href="account.php">Profile</a></li>
                     <li><a href="my-announcements.html">My Announcements</a></li>
                     <li><a href="saved-announcements.html">Saved Announcements</a></li>
                 </ul>
