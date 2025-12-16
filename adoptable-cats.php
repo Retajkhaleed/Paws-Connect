@@ -5,19 +5,18 @@ include 'db_connect.php';
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Paws Connect – Adopt Cats</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="StyleCSS.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paws Connect | <?php echo htmlspecialchars($announcement['Title']); ?></title>
+<link rel="stylesheet" href="StyleCSS.css">
 </head>
+
 <body>
+
 <header>
-  <div class="logo">
-    <img src="img/PawLogo.png" alt="Paws Connect Logo" class="logo-image">
-    <span class="logo-text">Paws Connect</span>
-  </div>
-  <nav>
-   <ul class="nav">
+  <div class="logo"><img src="img/logo.png" class="logo-image"><span class="logo-text">Paws Connect</span></div>
+    <nav>
+      <ul class="nav">
         <li><a href="home_main.php" class="home-btn">Home</a></li> 
         <li><a href="adoptable-cats.php">Adopt Cats</a></li>
         <li><a href="lost-cats.php">Lost Cats</a></li>
@@ -27,14 +26,13 @@ include 'db_connect.php';
           <a href="#"> Account <span class="arrow">▲</span> </a>
           <ul class="dropdown-content">
             <li><a href="account.php">Profile</a></li>
-            <li><a href="my-announcements.html">My Announcements</a></li>
-            <li><a href="saved-announcements.html">Saved Announcements</a></li>
+            <li><a href="my-announcements.php">My Announcements</a></li>
+            <li><a href="saved-announcements.php">Saved Announcements</a></li>
           </ul>
         </li>
-
         <li><a href="add.html" class="btn">Add Announcement</a></li>
-    </ul>
-  </nav>
+      </ul>
+    </nav>
 </header>
 
 <section class="AdoptableHero">
@@ -101,7 +99,6 @@ include 'db_connect.php';
       <option value="khamis-mushayt">Khamis Mushayt</option>
       <option value="sarat-abidah">Sarat Abidah</option>
     </select>
-    <button class="post-btn" onclick="location.href='add.html'">Add Announcement</button>
   </section>
 
   <!-- Posts -->
@@ -207,3 +204,5 @@ document.getElementById('cityFilter').addEventListener('change', filterPosts);
 
 </body>
 </html>
+
+
