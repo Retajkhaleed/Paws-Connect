@@ -601,7 +601,6 @@ footer {
     font: inherit;
     cursor: pointer;
 }
-
 /* ================= AUTH PAGES ================= */
 /* 1. Reset fieldset borders */
 .form-card fieldset {
@@ -618,8 +617,8 @@ footer {
     align-items: center;
     justify-content: flex-start;
     min-height: 100vh;
-    padding-top: 110px; /* Reduced from 150px to fit better */
-    padding-bottom: 80px; /* Space for the fixed footer */
+    padding-top: 110px; 
+    padding-bottom: 80px; 
     background-color: #fdf8e2;
 }
 
@@ -627,8 +626,8 @@ footer {
 .form-card {
     background: #ffffff;
     width: 90%;
-    max-width: 420px; /* Slightly narrower */
-    padding: 30px 30px; /* Reduced padding (was 45px) */
+    max-width: 420px; 
+    padding: 30px 30px; 
     border-radius: 16px;
     border: 2px solid #a3b565;
     box-shadow: 0 8px 20px rgba(80, 78, 118, 0.1);
@@ -641,13 +640,13 @@ footer {
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-bottom: 15px; /* Reduced margin */
+    margin-bottom: 15px; 
 }
 
 .auth-cat-img {
     width: 25%;
     min-width: 100px;
-    max-width: 120px; /* Smaller max size */
+    max-width: 120px; 
     height: auto;
     object-fit: contain;
     display: block;
@@ -657,14 +656,14 @@ footer {
 .form-card h2 {
     font-family: "Playfair Display", serif;
     color: #504e76;
-    font-size: 28px; /* Slightly smaller font */
+    font-size: 28px; 
     margin-top: 0;
-    margin-bottom: 20px; /* Reduced margin */
+    margin-bottom: 20px; 
 }
 
 /* 6. Inputs - Slimmer */
 .form-group {
-    margin-bottom: 12px; /* Less space between inputs */
+    margin-bottom: 12px; 
     text-align: left;
 }
 
@@ -673,12 +672,12 @@ footer {
     color: #504e76;
     font-weight: 700;
     margin-bottom: 6px;
-    font-size: 14px; /* Smaller label text */
+    font-size: 14px; 
 }
 
 .form-card input {
     width: 100%;
-    padding: 10px; /* Slimmer inputs (was 14px) */
+    padding: 14px; 
     border: 2px solid #9aa58d;
     border-radius: 8px;
     font-size: 15px;
@@ -699,7 +698,7 @@ footer {
     color: white;
     font-weight: 800;
     font-size: 17px;
-    padding: 12px; /* Slimmer button */
+    padding: 12px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -725,7 +724,7 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 30px;
+  padding: 100px;
   background: #fff;
   border: 2px solid #a3b565;
   border-radius: 12px;
@@ -734,8 +733,8 @@ footer {
 }
 
 .profile-pic-large {
-  width: 120px;
-  height: 120px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   object-fit: cover;
   border: 4px solid #f1642e;
@@ -772,7 +771,8 @@ footer {
 
 .profile-links {
   margin-top: 40px;
-  padding: 0 30px;
+  padding: 0; 
+  text-align: center; 
 }
 
 .profile-links h3 {
@@ -780,7 +780,9 @@ footer {
   padding-bottom: 5px;
   margin-bottom: 15px;
   color: #504e76;
-}
+  display: inline-block; 
+} 
+
 
 .profile-link {
   display: block;
@@ -820,81 +822,185 @@ footer {
   text-decoration: underline;
 }
 
-/* Edit Profile Page */
-.edit-container {
-  padding: 120px 20px 80px;
-  max-width: 700px;
-  margin: 0 auto;
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+/* ================= EDIT PROFILE PAGE =================== */
+profile-container {
+    max-width: 700px;
+    margin: 120px auto 80px;
+    padding: 30px;
+    background: #fff;
+    border-radius: 12px;
+    border: 2px solid #a3b565;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-.edit-container h1 {
-  font-size: 30px;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 20px;
-  margin-bottom: 20px;
-  color: #504e76;
+.loading-container {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #f1642e;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+    color: #504e76;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.profile-container h1 {
+    font-size: 30px;
+    border-bottom: 2px solid #a3b565;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    color: #504e76;
+}
+
+.message {
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.message-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.message-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
 }
 
 .photo-section {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #eee;
-  margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 30px;
 }
 
 .photo-section img {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  object-fit: cover;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #a3b565;
 }
 
-.edit-container .form-group {
-  margin-bottom: 25px;
+.photo-info h3 {
+    margin: 0 0 5px 0;
+    color: #504e76;
 }
 
-.edit-container .form-group label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 600;
-  color: #504e76;
+.photo-info p {
+    margin: 0 0 10px 0;
+    color: #666;
+    font-size: 14px;
 }
 
-.edit-container .form-group input {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 16px;
+.photo-input {
+    padding: 8px;
+    border: 1px solid #a3b565;
+    border-radius: 8px;
+    font-size: 14px;
 }
 
-.edit-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 15px;
-  padding-top: 20px;
+.form-group {
+    margin-bottom: 25px;
 }
 
-.cancel-btn {
-  background-color: #e0e0e0 !important;
-  color: #504e76 !important;
-  border: 1px solid #ccc;
-  padding: 12px 24px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  display: inline-block;
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #504e76;
 }
 
-.cancel-btn:hover {
-  background-color: #d0d0d0 !important;
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #9aa58d;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: 0.3s;
 }
 
+.form-group input:focus {
+    border-color: #f1642e;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(241, 100, 46, 0.2);
+}
+
+.validation-error {
+    color: #721c24;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.input-hint {
+    color: #666;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    padding-top: 20px;
+}
+
+.btn {
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    text-decoration: none;
+    display: inline-block;
+    border: none;
+}
+
+.btn-primary {
+    background-color: #f1642e;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #a3b565;
+}
+
+.btn-primary:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.btn-secondary {
+    background-color: #e0e0e0;
+    color: #504e76;
+}
+
+.btn-secondary:hover {
+    background-color: #d0d0d0;
+}
 
 /*-------------------------- My Announcements & Saved Announcements -------------------------- */
 
@@ -1578,3 +1684,4 @@ textarea {
     font-weight: 700;
     text-decoration: underline;
 }
+
