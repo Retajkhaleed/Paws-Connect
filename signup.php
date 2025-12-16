@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     </div>
     <nav>
         <ul class="nav">
-            <li><a href="home_main.php">Home</a></li>
+        <li><a href="home_main.php" class="home-btn">Home</a></li> 
             <li><a href="adoptable-cats.php">Adopt Cats</a></li>
             <li><a href="lost-cats.php">Lost Cats</a></li>
             <li><a href="sick.php">Sick Cats</a></li>
@@ -197,5 +197,6 @@ passwordField.addEventListener("input", function() {
 
 </body>
 </html>
+
 
 
