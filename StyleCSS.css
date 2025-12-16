@@ -1404,6 +1404,9 @@ textarea {
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(189, 103, 17, 0.2);
     margin-top: 40px;
+    position: relative; 
+    max-height: none; 
+    overflow-y: visible;
 }
 
 .comments-section h3 {
@@ -1417,14 +1420,18 @@ textarea {
 
 #commentsList {
     margin-bottom: 20px;
+    max-height: 400px; 
+    overflow-y: auto; 
+    padding-right: 15px; 
+    margin-bottom: 70px; 
 }
 
 .main-comment-thread {
-    padding: 15px 0;
-    border-bottom: 1px dashed #e0e0e0; 
+    padding: 10px 0; 
+    border-bottom: 1px dotted #a3b565;
+    position: relative;
     margin-bottom: 10px;
 }
-
 
 .main-comment-thread strong {
     color: #504e76;
@@ -1441,10 +1448,15 @@ textarea {
 
 .replies-container {
     margin-left: 30px; 
-    border-left: 3px solid #a3b565; 
-    padding-left: 15px;
-    padding-top: 5px;
+    border-left: 3px solid #eee;
+    padding-left: 10px;
+    padding-top: 10px;
     margin-top: 10px;
+}
+
+.replies-container div {
+    padding: 5px 0;
+    font-size: 15px;
 }
 
 .reply-btn {
@@ -1461,38 +1473,57 @@ textarea {
     background: #7b8673 !important;
 }
 
+.reply-form {
+    display:none; 
+    margin-top: 10px;
+}
+
 .reply-form textarea {
-    border-color: #f1642e !important;
+    width: 100%; 
+    padding: 5px; 
+    border-radius: 4px; 
+    box-sizing: border-box; 
+    border: 1px solid #a3b565;
     min-height: 40px;
     margin-bottom: 5px !important;
 }
 
 .reply-form .btn {
-    background: #f1642e !important;
-    float: none !important;
-    display: block;
-    width: 120px;
-    margin-left: auto;
+    background: #f1642e !important; 
+    float: right; 
+    margin-top: 5px; 
+    padding: 5px 10px; 
+    font-size: 14px; 
+    width: auto; 
+    margin-left: 0;
     margin-bottom: 10px;
 }
 
 .comment-form {
     z-index: 5; 
+    position: sticky; 
+    bottom: 0; 
     width: 100%; 
-    position: sticky;
-    bottom: 0;
+    margin: 0; 
+    padding: 10px 0 15px 0; 
     background: #fff; 
-    padding: 10px 0 0;
-    box-shadow: 0 -4px 10px rgba(0,0,0,0.05); 
+    box-shadow: none; 
+    border-top: 1px solid #eee; 
+    box-sizing: border-box; 
 }
 
 .comment-form textarea {
-    margin-bottom: 5px !important; 
+
+    padding: 10px; 
+    width: calc(100% - 20px);
+    margin: 0 10px 5px 10px; 
+    
     border: 1px solid #a3b565;
     border-radius: 8px;
     box-sizing: border-box;
     font-size: 16px;
-    min-height: 100px;
+    min-height: 50px; 
+    margin-bottom: 5px !important; 
 }
 
 .comment-form .btn {
@@ -1501,11 +1532,45 @@ textarea {
     padding: 10px 20px;
     font-weight: 700;
     border-radius: 8px;
-    
     float: none; 
     display: block;
     width: 150px; 
-    margin: 5px 0 10px auto;
+    margin: 5px 10px 10px auto; 
+}
+
+.comment-form .btn:hover {
+    background: #a3b565; 
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); 
+}
+
+.reply-form {
+    display:none; 
+    margin-top: 10px;
+}
+
+.reply-form textarea {
+    min-height: 40px;
+    margin-bottom: 5px;
+    width: 100%; 
+    margin: 0 0 5px 0;
+}
+
+.reply-form .btn {
+    background: #f1642e !important; 
+    float: right; 
+    margin-top: 5px; 
+    padding: 5px 10px; 
+    font-size: 14px; 
+    width: auto; 
+    margin-left: 0;
+    margin-bottom: 10px;
+}
+
+.comments-section > p {
+    text-align:center;
+    color:#f1642e;
+    font-weight:bold;
 }
 
 .comments-section > p a {
@@ -1513,4 +1578,3 @@ textarea {
     font-weight: 700;
     text-decoration: underline;
 }
-
