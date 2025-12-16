@@ -5,18 +5,16 @@ include 'db_connect.php';
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Paws Connect – Lost Cats</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="StyleCSS.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paws Connect | <?php echo htmlspecialchars($announcement['Title']); ?></title>
+<link rel="stylesheet" href="StyleCSS.css">
 </head>
-<body>
-<header>
-    <div class="logo">
-      <img src="img/PawLogo.png" alt="Paws Connect Logo" class="logo-image">
-      <span class="logo-text">Paws Connect</span>
-    </div>
 
+<body>
+
+<header>
+  <div class="logo"><img src="img/logo.png" class="logo-image"><span class="logo-text">Paws Connect</span></div>
     <nav>
       <ul class="nav">
         <li><a href="home_main.php" class="home-btn">Home</a></li> 
@@ -24,22 +22,19 @@ include 'db_connect.php';
         <li><a href="lost-cats.php">Lost Cats</a></li>
         <li><a href="sick.php">Sick Cats</a></li>
 
-
         <li class="dropdown">
           <a href="#"> Account <span class="arrow">▲</span> </a>
           <ul class="dropdown-content">
             <li><a href="account.php">Profile</a></li>
-            <li><a href="my-announcements.html">My Announcements</a></li>
-            <li><a href="saved-announcements.html">Saved Announcements</a></li>
+            <li><a href="my-announcements.php">My Announcements</a></li>
+            <li><a href="saved-announcements.php">Saved Announcements</a></li>
           </ul>
         </li>
-
         <li><a href="add.html" class="btn">Add Announcement</a></li>
       </ul>
     </nav>
-  </header>
+</header>
 
-  
 <section class="LostHero">
   <div class="LostHero-content">
     <h1>Lost Cats Near You</h1>
@@ -49,10 +44,10 @@ include 'db_connect.php';
 
 <main class="container">
 
-  <!-- Search -->
+  <!-- Search Section -->
   <section class="search-section">
     <div class="search-bar">
-      <input type="text" class="search-input" placeholder="Search by name, city, features..." id="searchInput">
+      <input type="text" class="search-input" placeholder="Search by name, features..." id="searchInput">
       <button class="search-btn" onclick="filterPosts()">Search</button>
     </div>
 
@@ -106,12 +101,10 @@ include 'db_connect.php';
       <option value="khamis-mushayt">Khamis Mushayt</option>
       <option value="sarat-abidah">Sarat Abidah</option>
     </select>
-    <button class="post-btn" onclick="location.href='add.html'">Report Lost Cat</button>
   </section>
 
-  <!-- Posts -->
+  <!-- Posts Section -->
   <section class="posts-section" id="postsContainer">
-
 <?php
 $sql = "
 SELECT 
@@ -144,8 +137,8 @@ if ($result && $result->num_rows > 0) {
         echo '
 <a href="view-announcement.php?id='. $row['AnnouncementID'] .'"
    class="cat-post"
-   data-city="'. strtolower($row['Location']) .'"
-   data-name="'. strtolower($row['CatName']) .'">
+   data-city="'. strtolower(trim($row['Location'])) .'"
+   data-name="'. strtolower(trim($row['CatName'])) .'">
 
   <div class="cat-card">
     <div class="cat-image">
@@ -179,48 +172,50 @@ if ($result && $result->num_rows > 0) {
           </section>';
 }
 ?>
-
-
   </section>
 </main>
 
 <script>
 function filterPosts() {
-  const searchText = document.getElementById('searchInput').value.toLowerCase();
-  const city = document.getElementById('cityFilter').value.toLowerCase();
+  const searchText = document.getElementById('searchInput').value.toLowerCase().trim();
+  const city = document.getElementById('cityFilter').value.toLowerCase().trim();
   const posts = document.querySelectorAll('.cat-post');
 
   posts.forEach(post => {
-    const postCity = post.dataset.city;
-    const postName = post.dataset.name;
+    const postCity = post.dataset.city.toLowerCase().trim();
+    const postName = post.dataset.name.toLowerCase().trim();
 
-    const matchesSearch = postName.includes(searchText) || postCity.includes(searchText);
+    const matchesSearch = postName.includes(searchText);
     const matchesCity = city === "" || postCity === city;
 
     post.style.display = (matchesSearch && matchesCity) ? "flex" : "none";
   });
 }
+
+// Attach events
+document.getElementById('searchInput').addEventListener('keyup', filterPosts);
+document.getElementById('cityFilter').addEventListener('change', filterPosts);
 </script>
 
-
 <footer>
-    <div class="footer-content">
-      <div class="footer-left">
-        <span>Paws Connect 2025 ©</span>
-      </div>
-
-      <div class="footer-right">
-        <span>Connect With Us</span>
-        <div class="social">
-          <img src="img/instaLogo.png" alt="Instagram">
-          <img src="img/XLogo.png" alt="X App">
-          <img src="img/FacebookLogo.png" alt="Facebook">
-        </div>
+  <div class="footer-content">
+    <div class="footer-left">
+      <span>Paws Connect 2025 ©</span>
+    </div>
+    <div class="footer-right">
+      <span>Connect With Us</span>
+      <div class="social">
+        <img src="img/instaLogo.png" alt="Instagram">
+        <img src="img/XLogo.png" alt="X App">
+        <img src="img/FacebookLogo.png" alt="Facebook">
       </div>
     </div>
-  </footer>
+  </div>
+</footer>
 
 </body>
 </html>
+
+
 
 
