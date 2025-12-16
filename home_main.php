@@ -21,9 +21,9 @@ session_start();
     <nav>
       <ul class="nav">
         <li><a href="home_main.php" class="home-btn">Home</a></li> 
-        <li><a href="adoptable-cats.html">Adopt Cats</a></li>
-        <li><a href="lost-cats.html">Lost Cats</a></li>
-        <li><a href="sick.html">Sick Cats</a></li>
+        <li><a href="adoptable-cats.php">Adopt Cats</a></li>
+        <li><a href="lost-cats.php">Lost Cats</a></li>
+        <li><a href="sick.php">Sick Cats</a></li>
 
 
         <li class="dropdown">
@@ -55,8 +55,8 @@ session_start();
             // Logged In: Keep the area empty, as requested.
         } else {
             // Logged Out: Show Log In and Sign Up buttons.
-            echo '<a href="login.html" class="btn-hero login">Log In</a>';
-            echo '<a href="signup.html" class="btn-hero signup">Sign Up</a>';
+            echo '<a href="login.php" class="btn-hero login">Log In</a>';
+            echo '<a href="signup.php" class="btn-hero signup">Sign Up</a>';
         }
         ?>
       </div>
@@ -66,20 +66,20 @@ session_start();
 
   <main>
     <section class="home-cards">
-      <a href="adoptable-cats.html" class="card">
-        <img src="adoptable-cat.png" alt="Adopt cats" class="card-img">
+      <a href="adoptable-cats.php" class="card">
+        <img src="img/adoptable-cat.png" alt="Adopt cats" class="card-img">
         <h3>Adopt Cats</h3>
         <p>Browse Adoptables</p>
       </a>
 
-      <a href="lost-cats.html" class="card">
-        <img src="LostCat.jpg" alt="Lost cats" class="card-img">
+      <a href="lost-cats.php" class="card">
+        <img src="img/LostCat.jpg" alt="Lost cats" class="card-img">
         <h3>Lost Cats</h3>
         <p>Search Lost Cats</p>
       </a>
 
-      <a href="sick.html" class="card">
-        <img src="SickCat.jpg" alt="Sick cats" class="card-img">
+      <a href="sick.php" class="card">
+        <img src="img/SickCat.jpg" alt="Sick cats" class="card-img">
         <h3>Sick Cats</h3>
         <p>Support & Report</p>
       </a>
@@ -96,9 +96,9 @@ session_start();
       <div class="footer-right">
         <span>Connect With Us</span>
         <div class="social">
-          <img src="instaLogo.png" alt="Instagram">
-          <img src="XLogo.png" alt="X App">
-          <img src="FacebookLogo.png" alt="Facebook">
+          <img src="img/instaLogo.png" alt="Instagram">
+          <img src="img/XLogo.png" alt="X App">
+          <img src="img/FacebookLogo.png" alt="Facebook">
         </div>
       </div>
     </div>
