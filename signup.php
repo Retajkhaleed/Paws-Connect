@@ -6,7 +6,6 @@ $error_message = '';
 $username = '';
 $phone = '';
 
-// Handle form submission
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $username = trim($_POST["username"]);
     $phone = trim($_POST["phone"]);
@@ -21,7 +20,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     } elseif (strlen($password) < 8) {
         $error_message = "Password must be at least 8 characters long!";
     } else {
-        // Check if username already exists
         $stmt = mysqli_prepare($conn, "SELECT UserID FROM Users WHERE Username=?");
         mysqli_stmt_bind_param($stmt, "s", $username);
         mysqli_stmt_execute($stmt);
@@ -30,7 +28,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if (mysqli_stmt_num_rows($stmt) > 0) {
             $error_message = "Username already taken!";
         } else {
-            // Check if phone number already exists
             $stmt = mysqli_prepare($conn, "SELECT UserID FROM Users WHERE PhoneNumber=?");
             mysqli_stmt_bind_param($stmt, "s", $phone);
             mysqli_stmt_execute($stmt);
@@ -39,7 +36,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             if (mysqli_stmt_num_rows($stmt) > 0) {
                 $error_message = "Phone number already registered!";
             } else {
-                // Create new user
                 $hashed = password_hash($password, PASSWORD_DEFAULT);
                 $stmt = mysqli_prepare($conn, "INSERT INTO Users (Username, Password, PhoneNumber) VALUES (?, ?, ?)");
                 mysqli_stmt_bind_param($stmt, "sss", $username, $hashed, $phone);
@@ -184,7 +180,6 @@ if(passwordField && catImg){
     });
 }
 
-// Client-side password match validation
 confirmField.addEventListener("input", function() {
     if (confirmField.value !== passwordField.value) {
         confirmField.setCustomValidity("Passwords do not match.");
