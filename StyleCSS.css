@@ -1,3 +1,4 @@
+/*home page */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -228,11 +229,19 @@ footer {
   opacity: 1;
   transform: scale(1.1);
 }
+
+.posts-section,
+.sick-cats-table-section,
+.search-section {
+  margin-bottom: 60px;
+}
+
+/*end of home page style */
+
 /*adoptable and lost cats */
 /* ================= Hero (Adoptable Cats) ================= */
-/* ================= Hero Sections ================= */
 .AdoptableHero, .LostHero {
-  margin-top: 85px;
+  margin-top: px;
   height: 250px;
   color: #fff;
   display: flex;
@@ -742,28 +751,6 @@ footer {
     transform: translateY(-2px);
 }
 
-/* 8. Links */
-.auth-footer {
-    margin-top: 15px;
-    font-size: 14px;
-    color: #504e76;
-}
-
-.auth-footer a {
-    color: #f1642e;
-    font-weight: 700;
-    text-decoration: none;
-}
-
-/* 9. FIXED FOOTER RULE */
-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    z-index: 100;
-    box-sizing: border-box; 
-}
 
 /* ================= ACCOUNT PAGE =================== */
 
@@ -1206,6 +1193,7 @@ textarea {
     transition: 0.3s;
     border: 2px solid #E85D22;
 }
+/* end of add page*/
 
 .login {
     background-color: transparent;
@@ -1226,6 +1214,9 @@ textarea {
     background-color: #c04510;
     border-color: #c04510;
 }
+
+
+
 
 
 
