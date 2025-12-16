@@ -823,7 +823,8 @@ footer {
 }
 
 /* ================= EDIT PROFILE PAGE =================== */
-profile-container {
+/* ================= Edit Profile Page ================= */
+.profile-container {
     max-width: 700px;
     margin: 120px auto 80px;
     padding: 30px;
@@ -921,33 +922,6 @@ profile-container {
     font-size: 14px;
 }
 
-.form-group {
-    margin-bottom: 25px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: #504e76;
-}
-
-.form-group input {
-    width: 100%;
-    padding: 12px;
-    border: 2px solid #9aa58d;
-    border-radius: 8px;
-    font-size: 16px;
-    box-sizing: border-box;
-    transition: 0.3s;
-}
-
-.form-group input:focus {
-    border-color: #f1642e;
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(241, 100, 46, 0.2);
-}
-
 .validation-error {
     color: #721c24;
     font-size: 14px;
@@ -965,18 +939,6 @@ profile-container {
     justify-content: flex-end;
     gap: 15px;
     padding-top: 20px;
-}
-
-.btn {
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s;
-    text-decoration: none;
-    display: inline-block;
-    border: none;
 }
 
 .btn-primary {
@@ -1684,4 +1646,5 @@ textarea {
     font-weight: 700;
     text-decoration: underline;
 }
+
 
