@@ -56,29 +56,6 @@ if ($specific_table) {
     $specific_data = $result_specific->fetch_assoc();
 }
 
-// Handle new comment submission via AJAX
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comment_text'])) {
-    if (!isset($_SESSION['user_id'])) {
-        echo json_encode(['success' => false, 'message' => 'You must be logged in']);
-        exit();
-    }
-
-    $comment_text = trim($_POST['comment_text']);
-    $user_id = $_SESSION['user_id'];
-
-    $stmt_insert = $conn->prepare("INSERT INTO Comment (AnnouncementID, UserID, CommentText, DateCommented) VALUES (?, ?, ?, NOW())");
-    $stmt_insert->bind_param("iis", $announcement_id, $user_id, $comment_text);
-    if ($stmt_insert->execute()) {
-        $stmt_user = $conn->prepare("SELECT Username FROM Users WHERE UserID=?");
-        $stmt_user->bind_param("i", $user_id);
-        $stmt_user->execute();
-        $res_user = $stmt_user->get_result()->fetch_assoc();
-        echo json_encode(['success' => true, 'username' => $res_user['Username'], 'comment' => htmlspecialchars($comment_text), 'date' => date("Y-m-d H:i")]);
-    } else {
-        echo json_encode(['success' => false, 'message' => 'Failed to post comment']);
-    }
-    exit();
-}
 
 ?>
 <!DOCTYPE html>
@@ -143,31 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comment_text'])) {
     </div>
   </div>
 
-  <section class="comments-section">
-    <h3>Comments</h3>
-    <div id="commentsList">
-      <?php 
-      $stmt_comments = $conn->prepare("SELECT c.*, u.Username FROM Comment c JOIN Users u ON c.UserID=u.UserID WHERE c.AnnouncementID=? ORDER BY c.DateCommented DESC");
-      $stmt_comments->bind_param("i",$announcement_id);
-      $stmt_comments->execute();
-      $res_comments = $stmt_comments->get_result();
-      if($res_comments->num_rows>0){
-        while($c=$res_comments->fetch_assoc()){
-          echo "<div style='border-bottom:1px dotted #a3b565;padding:10px 0;'><strong>".htmlspecialchars($c['Username']).":</strong> ".htmlspecialchars($c['CommentText'])."<br><small style='color:#9aa58d;'>".date("Y-m-d H:i",strtotime($c['DateCommented']))."</small></div>";
-        }
-      } else { echo "<p>No comments yet.</p>"; }
-      ?>
-    </div>
-
-    <?php if(isset($_SESSION['user_id'])): ?>
-    <form class="comment-form" id="commentForm">
-      <textarea name="comment_text" id="newComment" placeholder="Write a comment..." required></textarea>
-      <button type="submit" class="btn">Post Comment</button>
-    </form>
-    <?php else: ?>
-    <p style="text-align:center;color:#f1642e;font-weight:bold;">Please <a href="login.html" style="color:#f1642e;">log in</a> to post a comment.</p>
-    <?php endif; ?>
-  </section>
+ 
 </main>
 
 <footer>
