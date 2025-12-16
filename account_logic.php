@@ -3,7 +3,7 @@ session_start();
 require "db_connect.php";
 
 if (!isset($_SESSION["UserID"])) {
-    header("Location: ../login.html");
+    header("Location: login.php");
     exit;
 }
 
