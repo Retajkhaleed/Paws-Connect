@@ -54,7 +54,7 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
     </div>
     <nav>
         <ul class="nav menu"> 
-            <li><a href="home_main.php">Home</a></li>
+        <li><a href="home_main.php" class="home-btn">Home</a></li> 
             <li><a href="adoptable-cats.php">Adopt Cats</a></li>
             <li><a href="lost-cats.php">Lost Cats</a></li>
             <li><a href="sick.php">Sick Cats</a></li>
