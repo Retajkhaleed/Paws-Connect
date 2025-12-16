@@ -3,7 +3,7 @@ session_start();
 require "db_connect.php";
 
 if (!isset($_SESSION["UserID"])) {
-    header("Location: ../login.html");
+    header("Location: login.html");
     exit;
 }
 
@@ -15,7 +15,7 @@ $result = mysqli_stmt_get_result($stmt);
 $user = mysqli_fetch_assoc($result);
 
 // Default profile photo
-$profilePhoto = $user["ProfilePhotoURL"] ?? "images/default-profile.png";
+$profilePhoto = $user["ProfilePhotoURL"] ?? "imgs/default-profile.png";
 
 // Error message
 $message = '';
@@ -37,24 +37,24 @@ if (isset($_GET['error']) && $_GET['error'] == 'duplicate') {
 
 <header>
   <div class="logo">
-    <img src="../images/PawLogo.png" alt="Paws Connect Logo" class="logo-image"> 
+    <img src="img/PawLogo.png" alt="Paws Connect Logo" class="logo-image"> 
     <span class="logo-text">Paws Connect</span>
   </div>
   <nav>
     <ul class="nav menu"> 
-      <li><a href="../home_main.php">Home</a></li>
-      <li><a href="../adoptable-cats.html">Adopt Cats</a></li>
-      <li><a href="../lost-cats.html">Lost Cats</a></li>
-      <li><a href="../sick.html">Sick Cats</a></li>
+      <li><a href="home_main.php">Home</a></li>
+      <li><a href="adoptable-cats.html">Adopt Cats</a></li>
+      <li><a href="lost-cats.html">Lost Cats</a></li>
+      <li><a href="sick.html">Sick Cats</a></li>
       <li class="dropdown">
         <a href="#"> Account <span class="arrow">▲</span> </a>
         <ul class="dropdown-content">
           <li><a href="account.php">Profile</a></li>
-          <li><a href="../my-announcements.html">My Announcements</a></li>
-          <li><a href="../saved-announcements.html">Saved Announcements</a></li>
+          <li><a href="my-announcements.html">My Announcements</a></li>
+          <li><a href="saved-announcements.html">Saved Announcements</a></li>
         </ul>
       </li>
-      <li><a href="../add.html" class="btn">Add Announcement</a></li>
+      <li><a href="add.html" class="btn">Add Announcement</a></li>
     </ul>
   </nav>
 </header>
@@ -67,7 +67,7 @@ if (isset($_GET['error']) && $_GET['error'] == 'duplicate') {
         <form method="POST" action="account_logic.php" enctype="multipart/form-data">
             
             <div class="photo-section">
-                <img src="../<?php echo htmlspecialchars($profilePhoto); ?>" alt="Profile Picture">
+                <img src="<?php echo htmlspecialchars($profilePhoto); ?>" alt="Profile Picture">
                 <div>
                     <label>Change Photo</label>
                     <input type="file" name="profilePhoto" accept="image/*">
@@ -103,9 +103,9 @@ if (isset($_GET['error']) && $_GET['error'] == 'duplicate') {
     <div class="footer-right">
       <span>Connect With Us</span>
       <div class="social">
-         <img src="../images/instaLogo.png" alt="Instagram">
-         <img src="../images/XLogo.png" alt="X App">
-         <img src="../images/FacebookLogo.png" alt="Facebook">
+         <img src="img/instaLogo.png" alt="Instagram">
+         <img src="img/XLogo.png" alt="X App">
+         <img src="img/FacebookLogo.png" alt="Facebook">
       </div>
     </div>
   </div>
@@ -114,3 +114,4 @@ if (isset($_GET['error']) && $_GET['error'] == 'duplicate') {
 </body>
 
 </html>
+
