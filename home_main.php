@@ -14,7 +14,7 @@ session_start();
 <body>
   <header>
     <div class="logo">
-      <img src="PawLogo.png" alt="Paws Connect Logo" class="logo-image">
+      <img src="img/PawLogo.png" alt="Paws Connect Logo" class="logo-image">
       <span class="logo-text">Paws Connect</span>
     </div>
 
@@ -24,8 +24,7 @@ session_start();
         <li><a href="adoptable-cats.php">Adopt Cats</a></li>
         <li><a href="lost-cats.php">Lost Cats</a></li>
         <li><a href="sick.php">Sick Cats</a></li>
-
-
+        
         <li class="dropdown">
           <a href="#"> Account <span class="arrow">▲</span> </a>
           <ul class="dropdown-content">
@@ -55,8 +54,8 @@ session_start();
             // Logged In: Keep the area empty, as requested.
         } else {
             // Logged Out: Show Log In and Sign Up buttons.
-            echo '<a href="login.php" class="btn-hero login">Log In</a>';
-            echo '<a href="signup.php" class="btn-hero signup">Sign Up</a>';
+            echo '<a href="login.html" class="btn-hero login">Log In</a>';
+            echo '<a href="signup.html" class="btn-hero signup">Sign Up</a>';
         }
         ?>
       </div>
