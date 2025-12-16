@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const annIDFromURL = urlParams.get('id');
     const commentForm = document.getElementById('commentForm');
 
-    // 1. إرسال التعليقات الرئيسية (Main Comments)
     if (commentForm && annIDFromURL) {
         commentForm.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -27,7 +26,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // 2. منطق إظهار نموذج الرد (Reply Button Click)
     commentsList.addEventListener('click', function(e) {
         if (e.target.classList.contains('reply-btn')) {
             e.preventDefault(); 
@@ -47,11 +45,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // 3. منطق إرسال الردود (Replies Submit)
     commentsList.addEventListener('submit', function(e) {
-        // التحقق مما إذا كان النموذج المرسل هو نموذج الرد
         if (e.target.classList.contains('reply-form')) {
-            // 💡 التصحيح الحاسم: إيقاف الإرسال الافتراضي للنموذج
             e.preventDefault(); 
             
             const form = e.target;
@@ -80,4 +75,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-}); // 💡 هذا هو القوس المفقود الذي يغلق document.addEventListener
+
+}); 
