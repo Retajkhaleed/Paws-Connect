@@ -231,25 +231,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && (isset($_POST['comment_text']) || i
 
       if (!empty($comments)) {
           foreach(array_reverse($comments) as $comment): 
-              echo '<div class="main-comment-thread" data-comment-id="' . $comment['CommentID'] . '" style="border-bottom:1px dotted #a3b565;padding:10px 0;">';
+              echo '<div class="main-comment-thread" data-comment-id="' . $comment['CommentID'] . '">';
               echo "<strong>".htmlspecialchars($comment['Username']).":</strong> ".htmlspecialchars($comment['CommentText'])."<br>";
-              echo "<small style='color:#9aa58d;'>".date("Y-m-d H:i",strtotime($comment['DateCommented']))."</small>";
+              echo "<small>".date("Y-m-d H:i",strtotime($comment['DateCommented']))."</small>";
               
               if($is_logged_in): 
-                  echo '<button class="reply-btn btn" style="font-size:12px; padding: 4px 8px; margin-left: 10px; background:#a3b565; color: white;">Reply</button>';
+                  echo '<button class="reply-btn btn">Reply</button>';
               endif;
               
-              echo '<div class="replies-container" style="margin-left: 30px; border-left: 3px solid #eee; padding-left: 10px; margin-top: 10px;">';
+              echo '<div class="replies-container">';
               foreach($comment['replies'] as $reply): 
-                  echo "<div style='padding:5px 0;'><strong>".htmlspecialchars($reply['Username']).":</strong> ".htmlspecialchars($reply['CommentText'])."<br><small style='color:#9aa58d;'>".date("Y-m-d H:i",strtotime($reply['DateCommented']))."</small></div>";
+                  echo "<div><strong>".htmlspecialchars($reply['Username']).":</strong> ".htmlspecialchars($reply['CommentText'])."<br><small>".date("Y-m-d H:i",strtotime($reply['DateCommented']))."</small></div>";
               endforeach;
               echo '</div>'; 
 
               if($is_logged_in):
-                  echo '<form class="reply-form" style="display:none; margin-top: 10px;">
+                  echo '<form class="reply-form">
                           <input type="hidden" name="parent_id" value="' . $comment['CommentID'] . '">
-                          <textarea name="reply_text" rows="2" style="width: 100%; padding: 5px; border-radius: 4px; box-sizing: border-box;" placeholder="Write a reply..." required></textarea>
-                          <button type="submit" class="btn" style="float: right; margin-top: 5px; padding: 5px 10px; font-size: 14px;">Post Reply</button>
+                          <textarea name="reply_text" rows="2" placeholder="Write a reply..." required></textarea>
+                          <button type="submit" class="btn">Post Reply</button>
                       </form>';
               endif;
 
@@ -267,8 +267,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && (isset($_POST['comment_text']) || i
         <button type="submit" class="btn">Post Comment</button>
       </form>
       <?php else: ?>
-        <p style="text-align:center;color:#f1642e;font-weight:bold;">
-          Please <a href="/Paws-Connect/login.html" style="color:#f1642e;">log in</a> to post a comment.</p>
+        <p>Please <a href="/Paws-Connect/login.html">log in</a> to post a comment.</p>
       <?php endif; ?>
 
   </section>
@@ -289,7 +288,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && (isset($_POST['comment_text']) || i
 
 </body>
 </html>
-
-
-
-
