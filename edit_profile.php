@@ -3,115 +3,111 @@ session_start();
 require "db_connect.php";
 
 if (!isset($_SESSION["UserID"])) {
+    if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET['api'])) {
+        http_response_code(401);
+        echo json_encode(['success' => false, 'message' => 'Not logged in']);
+        exit;
+    }
     header("Location: login.html");
     exit;
 }
 
 $userID = $_SESSION["UserID"];
-$stmt = mysqli_prepare($conn, "SELECT Username, PhoneNumber, ProfilePhotoURL FROM Users LEFT JOIN Profile ON Users.UserID = Profile.UserID WHERE Users.UserID=?");
-mysqli_stmt_bind_param($stmt, "i", $userID);
-mysqli_stmt_execute($stmt);
-$result = mysqli_stmt_get_result($stmt);
-$user = mysqli_fetch_assoc($result);
 
-// Default profile photo
-$profilePhoto = $user["ProfilePhotoURL"] ?? "imgs/default-profile.png";
+if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET['api'])) {
+    $stmt = mysqli_prepare($conn, "SELECT Username, PhoneNumber, ProfilePhotoURL FROM Users LEFT JOIN Profile ON Users.UserID = Profile.UserID WHERE Users.UserID=?");
+    mysqli_stmt_bind_param($stmt, "i", $userID);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $user = mysqli_fetch_assoc($result);
 
-// Error message
-$message = '';
-if (isset($_GET['error']) && $_GET['error'] == 'duplicate') {
-    $message = '<p class="message error">Username or Phone Number already in use!</p>';
+    $profilePhoto = $user["ProfilePhotoURL"] ?? "img/Pawlogo.png";
+    if (!empty($user["ProfilePhotoURL"]) && strpos($profilePhoto, 'img/') !== 0) {
+        $profilePhoto = $user["ProfilePhotoURL"];
+    }
+
+    echo json_encode([
+        'success' => true,
+        'user' => [
+            'username' => $user["Username"],
+            'phone' => $user["PhoneNumber"],
+            'profilePhoto' => $profilePhoto
+        ]
+    ]);
+    exit;
 }
-?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Paws Connect | Edit Account</title>
-    <link href="StyleCSS.css" rel="stylesheet">
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $username = trim($_POST["username"]);
+    $phone = trim($_POST["phone"]);
+    $newPassword = $_POST["password"] ?? "";
     
-</head>
-<body>
+    $stmt = mysqli_prepare($conn, "SELECT UserID FROM Users WHERE (Username=? OR PhoneNumber=?) AND UserID != ?");
+    mysqli_stmt_bind_param($stmt, "ssi", $username, $phone, $userID);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_store_result($stmt);
+    
+    if (mysqli_stmt_num_rows($stmt) > 0) {
+        http_response_code(400);
+        echo json_encode(['success' => false, 'message' => 'Username or phone number already in use']);
+        exit;
+    }
 
-<header>
-  <div class="logo">
-    <img src="img/PawLogo.png" alt="Paws Connect Logo" class="logo-image"> 
-    <span class="logo-text">Paws Connect</span>
-  </div>
-  <nav>
-    <ul class="nav menu"> 
-      <li><a href="home_main.php">Home</a></li>
-      <li><a href="adoptable-cats.html">Adopt Cats</a></li>
-      <li><a href="lost-cats.html">Lost Cats</a></li>
-      <li><a href="sick.html">Sick Cats</a></li>
-      <li class="dropdown">
-        <a href="#"> Account <span class="arrow">▲</span> </a>
-        <ul class="dropdown-content">
-          <li><a href="account.php">Profile</a></li>
-          <li><a href="my-announcements.html">My Announcements</a></li>
-          <li><a href="saved-announcements.html">Saved Announcements</a></li>
-        </ul>
-      </li>
-      <li><a href="add.html" class="btn">Add Announcement</a></li>
-    </ul>
-  </nav>
-</header>
-
-<main class="page-background">
-    <?php echo $message; ?>
-    <div class="edit-container">
-        <h1>Edit profile</h1>
+    $updatePhoto = false;
+    $profilePhotoPath = null;
+    
+    if (isset($_FILES["profilePhoto"]) && $_FILES["profilePhoto"]["error"] === UPLOAD_ERR_OK) {
+        $tmpName = $_FILES["profilePhoto"]["tmp_name"];
+        $ext = strtolower(pathinfo($_FILES["profilePhoto"]["name"], PATHINFO_EXTENSION));
+        $newName = "images/profile_" . $userID . "." . $ext;
+        $targetPath = $newName;
         
-        <form method="POST" action="account_logic.php" enctype="multipart/form-data">
-            
-            <div class="photo-section">
-                <img src="<?php echo htmlspecialchars($profilePhoto); ?>" alt="Profile Picture">
-                <div>
-                    <label>Change Photo</label>
-                    <input type="file" name="profilePhoto" accept="image/*">
-                </div>
-            </div>
+        if (!file_exists("images")) {
+            mkdir("images", 0777, true);
+        }
+        
+        if (move_uploaded_file($tmpName, $targetPath)) {
+            $profilePhotoPath = $newName;
+            $updatePhoto = true;
+        } else {
+            http_response_code(500);
+            echo json_encode(['success' => false, 'message' => 'Failed to upload profile photo']);
+            exit;
+        }
+    }
+    
+    $stmt = mysqli_prepare($conn, "INSERT IGNORE INTO Profile (UserID) VALUES (?)");
+    mysqli_stmt_bind_param($stmt, "i", $userID);
+    mysqli_stmt_execute($stmt);
 
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($user["Username"]); ?>" required>
-            </div>
+    if (!empty($newPassword)) {
+        $hashed = password_hash($newPassword, PASSWORD_DEFAULT);
+        $stmt = mysqli_prepare($conn, "UPDATE Users SET Username=?, PhoneNumber=?, Password=? WHERE UserID=?");
+        mysqli_stmt_bind_param($stmt, "sssi", $username, $phone, $hashed, $userID);
+    } else {
+        $stmt = mysqli_prepare($conn, "UPDATE Users SET Username=?, PhoneNumber=? WHERE UserID=?");
+        mysqli_stmt_bind_param($stmt, "ssi", $username, $phone, $userID);
+    }
+    
+    if (!mysqli_stmt_execute($stmt)) {
+        http_response_code(500);
+        echo json_encode(['success' => false, 'message' => 'Failed to update profile']);
+        exit;
+    }
 
-            <div class="form-group">
-                <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" name="phone" value="<?php echo htmlspecialchars($user["PhoneNumber"]); ?>" required>
-            </div>
+    if ($updatePhoto) {
+        $stmt = mysqli_prepare($conn, "UPDATE Profile SET ProfilePhotoURL=? WHERE UserID=?");
+        mysqli_stmt_bind_param($stmt, "si", $profilePhotoPath, $userID);
+        mysqli_stmt_execute($stmt);
+    }
 
-            <div class="form-group">
-                <label for="password">New Password (leave blank to keep current)</label>
-                <input type="password" id="password" name="password" placeholder="••••••••">
-            </div>
-            
-            <div class="edit-actions">
-                <a href="account.php" class="cancel-btn">Cancel</a>
-                <button type="submit" class="auth-submit-btn">Save Changes</button>
-            </div>
-        </form>
-    </div>
-</main>
+    $_SESSION["Username"] = $username;
+    $_SESSION["Phone"] = $phone;
 
-<footer>
-  <div class="footer-content">
-    <div class="footer-left"><span>Paws Connect 2025 ©</span></div>
-    <div class="footer-right">
-      <span>Connect With Us</span>
-      <div class="social">
-         <img src="img/instaLogo.png" alt="Instagram">
-         <img src="img/XLogo.png" alt="X App">
-         <img src="img/FacebookLogo.png" alt="Facebook">
-      </div>
-    </div>
-  </div>
-</footer>
+    echo json_encode(['success' => true, 'message' => 'Profile updated successfully']);
+    exit;
+}
 
-</body>
-
-</html>
-
+\header("Location: edit_profile.html");
+exit;
+?>
