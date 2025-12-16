@@ -11,31 +11,35 @@ include 'db_connect.php';
   <link rel="stylesheet" href="StyleCSS.css">
 </head>
 <body>
-
 <header>
-  <div class="logo">
-    <img src="img/PawLogo.png" alt="Paws Connect Logo" class="logo-image">
-    <span class="logo-text">Paws Connect</span>
-  </div>
-  <nav>
-    <ul class="nav">
-      <li><a href="Home.html">Home</a></li>
-      <li><a href="adoptable-cats.php">Adopt Cats</a></li>
-      <li><a href="lost-cats.php" class="home-btn">Lost Cats</a></li>
-      <li><a href="sick.php">Sick Cats</a></li>
-      <li class="dropdown">
-        <a href="#">Account <span class="arrow">▲</span></a>
-        <ul class="dropdown-content">
-          <li><a href="account.html">Profile</a></li>
-          <li><a href="my-announcements.php">My Announcements</a></li>
-          <li><a href="saved-announcements.php">Saved Announcements</a></li>
-        </ul>
-      </li>
-      <li><a href="add.html" class="btn">Add Announcement</a></li>
-    </ul>
-  </nav>
-</header>
+    <div class="logo">
+      <img src="img/PawLogo.png" alt="Paws Connect Logo" class="logo-image">
+      <span class="logo-text">Paws Connect</span>
+    </div>
 
+    <nav>
+      <ul class="nav">
+        <li><a href="home_main.php" class="home-btn">Home</a></li> 
+        <li><a href="adoptable-cats.php">Adopt Cats</a></li>
+        <li><a href="lost-cats.php">Lost Cats</a></li>
+        <li><a href="sick.php">Sick Cats</a></li>
+
+
+        <li class="dropdown">
+          <a href="#"> Account <span class="arrow">▲</span> </a>
+          <ul class="dropdown-content">
+            <li><a href="account.php">Profile</a></li>
+            <li><a href="my-announcements.html">My Announcements</a></li>
+            <li><a href="saved-announcements.html">Saved Announcements</a></li>
+          </ul>
+        </li>
+
+        <li><a href="add.html" class="btn">Add Announcement</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  
 <section class="LostHero">
   <div class="LostHero-content">
     <h1>Lost Cats Near You</h1>
@@ -198,6 +202,25 @@ function filterPosts() {
 }
 </script>
 
+
+<footer>
+    <div class="footer-content">
+      <div class="footer-left">
+        <span>Paws Connect 2025 ©</span>
+      </div>
+
+      <div class="footer-right">
+        <span>Connect With Us</span>
+        <div class="social">
+          <img src="img/instaLogo.png" alt="Instagram">
+          <img src="img/XLogo.png" alt="X App">
+          <img src="img/FacebookLogo.png" alt="Facebook">
+        </div>
+      </div>
+    </div>
+  </footer>
+
 </body>
 </html>
+
 
