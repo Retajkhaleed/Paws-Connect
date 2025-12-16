@@ -238,20 +238,27 @@ footer {
 
 /*end of home page style */
 
-/*adoptable and lost cats */
-/* ================= Hero (Adoptable Cats) ================= */
-.AdoptableHero, .LostHero {
-  margin-top: px;
-  height: 250px;
+
+
+/* ================= adopt&sick&lost Style ================= */
+.AdoptableHero,
+.LostHero,
+.SickHero {
+  margin-top: 0; 
+  height: 45vh;          
+  min-height: 300px;    
+  max-height: 420px;    
   color: #fff;
   display: flex;
+  align-items: center;
   background-size: cover;
-  background-position: center;  
+  background-position: center;
   background-color: rgba(123, 134, 115, 0.85);
   background-blend-mode: multiply;
   border-bottom: 3px solid #a3b565;
 }
 
+/* Background Images */
 .AdoptableHero {
   background-image: url("img/adoptable-cat.png");
 }
@@ -260,20 +267,31 @@ footer {
   background-image: url("img/Lostcat.jpg");
 }
 
-.AdoptableHero-content, .LostHero-content {
-  padding-left: 70px;
-  padding-top: 100px;
+.SickHero {
+  background-image: url("img/Sickcat.jpg");
 }
 
-.AdoptableHero-content h1, .LostHero-content h1 {
+/* Content */
+.AdoptableHero-content,
+.LostHero-content,
+.SickHero-content {
+  padding-left: 70px;
+}
+
+/* Text */
+.AdoptableHero-content h1,
+.LostHero-content h1,
+.SickHero-content h1 {
   font-family: "Playfair Display", serif;
-  font-size: 51px;
+  font-size: 3rem;
   font-weight: 800;
 }
 
-.AdoptableHero-content p, .LostHero-content p {
-  font-size: 19px;
-  margin-top: -30px;
+.AdoptableHero-content p,
+.LostHero-content p,
+.SickHero-content p {
+  font-size: 1.15rem;
+  margin-top: -20px;
 }
 
 /* ================= Search Section ================= */
@@ -379,7 +397,9 @@ footer {
 
 .posts-section {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fill, 260px);
+  grid-auto-rows: auto;
+  justify-content: start;
   gap: 24px;
   margin-top: 35px;
 }
@@ -399,6 +419,9 @@ footer {
   overflow: hidden;
   box-shadow: 0 6px 14px rgba(189,103,17,0.28); 
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .cat-card:hover {
@@ -406,9 +429,15 @@ footer {
   box-shadow: 0 8px 20px rgba(194,80,9,0.45);
 }
 
+.cat-image {
+  height: 190px;
+  width: 100%;
+  overflow: hidden;
+}
+
 .cat-image img {
   width: 100%;
-  height: 190px;
+  height: 100%;
   object-fit: cover;
   border-bottom: 4px solid #a3b565;
 }
@@ -436,72 +465,6 @@ footer {
   color: #f1642e; 
 }
 
-
-/* ================= Responsive ================= */
-@media (max-width: 768px) {
-  .search-section {
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  .cat-card img {
-    height: 180px;
-  }
-
-  .AdoptableHero-content, .LostHero-content {
-    padding-left: 20px;
-    padding-top: 60px;
-  }
-
-  .AdoptableHero-content h1, .LostHero-content h1 {
-    font-size: 36px;
-  }
-
-  .AdoptableHero-content p, .LostHero-content p {
-    font-size: 16px;
-  }
-}
-
-
-
-/* ================= Hero (Sick Cats) Styles ================= */
-.SickHero {
-  margin-top: 85px;
-  height: 250px;
-  color: #fff;
-  display: flex;
-  /* Placeholder image URL (user can replace this) */
-  background-image: url("img/Sickcat.jpg"); 
-  background-size: cover;
-  background-position: center;  
-  background-color: rgba(123, 134, 115, 0.85); /* Common dark overlay color */
-  background-blend-mode: multiply;
-  border-bottom: 3px solid #a3b565;
-}
-
-.SickHero-content{
-  padding-left: 70px;
-  padding-top: 100px;
-}
-
-.SickHero-content h1 {
-  font-family: "Playfair Display", serif;
-  font-size: 51px;
-  font-weight: 800;
-}
-
-.SickHero-content p {
-  font-size: 19px;
-  margin-top: -30px;
-}
-
-/* ================= Sick Cats Table Section - For sick-cats.html ================= */
-.sick-cats-table-section {
-  margin-top: 50px;
-  overflow-x: auto;
-}
-
-/* (Table elements like table, th, td will inherit existing global styles for consistency) */
 /* ================= View Announcement Specific Layout ================= */
 
 
@@ -1552,26 +1515,3 @@ textarea {
     font-weight: 700;
     text-decoration: underline;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
