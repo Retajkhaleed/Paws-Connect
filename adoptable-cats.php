@@ -108,7 +108,8 @@ $sql = "SELECT a.AnnouncementID, a.Title, a.Description, a.PhotoURL, a.Location,
         FROM Announcement a
         JOIN CatAdoption c ON a.AnnouncementID = c.AnnouncementID
         JOIN Users u ON a.UserID = u.UserID
-        WHERE a.Type='CatAdoption' ORDER BY a.DateCreated DESC";
+        WHERE a.Type='CatAdoption' AND a.Status='Active'
+        ORDER BY a.DateCreated DESC";
 $result = $conn->query($sql);
 
 if ($result && $result->num_rows > 0) {
@@ -204,5 +205,6 @@ document.getElementById('cityFilter').addEventListener('change', filterPosts);
 
 </body>
 </html>
+
 
 
