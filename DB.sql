@@ -102,3 +102,16 @@ CREATE TABLE IF NOT EXISTS Comment (
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
+
+ALTER TABLE CatAdoption
+DROP COLUMN AdoptionStatus;
+
+ALTER TABLE SickCat
+DROP COLUMN Status;
+
+ALTER TABLE Comment 
+ADD COLUMN ParentCommentID INT(11) NULL DEFAULT NULL AFTER DateCommented,
+ADD CONSTRAINT fk_parent_comment 
+    FOREIGN KEY (ParentCommentID) REFERENCES Comment(CommentID) 
+    ON DELETE CASCADE 
+    ON UPDATE CASCADE;
