@@ -123,7 +123,7 @@ SELECT
 FROM Announcement a
 JOIN LostCat l ON a.AnnouncementID = l.AnnouncementID
 JOIN Users u ON a.UserID = u.UserID
-WHERE a.Type='LostCat'
+WHERE a.Type='LostCat' AND a.Status='Active'
 ORDER BY a.DateCreated DESC
 ";
 $result = $conn->query($sql);
@@ -215,6 +215,7 @@ document.getElementById('cityFilter').addEventListener('change', filterPosts);
 
 </body>
 </html>
+
 
 
 
