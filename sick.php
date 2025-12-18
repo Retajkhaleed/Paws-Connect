@@ -107,7 +107,7 @@ $sql = "SELECT a.AnnouncementID, a.Title, a.Description, a.PhotoURL, a.Location,
         s.Symptoms, s.Urgency, s.DateNoticed, s.FoundLocation, s.Needs
         FROM Announcement a
         JOIN SickCat s ON a.AnnouncementID = s.AnnouncementID
-        WHERE a.Type='SickCat'
+        WHERE a.Type='SickCat' AND a.Status='Active'
         ORDER BY a.DateCreated DESC";
 
 $result = $conn->query($sql);
@@ -199,4 +199,5 @@ document.getElementById('cityFilter').addEventListener('change', filterPosts);
 
 </body>
 </html>
+
 
