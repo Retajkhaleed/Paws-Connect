@@ -5,16 +5,17 @@ include 'db_connect.php';
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Paws Connect | <?php echo htmlspecialchars($announcement['Title']); ?></title>
-<link rel="stylesheet" href="StyleCSS.css">
+  <meta charset="UTF-8" />
+  <title>Paws Connect – Sick Cats</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="StyleCSS.css">
 </head>
-
 <body>
-
 <header>
-  <div class="logo"><img src="img/logo.png" class="logo-image"><span class="logo-text">Paws Connect</span></div>
+  <div class="logo">
+    <img src="img/PawLogo.png" alt="Paws Connect Logo" class="logo-image">
+    <span class="logo-text">Paws Connect</span>
+  </div>
     <nav>
       <ul class="nav">
         <li><a href="home_main.php" class="home-btn">Home</a></li> 
@@ -38,7 +39,7 @@ include 'db_connect.php';
 <section class="SickHero">
   <div class="SickHero-content">
     <h1>Sick Cats Needing Care</h1>
-    <p>Give a sick cat hope and a chance to heal</p>
+    <p>Give a sick cat hope and chance to heal</p>
   </div>
 </section>
 
@@ -107,7 +108,7 @@ $sql = "SELECT a.AnnouncementID, a.Title, a.Description, a.PhotoURL, a.Location,
         s.Symptoms, s.Urgency, s.DateNoticed, s.FoundLocation, s.Needs
         FROM Announcement a
         JOIN SickCat s ON a.AnnouncementID = s.AnnouncementID
-        WHERE a.Type='SickCat' AND a.Status='Active'
+        WHERE a.Type='SickCat' AND a.Status='Active' 
         ORDER BY a.DateCreated DESC";
 
 $result = $conn->query($sql);
@@ -160,21 +161,11 @@ if ($result && $result->num_rows > 0) {
   </section>
 </main>
 
-<footer>
-  <div class="footer-content">
-    <div class="footer-left">
-      <span>Paws Connect 2025 ©</span>
+ <footer>
+    <div class="footer-content">
+       Paws Connect 2025 ©
     </div>
-    <div class="footer-right">
-      <span>Connect With Us</span>
-      <div class="social">
-        <img src="img/instaLogo.png" alt="Instagram">
-        <img src="img/XLogo.png" alt="X App">
-        <img src="img/FacebookLogo.png" alt="Facebook">
-      </div>
-    </div>
-  </div>
-</footer>
+  </footer>
 
 <script>
 function filterPosts() {
@@ -199,5 +190,6 @@ document.getElementById('cityFilter').addEventListener('change', filterPosts);
 
 </body>
 </html>
+
 
 
