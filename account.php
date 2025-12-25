@@ -9,7 +9,7 @@ if (!isset($_SESSION["UserID"])) {
 }
 
 $userID = $_SESSION["UserID"];
-$stmt = mysqli_prepare($conn, "SELECT Username, PhoneNumber, ProfilePhotoURL FROM Users LEFT JOIN Profile ON Users.UserID = Profile.UserID WHERE Users.UserID=?");
+$stmt = mysqli_prepare($conn, "SELECT Users.Username, Users.PhoneNumber, Profile.ProfilePhotoURL FROM Users LEFT JOIN Profile ON Users.UserID = Profile.UserID WHERE Users.UserID=?");
 mysqli_stmt_bind_param($stmt, "i", $userID);
 mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
@@ -59,8 +59,8 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
             <li class="dropdown">
                 <a href="#"> Account <span class="arrow">▲</span> </a>
                 <ul class="dropdown-content">
-                    <li><a href="my-announcements.html">My Announcements</a></li>
-                    <li><a href="saved-announcements.html">Saved Announcements</a></li>
+                    <li><a href="my-announcements.php">My Announcements</a></li>
+                    <li><a href="saved-announcements.php">Saved Announcements</a></li>
                 </ul>
             </li>
             <li><a href="add.html" class="btn">Add Announcement</a></li>
@@ -82,9 +82,9 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
 
     <section class="profile-links">
         <h3>My Activity</h3>
-        <a href="my-announcements.html" class="profile-link">My Announcements</a>
-        <a href="saved-announcements.html" class="profile-link">Saved Announcements</a>
-        <a href="add.html" class="profile-link add">+ Add New Announcement</a>
+        <a href="my-announcements.php"class="profile-link">My Announcements</a>
+        <a href="saved-announcements.php" class="profile-link">Saved Announcements</a>
+        <a href="add.html" class="profile-link add">Add New Announcement</a>
         <br>
         <a href="logout.php" class="logout-link">Log out</a>
     </section>
@@ -92,17 +92,9 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
 
 <footer>
     <div class="footer-content">
-        <div class="footer-left"><span>Paws Connect 2025 ©</span></div>
-        <div class="footer-right">
-            <span>Connect With Us</span>
-            <div class="social">
-                <img src="img/instaLogo.png" alt="Instagram">
-                <img src="img/XLogo.png" alt="X App">
-                <img src="img/FacebookLogo.png" alt="Facebook">
-            </div>
-        </div>
+       Paws Connect 2025 ©
     </div>
-</footer>
+  </footer>
 
 </body>
 </html>
