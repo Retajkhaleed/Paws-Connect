@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const commentsList = document.getElementById('commentsList');
+    const commentsList = document.getElementById('commentsList'); 
     const urlParams = new URLSearchParams(window.location.search);
     const annIDFromURL = urlParams.get('id');
     const commentForm = document.getElementById('commentForm');
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            fetch(window.location.href, {
+            fetch(window.location.href, { 
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 body: `reply_text=${encodeURIComponent(replyText)}&parent_id=${parentId}&announcement_id=${annIDFromURL}`
@@ -74,7 +74,8 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => console.error('Error posting reply:', error));
         }
     });
-        // Select all textarea elements on the page (main comments and replies)
+
+    // Select all textarea elements on the page (main comments and replies)
     document.querySelectorAll('textarea').forEach(textarea => {
         
         // Set the maximum allowed characters at the browser level to prevent typing beyond 500
@@ -116,6 +117,4 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-
 }); 
-
