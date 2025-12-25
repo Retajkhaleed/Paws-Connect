@@ -4,6 +4,6 @@ session_start();
 session_unset();
 session_destroy();
 
-header("Location: home_main.php");
+header("Location: /Paws-Connect/home_main.php");
 exit;
 ?>
