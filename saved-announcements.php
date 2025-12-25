@@ -3,7 +3,7 @@ session_start();
 include 'db_connect.php'; 
 
 if (!isset($_SESSION["UserID"])) {
-    header("Location: login.html");
+    header("Location: login.php");
     exit();
 }
 
@@ -113,8 +113,12 @@ if ($stmt = $conn->prepare($sql)) {
       </section>
     </main>
 
-    <footer>
-      </footer>
+     <footer>
+    <div class="footer-content">
+       Paws Connect 2025 ©
+    </div>
+  </footer>
+  
     <?php $conn->close(); ?>
   </body>
 </html>
