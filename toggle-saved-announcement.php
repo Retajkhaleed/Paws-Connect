@@ -3,7 +3,7 @@ session_start();
 include 'db_connect.php'; 
 
 if (!isset($_SESSION["UserID"]) || $_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header("Location: login.html");
+    header("Location: login.php");
     exit();
 }
 
@@ -49,4 +49,4 @@ if ($success) {
     header("Location: view-announcement.php?id=$announcementID&error=" . $status_message . "_failed");
 }
 exit();
-?>
+?> 
