@@ -103,17 +103,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </main>
 
 <footer>
-  <div class="footer-content">
-    <div class="footer-left"><span>Paws Connect 2025 ©</span></div>
-    <div class="footer-right">
-      <span>Connect With Us</span>
-      <div class="social">
-         <img src="img/instaLogo.png" alt="IG">
-         <img src="img/XLogo.png" alt="X">
-         <img src="img/FacebookLogo.png" alt="FB">
-      </div>
+    <div class="footer-content">
+        Paws Connect 2025 ©
     </div>
-  </div>
 </footer>
 
 <script>
