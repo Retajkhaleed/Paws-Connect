@@ -1,6 +1,6 @@
-<?php
+<?php 
 session_start();
-require "db_connect.php";
+require "db_connect.php"; 
 
 if (!isset($_SESSION["UserID"])) {
     if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET['api'])) {
@@ -9,7 +9,7 @@ if (!isset($_SESSION["UserID"])) {
         echo json_encode(['success' => false, 'message' => 'Not logged in']);
         exit;
     }
-    header("Location: login.html");
+    header("Location: login.php");
     exit;
 }
 
@@ -18,7 +18,7 @@ $userID = $_SESSION["UserID"];
 if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET['api'])) {
     header('Content-Type: application/json');
     
-    $stmt = mysqli_prepare($conn, "SELECT Username, PhoneNumber, ProfilePhotoURL FROM Users LEFT JOIN Profile ON Users.UserID = Profile.UserID WHERE Users.UserID=?");
+    $stmt = mysqli_prepare($conn, "SELECT Users.Username, Users.PhoneNumber, Profile.ProfilePhotoURL FROM Users LEFT JOIN Profile ON Users.UserID = Profile.UserID WHERE Users.UserID=?");    
     mysqli_stmt_bind_param($stmt, "i", $userID);
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
