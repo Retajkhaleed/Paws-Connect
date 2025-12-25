@@ -3,7 +3,7 @@ session_start();
 include 'db_connect.php'; 
 
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
-    header("Location: adoptable-cats.php");
+    header("Location: adoptable-cats.php"); 
     exit();
 }
 
@@ -267,22 +267,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && (isset($_POST['comment_text']) || i
         <button type="submit" class="btn">Post Comment</button>
       </form>
       <?php else: ?>
-        <p>Please <a href="/Paws-Connect/login.html">log in</a> to post a comment.</p>
+        <p>Please <a href="/Paws-Connect/login.php">log in</a> to post a comment.</p>
       <?php endif; ?>
 
   </section>
 </main>
 
-<footer>
-  <div class="footer-content">
-    <div>Paws Connect 2025 ©</div>
-    <div>Connect With Us
-      <img src="img/instaLogo.png" style="width:22px;height:22px;">
-      <img src="img/XLogo.png" style="width:22px;height:22px;">
-      <img src="img/FacebookLogo.png" style="width:22px;height:22px;">
+ <footer>
+    <div class="footer-content">
+       Paws Connect 2025 ©
     </div>
-  </div>
-</footer>
+  </footer>
 
 <script src="view-announcement.js"></script>
 
