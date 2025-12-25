@@ -14,3 +14,4 @@ function showForm(type) {
 window.onload = function () {
     showForm("adopt");
 };
+
