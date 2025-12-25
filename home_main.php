@@ -24,16 +24,15 @@ session_start();
         <li><a href="adoptable-cats.php">Adopt Cats</a></li>
         <li><a href="lost-cats.php">Lost Cats</a></li>
         <li><a href="sick.php">Sick Cats</a></li>
-        
+
         <li class="dropdown">
           <a href="#"> Account <span class="arrow">▲</span> </a>
           <ul class="dropdown-content">
             <li><a href="account.php">Profile</a></li>
-            <li><a href="my-announcements.html">My Announcements</a></li>
-            <li><a href="saved-announcements.html">Saved Announcements</a></li>
+            <li><a href="my-announcements.php">My Announcements</a></li>
+            <li><a href="saved-announcements.php">Saved Announcements</a></li>
           </ul>
         </li>
-
         <li><a href="add.html" class="btn">Add Announcement</a></li>
       </ul>
     </nav>
@@ -42,7 +41,7 @@ session_start();
 
   <section class="About">
     <div class="About-content">
-      <h1>Find Your Furever Friend!</h1>
+      <h1>Find Your Forever Friend!</h1>
       <p>
         Because every cat deserves love, safety, and a second chance.<br>
         Be part of Paws Connect — a community that reunites lost cats <br>
@@ -54,8 +53,8 @@ session_start();
             // Logged In: Keep the area empty, as requested.
         } else {
             // Logged Out: Show Log In and Sign Up buttons.
-            echo '<a href="login.html" class="btn-hero login">Log In</a>';
-            echo '<a href="signup.html" class="btn-hero signup">Sign Up</a>';
+            echo '<a href="login.php" class="btn-hero login">Log In</a>';
+            echo '<a href="signup.php" class="btn-hero signup">Sign Up</a>';
         }
         ?>
       </div>
@@ -88,18 +87,7 @@ session_start();
   
   <footer>
     <div class="footer-content">
-      <div class="footer-left">
-        <span>Paws Connect 2025 ©</span>
-      </div>
-
-      <div class="footer-right">
-        <span>Connect With Us</span>
-        <div class="social">
-          <img src="img/instaLogo.png" alt="Instagram">
-          <img src="img/XLogo.png" alt="X App">
-          <img src="img/FacebookLogo.png" alt="Facebook">
-        </div>
-      </div>
+        Paws Connect 2025 ©
     </div>
   </footer>
 
