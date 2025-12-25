@@ -4,7 +4,7 @@ session_start();
 include 'db_connect.php'; 
 
 if (!isset($_SESSION["UserID"])) {
-    header("Location: login.html");
+    header("Location: login.php");
     exit();
 }
 
@@ -109,17 +109,14 @@ if ($stmt = $conn->prepare($sql)) {
 
                             <form class="status-action-form" id="form-<?php echo $announcement['AnnouncementID']; ?>">
                                 <input type="hidden" name="announcement_id" value="<?php echo $announcement['AnnouncementID']; ?>">
-                                
                                 <select name="new_status" required 
                                         id="select-<?php echo $announcement['AnnouncementID']; ?>"> 
                                     <option value="" disabled selected>Change Status</option>
-                                    
                                     <?php 
                                     if ($currentStatus != 'Active'): 
                                     ?>
                                         <option value="Active">Active</option>
                                     <?php endif; ?>
-                                    
                                     <?php 
                                     if ($currentStatus == 'Active' && $possibleFinalStatus): 
                                     ?>
@@ -128,7 +125,6 @@ if ($stmt = $conn->prepare($sql)) {
                                         </option>
                                     <?php endif; ?>
                                 </select>
-                                
                                 <button type="button" class="btn-save-status" 
                                         id="save-btn-<?php echo $announcement['AnnouncementID']; ?>" 
                                         disabled>Save</button>
@@ -141,22 +137,11 @@ if ($stmt = $conn->prepare($sql)) {
       </section>
     </main>
 
-    <footer>
-        <div class="footer-content">
-        <div class="footer-left">
-            <span>Paws Connect 2025 ©</span>
-        </div>
-
-        <div class="footer-right">
-            <span>Connect With Us</span>
-            <div class="social">
-            <img src="img/instaLogo.png" alt="Instagram">
-            <img src="img/XLogo.png" alt="X App">
-            <img src="img/FacebookLogo.png" alt="Facebook">
-            </div>
-        </div>
-        </div>
-    </footer>
+  <footer>
+    <div class="footer-content">
+       Paws Connect 2025 ©
+    </div>
+  </footer>
 
     <script>
         function toggleSaveButton(announcementId) {
@@ -217,3 +202,4 @@ if ($stmt = $conn->prepare($sql)) {
     ?>
   </body>
 </html>
+
