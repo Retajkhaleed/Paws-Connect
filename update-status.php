@@ -1,9 +1,9 @@
 <?php
-session_start();
+session_start(); 
 include 'db_connect.php'; 
 
 if (!isset($_SESSION["UserID"]) || $_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header("Location: login.html");
+    header("Location: login.php");
     exit();
 }
 
